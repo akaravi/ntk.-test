@@ -8,6 +8,9 @@
       "schematics": {
         "@schematics/angular:component": {
           "style": "scss"
+        },
+        "@schematics/angular:application": {
+          "strict": true
         }
       },
       "root": "",
@@ -29,6 +32,18 @@
               {
                 "glob": "**/*",
                 "input": "public"
+              },
+              "src/assets",
+              "src/manifest.webmanifest",
+              {
+                "glob": "**/*",
+                "input": "./node_modules/leaflet/dist/images",
+                "output": "assets/leaflet/"
+              },
+              {
+                "glob": "**/*",
+                "input": "./node_modules/ntk-cms-filemanager/src/assets/",
+                "output": "assets/"
               }
             ],
             "styles": [
@@ -42,7 +57,15 @@
               "node_modules/apexcharts/dist/apexcharts.min.js"
             ],
             "allowedCommonJsDependencies": [
-              "jalali-moment"
+              "leaflet",
+              "lodash",
+              "object-path",
+              "apexcharts",
+              "clipboard.js",
+              "prismjs",
+              "jalali-moment",
+              "luxon",
+              "mobx"
             ]
           },
           "configurations": {
