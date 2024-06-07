@@ -52,11 +52,11 @@ export class PageContactusComponent extends AddBaseComponent<TicketingTaskServic
 
 
   @ViewChild('vform', { static: false }) formGroup: FormGroup;
-  fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
+  //fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
   formInfo: FormInfoModel = new FormInfoModel();
   dataAccessModel: AccessModel;
-  dataModel = new TicketingTaskDtoModel();
-  dataModelResult: ErrorExceptionResult<TicketingTaskModel> = new ErrorExceptionResult<TicketingTaskModel>();
+  //dataModel = new TicketingTaskDtoModel();
+  //dataModelResult: ErrorExceptionResult<TicketingTaskModel> = new ErrorExceptionResult<TicketingTaskModel>();
 
 
   selectFileTypeMainImage = ['jpg', 'jpeg', 'png'];

@@ -1,5 +1,5 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
-//karavi error on angular 18//import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+
 import { CoreGuideService } from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -21,9 +21,7 @@ export class CmsGuideinfoComponent implements OnInit, OnDestroy {
   @Input() btnOkText: string;
   show = true;
   constructor(
-    // private activeModal: NgbActiveModal,
     private tokenHelper: TokenHelper,
-    //private modalService: NgbModal,
     private coreGuideService: CoreGuideService,
     private cmsToastrService: CmsToastrService,
   ) { }
@@ -81,7 +79,7 @@ export class CmsGuideinfoComponent implements OnInit, OnDestroy {
                   break;
                 }
               }
-              this.open(content);
+              this.openModal(content);
             } else {
               this.cmsToastrService.typeErrorMessage(next.errorMessage);
             }
@@ -127,7 +125,7 @@ export class CmsGuideinfoComponent implements OnInit, OnDestroy {
                   break;
                 }
               }
-              this.open(content);
+              this.openModal(content);
             } else {
               this.cmsToastrService.typeErrorMessage(next.errorMessage);
             }
@@ -138,10 +136,10 @@ export class CmsGuideinfoComponent implements OnInit, OnDestroy {
       ).toPromise();
 
     } else if (this.description && this.description.length > 0) {
-      this.open(content);
+      this.openModal(content);
     }
   }
-  open(content): void {
+  openModal(content): void {
     //karavi error on angular 18//
     // this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
     //   this.closeResult = `Closed with: ${result}`;
