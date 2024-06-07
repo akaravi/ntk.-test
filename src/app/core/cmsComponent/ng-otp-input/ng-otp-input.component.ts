@@ -81,6 +81,7 @@ export class NgOtpInputComponent implements OnInit, AfterViewInit {
     if (isSpace) {// prevent space
       return false;
     }
+    return true;
   }
 
   onKeyUp($event: any, inputIdx: any) {
