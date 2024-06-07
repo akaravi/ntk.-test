@@ -1,0 +1,74 @@
+<div [ngClass]="themeStore.dataMenu==='menu-colors'?'menu-active':''" class="menu menu-box-bottom rounded-m"
+  [style.height]="this.themeStore.innerHeight>480?'480px':this.themeStore.innerHeight-50+'px'">
+  <div class="menu-title">
+    <p class="color-highlight font-600">Choose your Favorite</p>
+    <h1>Highlight {{this.themeStore.highlight}}</h1>
+    <a (click)="themeStore.dataMenu=''" class="close-menu"><i class="fa fa-times-circle"></i></a>
+  </div>
+  <div class="divider divider-margins mt-3 mb-2"></div>
+  <div class="content mt-0 ms-0 me-0">
+    <div class="row mb-0">
+      <div class="col-6">
+        <div class="list-group list-custom-small list-menu">
+          <a (click)="onActionHighLightSwitch('blue');"
+            [ngClass]="this.themeStore.highlight==='blue'?'highlight-active':''">
+            <i class="gradient-blue color-white" style="cursor: pointer;"></i>
+            <span>Blue</span>
+          </a>
+          <a (click)="onActionHighLightSwitch('red');"
+            [ngClass]="this.themeStore.highlight==='red'?'highlight-active':''">
+            <i class="gradient-red color-white" style="cursor: pointer;"></i>
+            <span>Red</span>
+          </a>
+          <a (click)="onActionHighLightSwitch('orange');"
+            [ngClass]="this.themeStore.highlight==='orange'?'highlight-active':''">
+            <i class="gradient-orange color-white" style="cursor: pointer;"></i>
+            <span>Orange</span>
+          </a>
+          <a (click)="onActionHighLightSwitch('green');"
+            [ngClass]="this.themeStore.highlight==='green'?'highlight-active':''">
+            <i class="gradient-green color-white" style="cursor: pointer;"></i>
+            <span>Green</span>
+          </a>
+          <a (click)="onActionHighLightSwitch('yellow');"
+            [ngClass]="this.themeStore.highlight==='yellow'?'highlight-active':''">
+            <i class="gradient-yellow color-white" style="cursor: pointer;"></i>
+            <span>Yellow</span>
+          </a>
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="list-group list-custom-small list-menu">
+          <a (click)="onActionHighLightSwitch('dark');"
+            [ngClass]="this.themeStore.highlight==='dark'?'highlight-active':''">
+            <i class="gradient-dark color-white" style="cursor: pointer;"></i>
+            <span>Dark</span>
+          </a>
+          <a (click)="onActionHighLightSwitch('gray');"
+            [ngClass]="this.themeStore.highlight==='gray'?'highlight-active':''">
+            <i class="gradient-gray color-white" style="cursor: pointer;"></i>
+            <span>Gray</span>
+          </a>
+          <a (click)="onActionHighLightSwitch('teal');"
+            [ngClass]="this.themeStore.highlight==='teal'?'highlight-active':''">
+            <i class="gradient-teal color-white" style="cursor: pointer;"></i>
+            <span>Teal</span>
+          </a>
+          <a (click)="onActionHighLightSwitch('magenta');"
+            [ngClass]="this.themeStore.highlight==='magenta'?'highlight-active':''">
+            <i class="gradient-magenta color-white" style="cursor: pointer;"></i>
+            <span>Plum</span>
+          </a>
+          <a (click)="onActionHighLightSwitch('brown');"
+            [ngClass]="this.themeStore.highlight==='brown'?'highlight-active':''">
+            <i class="gradient-brown color-white" style="cursor: pointer;"></i>
+            <span>Brown</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="divider divider-margins mt-2"></div>
+  <a (click)="themeStore.dataMenu=''"
+    class="close-menu btn btn-margins btn-s font-13 rounded-s shadow-xl btn-full gradient-highlight border-0 font-700">باشه!</a>
+</div>

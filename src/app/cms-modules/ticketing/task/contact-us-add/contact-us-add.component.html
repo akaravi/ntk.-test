@@ -1,0 +1,126 @@
+<div class="page-content pb-3">
+
+  <div class="card card-full rounded-m pb-4">
+    <div class="drag-line"></div>
+
+    <div class="content">
+      <p class="font-600 mb-0 color-highlight">{{'TITLE.Send_us_your_questions' | translate}}</p>
+      <p>
+        با ما در تماس باشید
+      </p>
+    </div>
+
+    <div class="form-sent disabled">
+      <div class="card card-style">
+        <div class="shadow-l rounded-m gradient-green ms-n1 mb-0 ">
+          <h1 class="color-white text-center pt-4"><i
+              class="fa fa-check-circle fa-3x shadow-s scale-box rounded-circle"></i></h1>
+          <h2 class="color-white bold text-center pt-3">پیام ارسال شد</h2>
+          <p class="color-white pb-4 text-center mt-n2 mb-0">ما به زودی با شما تماس خواهیم گرفت.</p>
+        </div>
+      </div>
+
+      <div class="card card-style">
+        <div class="content text-center">
+          <h2>در ضمن، بیایید اجتماعی شویم!</h2>
+          <p class="boxed-text-xl">
+            در اینجا پلتفرم های رسانه های اجتماعی ما هستند! ما را برای آخرین به روز رسانی ها دنبال کنید یا فقط سلام
+            کنید!
+          </p>
+          <a href="#" class="icon icon-xl shadow-xl rounded-xl bg-facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" class="icon icon-xl shadow-xl rounded-xl bg-instagram ms-3 me-3"><i
+              class="fab fa-instagram"></i></a>
+          <a href="#" class="icon icon-xl shadow-xl rounded-xl bg-twitter"><i class="fab fa-twitter"></i></a>
+        </div>
+      </div>
+    </div>
+    <app-progress-spinner [options]="loading"> </app-progress-spinner>
+
+
+    <div class="card contact-form">
+      <div class="content" *ngIf="this.formInfo?.formSubmitedStatus != enumFormSubmitedStatus.Success">
+        <form (ngSubmit)="onFormSubmit()" #vform="ngForm">
+          <fieldset>
+            <div class="form-field form-name">
+              <label class="contactNameField color-theme" for="contactNameField">{{'AUTH.INPUT.FULLNAME' |
+                translate}}:<span>(ضروری)</span></label>
+              <input type="text" [(ngModel)]="dataModel.fullName" name="dataModel.fullName" class="round-small"
+                style="text-align: center !important;" id="contactNameField" #FullName required
+                placeholder="{{'TITLE.Enter_your_first_and_last_name' | translate}}" />
+              <mat-error *ngIf="FullName.errors?.required">
+                {{'AUTH.INPUT.FULLNAME' |
+                translate}} <strong>{{'MESSAGE.required' | translate}}</strong>
+              </mat-error>
+            </div>
+
+            <div class="form-field form-name">
+              <label class="contactNameField color-theme" for="contactPhoneField">{{'AUTH.INPUT.MOBILE' |
+                translate}}:<span>(ضروری)</span></label>
+              <input type="text" [(ngModel)]="dataModel.phoneNo" name="dataModel.phoneNo"
+                class="round-small input-ltr-center" id="contactPhoneField" #phoneNo required
+                placeholder="{{'TITLE.Enter_your_first_and_last_name' | translate}}" />
+              <mat-error *ngIf="phoneNo.errors?.required">
+                {{'AUTH.INPUT.MOBILE' |
+                translate}} <strong>{{'MESSAGE.required' | translate}}</strong>
+              </mat-error>
+            </div>
+
+            <div class="form-field form-email">
+              <label class="contactEmailField color-theme" for="contactEmailField">{{'AUTH.INPUT.EMAIL' |
+                translate}}:<span>(ضروری)</span></label>
+              <input type="email" [(ngModel)]="dataModel.email" name="dataModel.email"
+                class="round-small input-ltr-center" placeholder="{{'TITLE.Enter_email' | translate}}"
+                id="contactEmailField" #Email />
+              <mat-error *ngIf="Email.errors?.required">
+                {{'AUTH.INPUT.EMAIL' |
+                translate}} <strong>{{'MESSAGE.required' | translate}}</strong>
+              </mat-error>
+            </div>
+            <div class="form-field form-email" *ngIf="templateItemCount>0">
+              <label>{{'TITLE.Categories' | translate}}</label>
+              <app-ticketing-template-selector (optionItemCount)="templateItemCount"
+                (optionChange)="onActionSelectorSelect($event)">
+              </app-ticketing-template-selector>
+            </div>
+            <div class="form-field form-text">
+              <label class="contactMessageTextarea color-theme" for="contactMessageTextarea">{{'AUTH.INPUT.YOURMEESAGE'
+                | translate}}:<span>(ضروری)</span></label>
+              <textarea [(ngModel)]="dataModel.htmlBody" name="dataModel.htmlBody" #HtmlBody class="round-small"
+                id="contactMessageTextarea" rows="3" required></textarea>
+              <mat-error *ngIf="HtmlBody.errors?.required">
+                {{'AUTH.INPUT.YOURMEESAGE'
+                | translate}} <strong>{{'MESSAGE.required' | translate}}</strong>
+              </mat-error>
+            </div>
+            <div class="form-button">
+              <input type="submit"
+                class="btn bg-highlight font-700 btn-m btn-full rounded-sm  shadow-xl contactSubmitButton" value="ارسال"
+                data-formId="contactForm" />
+            </div>
+          </fieldset>
+        </form>
+      </div>
+    </div>
+
+    <div class="form-sent" *ngIf="this.formInfo?.formSubmitedStatus === enumFormSubmitedStatus.Success">
+      <div class="card card-style ">
+        <div class="shadow-l rounded-m gradient-green ms-n1 mb-0 ">
+          <h1 class="color-white text-center pt-4"><i
+              class="fa fa-check-circle fa-3x shadow-s scale-box rounded-circle"></i></h1>
+          <h2 class="color-white bold text-center pt-3">{{'TITLE.Your_message_has_been_registered_in_the_system' |
+            translate}}</h2>
+          <p class="color-white pb-4 text-center mt-n2 mb-0">{{'TITLE.Note_the_tracking_code_for_further_tracking' |
+            translate}}</p>
+          <p class="color-white bold text-center pt-3">
+            {{'TITLE.Tracking_Code' | translate}} :
+            {{this.dataModelResult.item.id}}
+          </p>
+          <div [innerHTML]="this.dataModelResult.item?.virtual_Departemen?.DefaultAnswerBody"></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+<!-- Page content ends here-->

@@ -1,0 +1,14 @@
+<div class="card card-style">
+  <div class="content">
+    <h5 class="font-14 opacity-50">{{'ACTION.CREDIT_SITE' | translate}}</h5>
+    <div class="divider mb-3"></div>
+    <div *ngFor="let item of widgetInfoModel.items| keyvalue ; index as i" class="list-group list-custom-small list-menu ms-0 me-2">
+      <a routerLink="{{widgetInfoModel.link}}" class="menu-active">
+        <i class="fa fa-comment gradient-blue color-white"></i>
+        <span>{{item.key}}</span>
+        <span class="badge gradient-blue color-white">{{item.value}}</span>
+        <i class="fa fa-angle-left"></i>
+      </a>
+    </div>
+  </div>
+</div>

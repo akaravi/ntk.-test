@@ -1,0 +1,712 @@
+<app-estate-billboard-header *ngIf="this.requestLinkBillboardId?.length>0" [optionId]="this.requestLinkBillboardId">
+</app-estate-billboard-header>
+<app-estate-contract-type-header *ngIf="this.requestLinkContractTypeId?.length>0"
+  [optionId]="this.requestLinkContractTypeId">
+
+</app-estate-contract-type-header>
+<app-estate-customer-order-header *ngIf="this.requestLinkCustomerOrderId?.length>0"
+  [optionId]="this.requestLinkCustomerOrderId">
+
+</app-estate-customer-order-header>
+<app-estate-property-type-landuse-header *ngIf="this.requestLinkPropertyTypeLanduseId?.length>0"
+  [optionId]="this.requestLinkPropertyTypeLanduseId">
+
+</app-estate-property-type-landuse-header>
+<app-estate-property-type-usage-header *ngIf="this.requestLinkPropertyTypeUsageId?.length>0"
+  [optionId]="this.requestLinkPropertyTypeUsageId">
+
+</app-estate-property-type-usage-header>
+
+<app-estate-property-project-header *ngIf="this.requestLinkProjectId?.length>0" [optionId]="this.requestLinkProjectId">
+</app-estate-property-project-header>
+
+<app-estate-property-company-header *ngIf="this.requestLinkCompanyId?.length>0" [optionId]="this.requestLinkCompanyId">
+</app-estate-property-company-header>
+
+<app-cms-html-list [optionGuideNoticeKey]="'estate.property.list'" [(optionActionGuideNoticeDisplay)]="viewGuideNotice"
+  (optionOnActionButtonMemoRow)="onActionButtonMemoRow()" (optionOnActionButtonMemo)="onActionButtonMemo()"
+  (optionOnActionButtonExport)="onActionButtonExport()" (optionOnActionButtonPrintRow)="onActionButtonPrintRow()"
+  [optionLoading]="loading" [optionTreeDisplay]="requestLinkPropertyTypeLanduseId?.length===0"
+  [optionActionRowDisplay]="tableRowSelected?.id?.length>0?true:false" [optionActionRowId]="tableRowSelected?.id"
+  [optionActionRowDisplayMenu]="tableRowSelect3Click" [optionSelectRowItemTitle]="tableRowSelected?.title">
+  <ng-container cms-tree>
+    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-tree-->
+    <app-estate-property-type-landuse-tree (optionChange)="onActionSelectorSelect($event)">
+    </app-estate-property-type-landuse-tree>
+    <!--end:::::::::::::::::::::::::::::::::::::::::cms-tree-->
+  </ng-container>
+  <ng-container cms-header>
+    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
+
+    <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
+  </ng-container>
+  <ng-container cms-action-header>
+    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-action-header-->
+    <div class="d-flex justify-content-between flex-wrap">
+      <div class=" justify-content-end">
+        <a class="btn font-13 font-600 btn-s m-1 rounded-s shadow-xl border-0 gradient-highlight">
+          <mat-slide-toggle class="custom-slide-toggle"
+            [(ngModel)]="optionsSearch.data.show"></mat-slide-toggle>{{'ACTION.SEARCH' |
+          translate}}
+        </a>
+        <a class="btn font-13 font-600 btn-s m-1 rounded-s shadow-xl border-0 gradient-highlight">
+          <mat-slide-toggle (click)="onActionButtonStatist()">
+          </mat-slide-toggle>{{'ACTION.STATIST' | translate}}
+        </a>
+        <a class="btn font-13 font-600 btn-s m-1 rounded-s shadow-xl border-0 gradient-highlight">
+          <mat-slide-toggle (click)="onActionButtonInChecking(!searchInChecking)" [checked]="searchInCheckingChecked">
+          </mat-slide-toggle>
+          {{'ACTION.INCHECKING' | translate}}
+        </a>
+        <a class="btn font-13 font-600 btn-s m-1 rounded-s shadow-xl border-0 gradient-highlight">
+          <mat-slide-toggle (click)="onActionButtonInResponsible(!searchInResponsible)"
+            [checked]="searchInResponsibleChecked">
+          </mat-slide-toggle>
+          {{'ACTION.InResponsible' | translate}}
+        </a>
+      </div>
+      <div class=" justify-content-start">
+        <a *ngIf="requestLinkPropertyTypeLanduseId?.length>0" type="button"
+          class="btn font-13 font-600 btn-s m-1 rounded-s shadow-xl border-0 gradient-gray"
+          (click)="onActionBackToParent()" target="_blank">
+          <i class="fa-solid fa-arrow-left font-18" style="color: #ffffff;"></i>
+        </a>
+        <a type="button" class="btn font-13 font-600 btn-s m-1 rounded-s shadow-xl border-0 gradient-highlight"
+          (click)="viewGuideNotice=!viewGuideNotice" target="_blank">
+          <i class="fa-solid fa-info font-18" style="color: #ffffff;"></i>
+        </a>
+        <a type="button" class="btn font-13 font-600 btn-s m-1 rounded-s shadow-xl border-0 gradient-highlight"
+          (click)="onActionButtonReload()" target="_blank">
+          <i class="fa-solid fa-rotate-right font-18" style="color: #ffffff;"></i>
+        </a>
+        <a (click)=" onActionGridExpandRows(true)" target="_blank"
+          class="btn font-13 font-600 btn-s m-1 rounded-s shadow-xl border-0 gradient-highlight">
+          <i class="fa-solid fa-maximize font-18" style="color: #ffffff;"></i>
+        </a>
+        <a (click)="onActionGridExpandRows(false)" target="_blank"
+          class="btn font-13 font-600 btn-s m-1 rounded-s shadow-xl border-0 gradient-highlight">
+          <i class="fa-solid fa-minimize font-18" style="color: #ffffff;"></i>
+        </a>
+      </div>
+    </div>
+
+
+    <!--end:::::::::::::::::::::::::::::::::::::::::cms-action-header-->
+  </ng-container>
+  <ng-container cms-action-main>
+    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-action-->
+
+    <div *ngIf="dataModelResult?.access?.accessAddRow && optionloadByRoute" class="col-4">
+      <a type="button" class="btn font-13 font-600 btn-s m-1 rounded-s shadow-xl border-0 gradient-teal"
+        (click)="onActionButtonNewRow($event)" target="_blank">
+        <i class="fa-solid fa-plus font-18" style="color: #FFFFFF;"></i>
+        <br>
+      </a>
+      <p class="font-11 text-center opacity-70">{{'ACTION.ADD' |
+        translate}}</p>
+    </div>
+    <div *ngIf="dataModelResult?.access?.accessAddRow && optionloadByRoute" class="col-4">
+      <a type="button" class="btn font-13 font-600 btn-s m-1 rounded-s shadow-xl border-0 gradient-highlight"
+        (click)="onActionButtonQuickAddRow($event)" target="_blank" id="openModalButton" data-toggle="modal"
+        data-target="#categoryModal">
+        <i class="fa-solid fa-plus font-18" style="color: #FFFFFF;"></i>
+        <br>
+      </a>
+      <p class="font-11 text-center opacity-70">{{'ACTION.QUICK_ADD' |translate}}</p>
+    </div>
+
+    <!--end:::::::::::::::::::::::::::::::::::::::::cms-action-->
+  </ng-container>
+  <ng-container cms-action-row>
+    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-action-row-->
+
+    <div
+      *ngIf="dataModelResult?.access?.accessEditRow && (tableRowSelected?.id?.length>0 || requestLinkPropertyTypeLanduseId?.length>0)"
+      class="col-4">
+      <a type="button" class="btn font-13 font-600 btn-s m-1 rounded-s shadow-xl border-0 gradient-magenta"
+        (click)="onActionButtonEditRow(tableRowSelected,$event)" target="_blank"><i class=" fa-solid fa-pen font-18"
+          style="color: #FFFFFF;"></i><br></a>
+      <p class="font-11 text-center opacity-70">{{'ACTION.EDIT' |
+        translate}}</p>
+    </div>
+    <div
+      *ngIf="dataModelResult?.access?.accessDeleteRow && optionloadByRoute&& (tableRowSelected?.id?.length>0 || requestLinkPropertyTypeLanduseId?.length>0)"
+      class="col-4">
+      <a type="button" class="btn font-13 font-600 btn-s m-1 rounded-s shadow-xl border-0 gradient-red"
+        (click)="onActionButtonDeleteRow(tableRowSelected)" target="_blank"><i class="fa-solid fa-trash font-18"
+          style="color: #ffffff;"></i><br></a>
+      <p class="font-11 text-center opacity-70">{{'ACTION.DELETE' |
+        translate}}</p>
+    </div>
+    <div *ngIf="this.tokenHelper.isAdminSite && optionloadByRoute&& tableRowSelected?.id?.length>0" class="col-4">
+      <a type="button" class="btn font-13 font-600 btn-s m-1 rounded-s shadow-xl border-0 gradient-highlight"
+        (click)="onActionButtonActionSendSmsToCustomerOrder()" target="_blank"><i
+          class="fa-light fa-message-lines font-18" style="color: #ffffff;"></i><br>
+      </a>
+      <p class="font-11 text-center opacity-70">{{'ACTION.ActionSendSmsToCustomerOrder'|translate}}</p>
+    </div>
+
+    <div *ngIf="dataModelResult?.access?.accessEditRow" class="col-4">
+      <a type="button" class="btn font-13 font-600 btn-s m-1 rounded-s shadow-xl border-0 gradient-highlight"
+        (click)="onActionButtonAdsRow(tableRowSelected,$event)" target="_blank"><i
+          class="fa-solid fa-bullseye-pointer font-18" style="color: #ffffff;"></i><br>
+      </a>
+      <p class="font-11 text-center opacity-70">{{'ACTION.ADS' |
+        translate}}</p>
+    </div>
+    <div class="col-4">
+      <a type="button" class="btn font-13 font-600 btn-s m-1 rounded-s shadow-xl border-0 gradient-highlight"
+        (click)="onActionButtonQuickHistoryAddRow(tableRowSelected)" target="_blank"><i
+          class="fa-solid fa-clock-rotate-left font-18" style="color: #ffffff;"></i><br>
+      </a>
+      <p class="font-11 text-center opacity-70">{{'ACTION.HISTORY_ADD' |
+        translate}}</p>
+    </div>
+    <div class="col-4">
+      <a type="button" class="btn font-13 font-600 btn-s m-1 rounded-s shadow-xl border-0 gradient-highlight"
+        (click)="onActionButtonHistoryRow(tableRowSelected,$event)" target="_blank"><i
+          class="fa-solid fa-clock-rotate-left font-18" style="color: #ffffff;"></i><br>
+      </a>
+      <p class="font-11 text-center opacity-70">{{'ACTION.HISTORY_LIST' |
+        translate}}</p>
+    </div>
+    <div class="col-4">
+      <a type="button" class="btn font-13 font-600 btn-s m-1 rounded-s shadow-xl border-0 gradient-highlight"
+        (click)="onActionButtonQuickViewRow(tableRowSelected)" target="_blank"><i class="fa-solid fa-eye font-18"
+          style="color: #ffffff;"></i><br>
+      </a>
+      <p class="font-11 text-center opacity-70">{{'ACTION.QUICK_VIEW' |
+        translate}}</p>
+    </div>
+    <div class="col-4">
+      <a type="button" class="btn font-13 font-600 btn-s m-1 rounded-s shadow-xl border-0 gradient-highlight"
+        (click)="onActionButtonViewOtherUserAdvertise(tableRowSelected)" target="_blank"><i
+          class="fa-solid fa-user font-18" style="color: #ffffff;"></i><br>
+      </a>
+      <p class="font-11 text-center opacity-70">{{'ACTION.VIEW_OTHER_USER_ADVERTISE' |
+        translate}}</p>
+    </div>
+    <div class="col-4">
+      <a type="button" class="btn font-13 font-600 btn-s m-1 rounded-s shadow-xl border-0 gradient-highlight"
+        routerLink="{{'/core/user/edit/' +this.tableRowSelected?.createdBy}}" target="_blank"><i
+          class="fa-solid fa-user font-18" style="color: #ffffff;"></i><br>
+      </a>
+      <p class="font-11 text-center opacity-70">{{'ACTION.VIEW_USER' |
+        translate}}</p>
+    </div>
+
+
+    <ng-container *ngIf="tableRowSelected&&tableRowSelected?.linkSiteId!==tokenHelper.tokenInfo.siteId">
+      <button routerLink="{{'/core/site/edit/'+tableRowSelected?.linkSiteId}}" target="_blank"
+        class="btn font-13 font-600 btn-s m-1 rounded-s shadow-xl border-0 gradient-highlight">
+        {{'ACTION.VIEW_SITE' | translate}} </button>
+    </ng-container>
+    <!--end:::::::::::::::::::::::::::::::::::::::::cms-action-row-->
+  </ng-container>
+  <ng-container cms-action-area>
+    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-action-area-->
+    <app-cms-search-list [(options)]="optionsSearch">
+      <hr>
+      <p>{{'MESSAGE.Content_of_your_choice_to_display' | translate}}</p>
+      <!-- caseCode Field -->
+      <mat-form-field class="ntk-full-width">
+        <mat-label>{{fieldsInfo['caseCode']?.fieldTitle}}</mat-label>
+        <input (input)="onSearchCaseCodeChange($event.target.value)" matInput [(ngModel)]="filteModelContent.caseCode"
+          name="filteModelContent.caseCode" #caseCode type="text" placeholder="{{fieldsInfo['caseCode']?.fieldTitle}}"
+          step="1" />
+        <mat-icon matPrefix *ngIf="filteModelContent.caseCode" matPrefix mat-icon-button aria-label="Clear"
+          (click)="filteModelContent.caseCode = ''"> close</mat-icon>
+        <mat-icon matPrefix> mode_edit</mat-icon>
+        <mat-hint>
+          <mat-icon matSuffix class="info-field-icon">{{'TITLE.info' | translate}}</mat-icon>
+          <strong class="info-field-text">{{fieldsInfo['caseCode']?.fieldDescription}}</strong>
+        </mat-hint>
+      </mat-form-field>
+      <div *ngIf="!filteModelContent.caseCode ||filteModelContent.caseCode.length === 0">
+        <P>{{'MESSAGE.Selecting_any_of_the_following_will_make_the_search_results_range_smaller' | translate}}
+        </P>
+        <!-- LinkLocationIds Field -->
+        <app-cms-location-autocomplete (optionChange)="onActionSelectorLocation($event)" [(optionLoading)]="loading"
+          [optionPlaceholder]="this.translate.instant('TITLE.Region')">
+        </app-cms-location-autocomplete>
+        <hr>
+        <!-- LinkPropertyTypeUsageId Field -->
+        <app-estate-property-type-usage-selector (optionChange)="onActionSelectorSelectUsage($event)"
+          [optionTypeView]="2" [(optionLoading)]="loading"
+          [optionPlaceholder]="this.translate.instant('TITLE.Type_Usage')">
+          <mat-icon matSuffix
+            *ngIf="filteModelContent.linkPropertyTypeUsageId && filteModelContent.linkPropertyTypeUsageId?.length>0"
+            matSuffix mat-icon-button aria-label="Clear" (click)="filteModelContent.linkPropertyTypeUsageId = null;">
+            close
+          </mat-icon>
+        </app-estate-property-type-usage-selector>
+        <br>
+        <br>
+        <br>
+        <!-- LinkPropertyTypeLanduseId Field -->
+        <app-estate-property-type-landuse-selector (optionChange)="onActionSelectorSelectLanduse($event)"
+          [optionTypeView]="2" [(optionLoading)]="loading"
+          [optionPlaceholder]="this.translate.instant('TITLE.Property_Type')">
+
+          <mat-icon matSuffix
+            *ngIf="filteModelContent.linkPropertyTypeLanduseId && filteModelContent.linkPropertyTypeLanduseId?.length>0"
+            matSuffix mat-icon-button aria-label="Clear" (click)="onActionSelectorSelectLanduse(null)">
+            close
+          </mat-icon>
+        </app-estate-property-type-landuse-selector>
+
+        <br>
+        <br>
+        <br>
+        <!-- LinkContractTypeIds Field -->
+        <app-estate-contract-type-selector (optionChange)="onActionSelectorContarctType($event)" [optionTypeView]="2"
+          [(optionLoading)]="loading" [optionPlaceholder]="this.translate.instant('TITLE.Transaction_type')">
+          <mat-icon matSuffix
+            *ngIf="filteModelContent.linkContractTypeId && filteModelContent.linkContractTypeId?.length>0" matSuffix
+            mat-icon-button aria-label="Clear" (click)="filteModelContent.linkContractTypeId = null;"> close
+          </mat-icon>
+        </app-estate-contract-type-selector>
+
+        <br>
+        <br>
+        <br>
+        <!-- CreatedYaer Field -->
+        <div class="input-style has-borders no-icon input-style-always-active validate-field mb-4"
+          *ngIf="this.filteModelContent.linkPropertyTypeLanduseId && PropertyTypeSelected?.titleCreatedYaer?.length>1">
+          <label for="filteModelContent.createdYaer"
+            class="color-highlight">{{PropertyTypeSelected.titleCreatedYaer}}</label>
+          <input matInput [(ngModel)]="filteModelContent.createdYaer" name="filteModelContent.createdYaer" #CreatedYaer
+            type="number" placeholder="{{fieldsInfo['createdYaer']?.fieldTitle}}" class="form-control validate-name"
+            id="filteModelContent.createdYaer" />
+        </div>
+        <!-- Partition Field -->
+        <div class="input-style has-borders no-icon input-style-always-active validate-field mb-4"
+          *ngIf="this.filteModelContent.linkPropertyTypeLanduseId && PropertyTypeSelected?.titlePartition?.length>1">
+          <label for="filteModelContent.partition"
+            class="color-highlight">{{PropertyTypeSelected.titlePartition}}</label>
+          <input matInput [(ngModel)]="filteModelContent.partition" name="filteModelContent.partition" #Partition
+            type="number" placeholder="{{PropertyTypeSelected.titlePartition}}" class="form-control validate-name"
+            id="filteModelContent.partition" />
+        </div>
+        <!-- Area Field -->
+        <div class="input-style has-borders no-icon input-style-always-active validate-field mb-4"
+          *ngIf="fieldsInfo['area']?.accessWatchField">
+          <label for="filteModelContent.area" class="color-highlight">{{fieldsInfo['area']?.fieldTitle}}</label>
+          <input matInput [(ngModel)]="filteModelContent.area" name="filteModelContent.area" #Area type="text"
+            currencyMask class="input-ltr" placeholder="{{fieldsInfo['area']?.fieldTitle}}" step="10"
+            class="form-control validate-name" id="filteModelContent.area" />
+          <em>{{fieldsInfo['area']?.fieldDescription}}</em>
+        </div>
+        <hr>
+        <!-- linkCoreCurrencyId Field -->
+        <app-cms-currency-selector [optionSelectFirstItem]="false"
+          [optionSelectForce]="filteModelContent.linkCoreCurrencyId" (optionChange)="onActionSelectCurrency($event)"
+          [(optionLoading)]="loading"
+          [optionPlaceholder]="this.translate.instant('TITLE.Specify_the_transaction_currency')">
+        </app-cms-currency-selector>
+        <div class="row" style="direction: rtl;">
+          <div class="col-md-6 col-sm-6 col-xs-9">
+            <!-- SalePriceMin Field -->
+            <div class="input-style has-borders no-icon input-style-always-active validate-field mb-4"
+              *ngIf=" contractTypeSelected?.hasSalePrice">
+              <label for="filteModelContent.salePriceMin" class="color-highlight">{{'TITLE.SalePriceMin' |
+                translate}}</label>
+              <input matInput [(ngModel)]="filteModelContent.salePriceMin" name="filteModelContent.salePriceMin"
+                #SalePriceMin type="text" currencyMask class="input-ltr-center" step="1000000"
+                class="form-control validate-name" id="filteModelContent.salePriceMin" />
+            </div>
+            <!-- RentPriceMin Field -->
+            <div class="input-style has-borders no-icon input-style-always-active validate-field mb-4"
+              *ngIf="contractTypeSelected?.hasRentPrice">
+              <label for="filteModelContent.rentPriceMin" class="color-highlight">{{'TITLE.RentPriceMin' |
+                translate}}</label>
+              <input matInput [(ngModel)]="filteModelContent.rentPriceMin" name="filteModelContent.rentPriceMin"
+                #RentPriceMin type="text" currencyMask class="input-ltr-center" step="1000000"
+                class="form-control validate-name" id="filteModelContent.rentPriceMin" />
+            </div>
+            <!-- DepositPriceMin Field -->
+            <div class="input-style has-borders no-icon input-style-always-active validate-field mb-4"
+              *ngIf=" contractTypeSelected?.hasDepositPrice">
+              <label for="filteModelContent.depositPriceMin" class="color-highlight">{{'TITLE.DepositPriceMin' |
+                translate}}</label>
+              <input matInput [(ngModel)]="filteModelContent.depositPriceMin" name="filteModelContent.depositPriceMin"
+                #DepositPriceMin type="text" currencyMask class="input-ltr-center" step="1000000"
+                class="form-control validate-name" id="filteModelContent.depositPriceMin" />
+            </div>
+            <!-- PeriodPriceMin Field -->
+            <div class="input-style has-borders no-icon input-style-always-active validate-field mb-4"
+              *ngIf=" contractTypeSelected?.hasDepositPrice">
+              <label for="filteModelContent.periodPriceMin" class="color-highlight">{{'TITLE.PeriodPriceMin' |
+                translate}}</label>
+              <input matInput [(ngModel)]="filteModelContent.periodPriceMin" name="filteModelContent.periodPriceMin"
+                #PeriodPriceMin type="text" currencyMask class="input-ltr-center" step="1000000"
+                class="form-control validate-name" id="filteModelContent.periodPriceMin" />
+            </div>
+          </div>
+          <div class="col-md-6 col-sm-6 col-xs-9">
+            <!-- SalePriceMax Field -->
+            <div class="input-style has-borders no-icon input-style-always-active validate-field mb-4"
+              *ngIf=" contractTypeSelected?.hasSalePrice">
+              <label for="filteModelContent.salePriceMax" class="color-highlight">{{'TITLE.SalePriceMax' |
+                translate}}</label>
+              <input matInput [(ngModel)]="filteModelContent.salePriceMax" name="filteModelContent.salePriceMax"
+                #SalePriceMax type="text" currencyMask class="input-ltr-center" step="1000000"
+                class="form-control validate-name" id="filteModelContent.salePriceMax" />
+            </div>
+            <!-- RentPriceMax Field -->
+            <div class="input-style has-borders no-icon input-style-always-active validate-field mb-4"
+              *ngIf="contractTypeSelected?.hasRentPrice">
+              <label for="filteModelContent.rentPriceMax" class="color-highlight">{{'TITLE.RentPriceMax' | translate}}
+              </label>
+              <input matInput [(ngModel)]="filteModelContent.rentPriceMax" name="filteModelContent.rentPriceMax"
+                #RentPriceMax type="text" currencyMask class="input-ltr-center" step="1000000"
+                class="form-control validate-name" id="filteModelContent.rentPriceMax" />
+            </div>
+            <!-- DepositPriceMax Field -->
+            <div class="input-style has-borders no-icon input-style-always-active validate-field mb-4"
+              *ngIf="contractTypeSelected?.hasDepositPrice">
+              <label for="filteModelContent.depositPriceMax" class="color-highlight">{{'TITLE.DepositPriceMax' |
+                translate}}</label>
+              <input matInput [(ngModel)]="filteModelContent.depositPriceMax" name="filteModelContent.depositPriceMax"
+                #DepositPriceMax type="text" currencyMask class="input-ltr-center" step="1000000"
+                class="form-control validate-name" id="filteModelContent.depositPriceMax" />
+            </div>
+            <!-- PeriodPriceMax Field -->
+            <div class="input-style has-borders no-icon input-style-always-active validate-field mb-4"
+              *ngIf="contractTypeSelected?.hasDepositPrice">
+              <label for="filteModelContent.periodPriceMax" class="color-highlight">{{'TITLE.PeriodPriceMax' |
+                translate}}</label>
+              <input matInput [(ngModel)]="filteModelContent.periodPriceMax" name="filteModelContent.periodPriceMax"
+                #PeriodPriceMax type="text" currencyMask class="input-ltr-center" step="1000000"
+                class="form-control validate-name" id="filteModelContent.periodPriceMax" />
+            </div>
+          </div>
+          <mat-accordion class="example-headers-align">
+            <mat-expansion-panel *ngFor="let itemGroup of dataModelPropertyDetailGroups ; index as i"
+              [expanded]="step === i" (opened)="setStep(i)">
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  {{itemGroup.title}}
+                </mat-panel-title>
+                <mat-panel-description>
+                  {{itemGroup.description}}
+                  <mat-icon style="width: 100px;">{{itemGroup.iconFont}}</mat-icon>
+                </mat-panel-description>
+              </mat-expansion-panel-header>
+              <!-- value-->
+              <ng-container *ngFor="let itemDetail of itemGroup.propertyDetails">
+                <ng-container [ngSwitch]="itemDetail.inputDataType">
+                  <!-- ngSwitchCase-->
+                  <div *ngSwitchCase="enumInputDataType.String" class="ntk-full-width">
+                    <i [ngClass]="itemDetail.iconFont" [style.color]="itemDetail.iconColor"
+                      aria-hidden="true"></i>&nbsp;
+                    <app-input-string [(model)]="propertyDetails[itemDetail.id]"
+                      [optionForceUseDefaultValue]="itemDetail.configValueForceUseDefaultValue"
+                      [optionMultipleChoice]="itemDetail.configValueMultipleChoice"
+                      [optionDefaultValue]="itemDetail.configValueDefaultValues" [optionRequired]="itemDetail.required"
+                      [optionLabel]="itemDetail.title" style="color:'{{itemDetail.iconColor}}';">
+                    </app-input-string>
+                  </div>
+                  <!-- ngSwitchCase-->
+                  <div *ngSwitchCase="enumInputDataType.Int" class="ntk-full-width">
+                    <i [ngClass]="itemDetail.iconFont" [style.color]="itemDetail.iconColor"
+                      aria-hidden="true"></i>&nbsp;
+                    <app-input-int [(model)]="propertyDetails[itemDetail.id]" [optionRequired]="itemDetail.required"
+                      [optionLabel]="itemDetail.title" style="color:'{{itemDetail.iconColor}}';">
+                    </app-input-int>
+                  </div>
+                  <!-- ngSwitchCase-->
+                  <div *ngSwitchCase="enumInputDataType.Boolean" class="ntk-full-width">
+                    <i [ngClass]="itemDetail.iconFont" [style.color]="itemDetail.iconColor"
+                      aria-hidden="true"></i>&nbsp;
+                    <app-input-boolean [(model)]="propertyDetails[itemDetail.id]">{{itemDetail.title}}
+                    </app-input-boolean>
+                  </div>
+                  <!-- ngSwitchCase-->
+                  <div *ngSwitchCase="enumInputDataType.Float" class="ntk-full-width">
+                    <i [ngClass]="itemDetail.iconFont" [style.color]="itemDetail.iconColor"
+                      aria-hidden="true"></i>&nbsp;
+                    <app-input-float [(model)]="propertyDetails[itemDetail.id]" [optionRequired]="itemDetail.required"
+                      [optionLabel]="itemDetail.title" style="color:'{{itemDetail.iconColor}}';">
+                    </app-input-float>
+                  </div>
+                  <!-- ngSwitchCase-->
+                  <div *ngSwitchCase="enumInputDataType.Date" class="ntk-full-width">
+                    <i [ngClass]="itemDetail.iconFont" [style.color]="itemDetail.iconColor"
+                      aria-hidden="true"></i>&nbsp;
+                    <label style="color:'{{itemDetail.iconColor}}';">{{itemDetail.title}}</label>
+                    <app-input-date [(model)]="propertyDetails[itemDetail.id]" [optionRequired]="itemDetail.required">
+                    </app-input-date>
+                  </div>
+                  <!-- ngSwitchCase-->
+                  <div *ngSwitchCase="enumInputDataType.TextArea" class="ntk-full-width">
+                    <i [ngClass]="itemDetail.iconFont" [style.color]="itemDetail.iconColor"
+                      aria-hidden="true"></i>&nbsp;
+                    <app-input-textarea [(model)]="propertyDetails[itemDetail.id]"
+                      [optionRequired]="itemDetail.required" [optionLabel]="itemDetail.title"
+                      style="color:'{{itemDetail.iconColor}}';">
+                    </app-input-textarea>
+                  </div>
+                  <!-- ngSwitchCase-->
+                  <div *ngSwitchDefault class="ntk-full-width">
+                    <i [ngClass]="itemDetail.iconFont" [style.color]="itemDetail.iconColor"
+                      aria-hidden="true"></i>&nbsp;
+                    <app-input-string [(model)]="propertyDetails[itemDetail.id]"
+                      [optionForceUseDefaultValue]="itemDetail.configValueForceUseDefaultValue"
+                      [optionMultipleChoice]="itemDetail.configValueMultipleChoice"
+                      [optionDefaultValue]="itemDetail.configValueDefaultValues" [optionRequired]="itemDetail.required"
+                      [optionLabel]="itemDetail.title" style="color:'{{itemDetail.iconColor}}';">
+                    </app-input-string>
+                  </div>
+                </ng-container>
+              </ng-container>
+              <mat-action-row>
+                <button type="button" class="btn font-13 font-600 btn-s m-1 rounded-s shadow-xl border-0 gradient-teal"
+                  *ngIf="i>0" (click)="prevStep()">{{'ACTION.PREVIOUS' |
+                  translate}}</button>
+                <button type="button" class="btn font-13 font-600 btn-s m-1 rounded-s shadow-xl border-0 gradient-blue"
+                  *ngIf="(i+1)<dataModelPropertyDetailGroups.length" (click)="nextStep()">{{'ACTION.NEXT' |
+                  translate}}</button>
+                <button type="button" class="btn font-13 font-600 btn-s m-1 rounded-s shadow-xl border-0 gradient-blue"
+                  *ngIf="(i+1)===dataModelPropertyDetailGroups.length" (click)="nextStep()">{{'ACTION.END' |
+                  translate}}</button>
+
+              </mat-action-row>
+            </mat-expansion-panel>
+            <br>
+          </mat-accordion>
+        </div>
+      </div>
+    </app-cms-search-list>
+    <app-cms-statist-list [(options)]="optionsStatist"></app-cms-statist-list>
+    <!--end:::::::::::::::::::::::::::::::::::::::::cms-action-area-->
+  </ng-container>
+  <ng-container cms-body>
+    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
+    <mat-table class="ntk-cms-html-table" [dataSource]="tableSource" matSort #tableSort="matSort"
+      (matSortChange)="onTableSortData(tableSort)" multiTemplateDataRows>
+      <!-- LinkMainImageIdSrc Column -->
+      <ng-container matColumnDef="LinkMainImageIdSrc">
+        <mat-header-cell *matHeaderCellDef mat-sort-header class="form-label"> {{'TITLE.PICTURE' | translate}}
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row">
+          <img *ngIf="row?.linkMainImageIdSrc?.length>0" style="vertical-align:middle;" class="ntk-hover-zoom"
+            aria-hidden ngSrc="{{row.linkMainImageIdSrc | cmsthumbnail}}" height="40" width="40" />
+        </mat-cell>
+      </ng-container>
+      <!-- ID Column -->
+      <ng-container matColumnDef="Id">
+        <mat-header-cell *matHeaderCellDef mat-sort-header class="form-label"> {{fieldsInfo['id']?.fieldTitle}}
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.id}} </mat-cell>
+      </ng-container>
+      <!-- LinkSiteId Column -->
+      <ng-container matColumnDef="LinkSiteId">
+        <mat-header-cell *matHeaderCellDef mat-sort-header class="form-label">
+          {{fieldsInfo['linkSiteId']?.fieldTitle}}
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row" class="col-form-label"> {{row.linkSiteId | cmssiteinfo |async}} </mat-cell>
+      </ng-container>
+      <!-- RecordStatus Column -->
+      <ng-container matColumnDef="RecordStatus">
+        <mat-header-cell *matHeaderCellDef mat-sort-header class="form-label">
+          {{fieldsInfo['recordStatus']?.fieldTitle}}
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row" [ngClass]="row.recordStatus|statusCellClass"> <i
+            [ngClass]="row.recordStatus|statusIconClass"></i>
+          <select matNativeControl cmsRecordStatusSelfSave *ngIf="dataModelResult?.access?.accessEditRow"
+            [contentService]="contentService" [row]="row" style="background: none; border: none;"
+            [ngStyle]="{'display': row.id === tableRowSelected?.id ? '' : 'none' }">
+          </select>
+        </mat-cell>
+      </ng-container>
+      <!-- MainAdminRecordStatus Column -->
+      <ng-container matColumnDef="MainAdminRecordStatus">
+        <mat-header-cell *matHeaderCellDef mat-sort-header class="form-label">
+          {{fieldsInfo['mainAdminRecordStatus']?.fieldTitle}}
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row"> <i [ngClass]="row.mainAdminRecordStatus|statusIconClass"></i>
+        </mat-cell>
+      </ng-container>
+      <!-- IsSoldIt Column -->
+      <ng-container matColumnDef="IsSoldIt">
+        <mat-header-cell *matHeaderCellDef mat-sort-header class="form-label">
+          {{fieldsInfo['isSoldIt']?.fieldTitle}}
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row"> <i [ngClass]="row.isSoldIt | boolclass"></i></mat-cell>
+      </ng-container>
+      <!-- ViewConfigHiddenInList Column -->
+      <ng-container matColumnDef="ViewConfigHiddenInList">
+        <mat-header-cell *matHeaderCellDef mat-sort-header class="form-label">
+          {{fieldsInfo['viewConfigHiddenInList']?.fieldTitle}}
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row"> <i [ngClass]="row.viewConfigHiddenInList | boolclass"></i></mat-cell>
+      </ng-container>
+      <!-- ViewCount Column -->
+      <ng-container matColumnDef="ViewCount">
+        <mat-header-cell *matHeaderCellDef mat-sort-header class="form-label">
+          {{fieldsInfo['viewCount']?.fieldTitle}}
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row" class="col-form-label"> {{row.viewCount}} </mat-cell>
+      </ng-container>
+      <!-- AdsActive Column -->
+      <ng-container matColumnDef="AdsActive">
+        <mat-header-cell *matHeaderCellDef mat-sort-header class="form-label"> {{'TITLE.Is_Special' |
+          translate}}
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row"> <i [ngClass]="row.adsActive | boolclass"></i> </mat-cell>
+      </ng-container>
+      <!-- CaseCode Column -->
+      <ng-container matColumnDef="CaseCode">
+        <mat-header-cell *matHeaderCellDef mat-sort-header class="form-label">
+          {{fieldsInfo['caseCode']?.fieldTitle}}
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row" class="col-form-label"> {{row.caseCode}} </mat-cell>
+      </ng-container>
+      <!-- scoreEstateLocation Column -->
+      <ng-container matColumnDef="scoreEstateLocation">
+        <mat-header-cell *matHeaderCellDef mat-sort-header class="form-label">
+          {{fieldsInfo['scoreEstateLocation']?.fieldTitle}}
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row" [ngClass]="'score-'+row.scoreEstateLocation">
+          {{row.scoreEstateLocation}} </mat-cell>
+      </ng-container>
+      <!-- scoreEstateBuild Column -->
+      <ng-container matColumnDef="scoreEstateBuild">
+        <mat-header-cell *matHeaderCellDef mat-sort-header class="form-label">
+          {{fieldsInfo['scoreEstateBuild']?.fieldTitle}}
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row" [ngClass]="'score-'+row.scoreEstateBuild"> {{row.scoreEstateBuild}}
+        </mat-cell>
+      </ng-container>
+      <!-- scoreEstatePrice Column -->
+      <ng-container matColumnDef="scoreEstatePrice">
+        <mat-header-cell *matHeaderCellDef mat-sort-header class="form-label">
+          {{fieldsInfo['scoreEstatePrice']?.fieldTitle}}
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row" [ngClass]="'score-'+row.scoreEstatePrice"> {{row.scoreEstatePrice}}
+        </mat-cell>
+      </ng-container>
+      <!-- CreatedDate Column -->
+      <ng-container matColumnDef="CreatedDate">
+        <mat-header-cell *matHeaderCellDef mat-sort-header class="form-label">
+          {{fieldsInfo['createdDate']?.fieldTitle}}
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row" class="col-form-label"
+          style="direction: ltr; justify-content: center; text-align: center;">
+          {{ publicHelper.LocaleDateTime(row.createdDate)}} </mat-cell>
+      </ng-container>
+      <!-- UpdatedDate Column -->
+      <ng-container matColumnDef="UpdatedDate">
+        <mat-header-cell *matHeaderCellDef mat-sort-header class="form-label">
+          {{fieldsInfo['updatedDate']?.fieldTitle}}
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row" class="col-form-label"
+          style="direction: ltr; justify-content: center; text-align: center;">
+          {{ publicHelper.LocaleDateTime(row.updatedDate) }}
+        </mat-cell>
+      </ng-container>
+      <!-- Action Column -->
+      <ng-container matColumnDef="Action">
+        <mat-header-cell *matHeaderCellDef class="form-label"> {{'TITLE.OPTION' | translate}} </mat-header-cell>
+        <mat-cell *matCellDef="let row" class='Action'>
+          <!-- Action Menu -->
+          <button mat-icon-button [matMenuTriggerFor]="actionMenu" aria-label="Action Menu" class="text-dark">
+            <mat-icon>more_vert</mat-icon>
+          </button>
+          <mat-menu #actionMenu="matMenu">
+          </mat-menu>
+        </mat-cell>
+      </ng-container>
+      <!-- LinkTo Column -->
+      <ng-container matColumnDef="LinkTo">
+        <mat-header-cell *matHeaderCellDef mat-sort-header class="form-label"> {{'TITLE.LINKTO' | translate}}
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row">
+          <button mat-icon-button class="text-dark" (click)="onActionButtonLinkTo(row)">
+            <mat-icon>&#8599;</mat-icon>
+          </button>
+        </mat-cell>
+      </ng-container>
+      <!-- QuickView Column -->
+      <ng-container matColumnDef="QuickView">
+        <mat-header-cell *matHeaderCellDef mat-sort-header class="form-label"> {{'TITLE.QUICK_VIEW' |
+          translate}}
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row">
+          <button mat-icon-button class="text-dark" (click)="onActionButtonQuickViewRow(row)">
+            <mat-icon>visibility</mat-icon>
+          </button>
+        </mat-cell>
+      </ng-container>
+      <!--expandedDetail-->
+      <ng-container matColumnDef="expandedDetail">
+        <mat-cell *matCellDef="let row">
+          <div>
+            <table>
+              <tr>
+                <th> <img *ngIf="row?.linkMainImageIdSrc?.length>0" style="vertical-align:middle;"
+                    class="ntk-hover-zoom" aria-hidden ngSrc="{{row.linkMainImageIdSrc | cmsthumbnail}}" height="80"
+                    width="80" /></th>
+                <th class="col-form-label">
+                  <span class="navi-icon pointer" [cdkCopyToClipboard]="row.id" (click)="onActionCopied()">
+                    <i class="flaticon2-copy"></i></span> {{row.id}}
+                </th>
+              </tr>
+              <tr>
+                <td></td>
+                <td class="col-form-label"> {{row.title}} </td>
+              </tr>
+              <tr *ngIf="row.area && row.area>0">
+                <td class="col-form-label">{{'TITLE.SquareMeters'|translate}}</td>
+                <td class="col-form-label"> {{row.area}} </td>
+              </tr>
+              <tr *ngIf="row.createdYaer && row.createdYaer>0">
+                <td class="col-form-label">{{'TITLE.CreatedYaer'|translate}}</td>
+                <td class="col-form-label"> {{row.createdYaer}} </td>
+              </tr>
+              <tr>
+                <td></td>
+                <td class="col-form-label"> {{row.linkLocationIdParentTitle}} </td>
+              </tr>
+              <tr>
+                <td></td>
+                <td class="col-form-label"> {{row.linkLocationIdTitle}} </td>
+              </tr>
+              <tr>
+                <td class="col-form-label">آدرس :</td>
+                <td class="col-form-label"> {{row.address}} </td>
+              </tr>
+              <tr>
+                <td></td>
+                <td class="col-form-label"> {{row.createdBy | cmsuserinfo |async}} </td>
+              </tr>
+              <tr>
+                <td></td>
+                <td>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </mat-cell>
+      </ng-container>
+      <mat-header-row *matHeaderRowDef="tabledisplayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: tabledisplayedColumns;" (click)="onActionTableRowSelect(row)"
+        (mouseenter)="onActionTableRowMouseEnter(row)" (mouseleave)="onActionTableRowMouseLeave(row)"
+        [ngStyle]="{'background': row.id === tableRowSelected?.id ? '#808080' : '' }">
+      </mat-row>
+      <mat-row *matRowDef="let row; columns: ['expandedDetail']" (click)="onActionTableRowSelect(row)"
+        (mouseenter)="onActionTableRowMouseEnter(row)" (mouseleave)="onActionTableRowMouseLeave(row)"
+        [ngStyle]="{'background': row.id === tableRowSelected?.id ? '#808080' : '', 'display': row.expanded === true ? '' : 'none' }">
+      </mat-row>
+    </mat-table>
+    <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
+  </ng-container>
+  <ng-container cms-footer>
+    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
+    <mat-paginator #paginator [length]="(dataModelResult.totalRowCount)"
+      [pageIndex]="(dataModelResult.currentPageNumber-1)" [pageSize]="dataModelResult.rowPerPage"
+      [pageSizeOptions]="[5, 10, 20, 100]" (page)="onTablePageingData($event)"></mat-paginator>
+    <!--end:::::::::::::::::::::::::::::::::::::::::cms-footer-->
+  </ng-container>
+</app-cms-html-list>

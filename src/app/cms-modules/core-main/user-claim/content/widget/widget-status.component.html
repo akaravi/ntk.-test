@@ -1,0 +1,35 @@
+<app-progress-spinner [options]="loading"> </app-progress-spinner>
+<div class="card card-style">
+  <div class="content">
+    <h5 class="font-14 opacity-50">{{widgetInfoModel.title}} <a routerLink="{{widgetInfoModel.link}}"
+        routerLinkActive="active" class="float-end color-highlight">نمایش همه</a></h5>
+    <div class="divider mb-3"></div>
+
+    <div class="list-group list-custom-small list-menu ms-0 me-2" style="overflow: scroll; height: 270px;">
+      <!-- begin::Item -->
+      <div *ngFor="let row of dataModelResult.listItems ; index as i"
+        class="d-flex align-items-center  rounded p-5 mb-7"
+        [ngClass]="row.isApproved ? 'bg-light-success' :'bg-light-warning'">
+        <!-- begin::Icon -->
+        <span class="svg-icon  me-5" [ngClass]="row.isApproved ? 'svg-icon-success' :'svg-icon-warning'">
+          <i [ngClass]="row.isApproved | boolclass"></i>
+        </span>
+        <!-- end::Icon -->
+        <!-- begin::Title -->
+        <div class="flex-grow-1 me-2">
+          <a class="fw-bolder text-gray-800 text-hover-primary fs-6">
+            {{row.typeTitle}}
+          </a>
+          <span *ngIf="!row.isApproved" class="text-muted fw-bold d-block">{{row.typeDescription}}</span>
+        </div>
+        <!-- end::Title -->
+        <!-- begin::Lable -->
+        <span class="fw-bolder text-danger py-1"><i *ngIf="!row.isApproved" class="fa fa-edit"
+            (click)="onActionButtonEditRow(row)"></i></span>
+        <!-- end::Lable -->
+      </div>
+      <!-- end::Item -->
+    </div>
+
+  </div>
+</div>

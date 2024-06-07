@@ -1,0 +1,45 @@
+<app-progress-spinner [options]="loading"> </app-progress-spinner>
+<div class="card card-style">
+    <div class="content mb-0">
+        <p class="mb-0 color-highlight font-600 font-12">
+            {{ formInfo.formTitle }}
+        </p>
+
+
+        <p>
+      {{'TITLE.Be_Careful_When_Entering_Information' | translate}}
+    </p>
+        <!--Content-->
+        <form (ngSubmit)="onFormSubmit()" #vform="ngForm">
+
+            <!-- RecordStatus Field -->
+            <app-cms-enum-record-status-selector *ngIf="fieldsInfo['recordStatus']?.accessWatchField"
+                [(model)]="dataModel.recordStatus" [optionDisabled]="false"
+                [optionLabel]="this.fieldsInfo['recordStatus']?.fieldTitle" [optionRequired]="true"
+                [optionSelectFirstItem]="true">
+            </app-cms-enum-record-status-selector>
+            <!-- LinkPlanId Field -->
+            <app-data-provider-plan-category-selector (optionChange)="onActionSelectorSelect($event)"
+                [(optionLoading)]="loading" [optionSelectForce]="dataModel.linkPlanId"
+                [optionPlaceholder]="this.translate.instant('TITLE.Category')">
+            </app-data-provider-plan-category-selector>
+            <!-- LinkClientId Field -->
+            <app-data-provider-plan-category-selector (optionChange)="onActionSelectorSelect($event)"
+                [(optionLoading)]="loading" [optionSelectForce]="dataModel.linkClientId"
+                [optionPlaceholder]="this.translate.instant('TITLE.Category')">
+            </app-data-provider-plan-category-selector>
+
+            <div class="form-actions" *ngIf="formInfo.formSubmitAllow  && !loading?.display">
+                <button type="button" (click)="onFormCancel()"
+                    class="btn font-13 font-600 btn-s m-1 rounded-s shadow-xl border-0 gradient-gray">
+                    <i class="ft-x"></i> {{'ACTION.CANCEL' | translate}}
+                </button>
+                <button type="submit" class="btn font-13 font-600 btn-s m-1 rounded-s shadow-xl border-0 gradient-green"
+                    (click)="onFormSubmit()" [disabled]="!vform.form.valid">
+                    <i class="fa fa-check-square-o"></i> {{'ACTION.SAVE' | translate}}
+                </button>
+            </div>
+        </form>
+        <!--Content-->
+    </div>
+</div>

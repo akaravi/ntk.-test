@@ -1,0 +1,54 @@
+<mat-card class="example-card">
+  <mat-card-header>
+    <div mat-card-avatar class="example-header-image"></div>
+    <mat-card-title>{{dataItemModel.title}}</mat-card-title>
+    <mat-card-subtitle>ver : {{dataItemModel.appVersion}}</mat-card-subtitle>
+  </mat-card-header>
+  <div class="uploader-wrapper">
+    <app-cms-file-uploader (optionUploadSuccess)="OnActionUploadSuccess($event)">
+    </app-cms-file-uploader>
+  </div>
+  <form (ngSubmit)="onFormSubmit()" #vform="ngForm" class="form form-horizontal">
+    <mat-card-content>
+      <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['appVersion']?.accessWatchField">
+        <mat-label>{{ fieldsInfo['appVersion']?.fieldTitle }}</mat-label>
+        <input matInput [(ngModel)]="dataModel.appVersion" [disabled]="!fieldsInfo['appVersion']?.accessEditField"
+          name="dataModel.appVersion" #AppVersion type="number" placeholder="{{'TITLE.version' | translate}}" min="0"
+          max="1000" required />
+        <mat-icon matSuffix *ngIf="dataModel.appVersion && fieldsInfo['appVersion']?.accessEditField" matSuffix
+          mat-icon-button aria-label="Clear" (click)="dataModel.appVersion = 0">close</mat-icon>
+        <mat-icon *ngIf="fieldsInfo['appVersion']?.accessEditField" matSuffix>mode_edit</mat-icon>
+        <mat-error *ngIf="AppVersion.errors?.required">
+          {{ fieldsInfo['appVersion']?.fieldTitle }} is <strong>{{'MESSAGE.required' | translate}}</strong>
+        </mat-error>
+      </mat-form-field>
+      <div class="input-style has-borders no-icon input-style-always-active validate-field mb-4"
+        *ngIf="fieldsInfo['lastBuildAppKey']?.accessWatchField">
+        <label for="dataModel.lastBuildAppKey" class="color-highlight">{{
+          fieldsInfo['lastBuildAppKey']?.fieldTitle }}</label>
+        <input matInput [(ngModel)]="dataModel.lastBuildAppKey"
+          [disabled]="!fieldsInfo['lastBuildAppKey']?.accessEditField" name="dataModel.lastBuildAppKey" #LastBuildAppKey
+          type="text" placeholder="{{'TITLE.Key_To_making_app' | translate}}" minlength="0" maxlength="100" required
+          class="form-control validate-name" id="dataModel.lastBuildAppKey" />
+        <em>{{ 'Application.source.LastBuildAppKey_hint' | translate }}</em>
+        <em>{{ LastBuildAppKey.value.length }} / 100</em>
+        <mat-error *ngIf="LastBuildAppKey.errors?.required">
+          {{ fieldsInfo['lastBuildAppKey']?.fieldTitle }} is <strong>{{'MESSAGE.required' |
+            translate}}</strong>
+        </mat-error>
+      </div>
+    </mat-card-content>
+    <mat-card-actions>
+      <div class="form-actions">
+        <button type="submit" *ngIf="formInfo.formSubmitAllow  && !loading?.display" [disabled]="!vform.form.valid"
+          class="btn font-13 font-600 btn-s m-1 rounded-s shadow-xl border-0 gradient-highlight">
+          <i class="fa fa-check-square-o"></i> {{'TITLE.registered' | translate}}
+        </button>
+        <button (click)="onFormCancel()"
+          class="btn font-13 font-600 btn-s m-1 rounded-s shadow-xl border-0 gradient-gray">
+          <i class="ft-x"></i> {{'ACTION.BACK' | translate}}
+        </button>
+      </div>
+    </mat-card-actions>
+  </form>
+</mat-card>

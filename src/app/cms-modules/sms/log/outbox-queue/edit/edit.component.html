@@ -1,0 +1,69 @@
+<app-progress-spinner [options]="loading"> </app-progress-spinner>
+<div class="card card-style">
+  <div class="content mb-0">
+    <p class="mb-0 color-highlight font-600 font-12">
+      {{ formInfo.formTitle }}
+    </p>
+
+
+    <p>
+      {{'TITLE.Be_Careful_When_Entering_Information' | translate}}
+    </p>
+    <!--content-->
+    <form (ngSubmit)="onFormSubmit()" #vform="ngForm">
+      <!-- RecordStatus Field -->
+      <app-cms-enum-record-status-selector *ngIf="fieldsInfo['recordStatus']?.accessWatchField"
+        [(model)]="dataModel.recordStatus" [optionDisabled]="false"
+        [optionLabel]="this.fieldsInfo['recordStatus']?.fieldTitle" [optionRequired]="true"
+        [optionSelectFirstItem]="true"></app-cms-enum-record-status-selector>
+
+
+
+      <!-- ScheduleSendStart Field -->
+      <div *ngIf="fieldsInfo['scheduleSendStart']?.accessWatchField"
+        class="input-style has-borders no-icon input-style-always-active validate-field mb-4">
+        <label for="dataModel.scheduleSendStart" class="color-highlight">{{ fieldsInfo["receiverDate"]?.fieldTitle
+          }}</label>
+        <input matInput [matDatepicker]="ScheduleSendStart" type="text" [(ngModel)]="dataModel.scheduleSendStart"
+          name="dataModel.scheduleSendStart" placeholder="{{fieldsInfo['scheduleSendStart']?.fieldTitle }}"
+          disabled="{{ !fieldsInfo['scheduleSendStart']?.accessEditField }}" class="form-control validate-name"
+          id="dataModel.scheduleSendStart" />
+        <mat-datepicker-toggle matSuffix [for]="ScheduleSendStart"></mat-datepicker-toggle>
+        <mat-datepicker touchUi #ScheduleSendStart></mat-datepicker>
+      </div>
+      <!-- ToNumbers Field -->
+      <div *ngIf="fieldsInfo['toNumbers']?.accessWatchField"
+        class="input-style has-borders no-icon input-style-always-active validate-field mb-4">
+        <label for="dataModel.toNumbers" class="color-highlight">{{ fieldsInfo["toNumbers"]?.fieldTitle }}</label>
+        <input matInput type="text" [(ngModel)]="dataModel.toNumbers" name="dataModel.toNumbers" #ToNumbers
+          placeholder="123" disabled="{{ !fieldsInfo['toNumbers']?.accessEditField }}"
+          class="form-control validate-name" id="dataModel.toNumbers" />
+        <em style="text-align: right;">{{ ToNumbers.value.length }} / 100</em>
+      </div>
+      <!-- Message Field -->
+      <div *ngIf="fieldsInfo['message']?.accessWatchField"
+        class="input-style has-borders no-icon input-style-always-active validate-field mb-4">
+        <label for="dataModel.message" class="color-highlight">{{ fieldsInfo["message"]?.fieldTitle }}</label>
+        <input matInput type="text" [(ngModel)]="dataModel.message" #Message name="dataModel.message" placeholder="123"
+          disabled="{{ !fieldsInfo['message']?.accessEditField }}" class="form-control validate-name"
+          id="dataModel.message" />
+        <em style="text-align: right;">{{ Message.value.length }} / 100</em>
+      </div>
+      <div class="form-actions" *ngIf="formInfo.formSubmitAllow  && !loading?.display">
+        <button type="button" (click)="onFormCancel()"
+          class="btn font-13 font-600 btn-s m-1 rounded-s shadow-xl border-0 gradient-gray">
+          <i class="ft-x"></i> {{'ACTION.CANCEL' | translate}}
+        </button>
+        <button type="submit" class="btn font-13 font-600 btn-s m-1 rounded-s shadow-xl border-0 gradient-green"
+          (click)="onFormSubmit()" [disabled]="!vform.form.valid">
+          <i class="fa fa-check-square-o"></i> {{'ACTION.SAVE' | translate}}
+        </button>
+      </div>
+
+
+
+    </form>
+
+    <!--content-->
+  </div>
+</div>

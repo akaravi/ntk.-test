@@ -1,0 +1,1040 @@
+<app-progress-spinner [options]="loading"> </app-progress-spinner>
+<div class="card card-style">
+  <div class="content mb-0">
+    <p class="mb-0 color-highlight font-600 font-12">
+      {{ formInfo.formTitle }}
+    </p>
+    <p>
+      {{'TITLE.In_this_section_you_can_create_a_new_site' | translate}}
+    </p>
+    <!--Content-->
+    <form (ngSubmit)="onFormSubmit()" #vform="ngForm">
+      <mat-vertical-stepper (selectionChange)="onStepClick($event,stepper)" #stepper>
+        <mat-step label="{{'TITLE.REQUIRED_INFORMATION' | translate}}" state="main">
+          <!-- RecordStatus Field -->
+          <app-cms-enum-record-status-selector *ngIf="fieldsInfo['recordStatus']?.accessWatchField"
+            [(model)]="dataModel.recordStatus" [optionDisabled]="false"
+            [optionLabel]="this.fieldsInfo['recordStatus']?.fieldTitle" [optionRequired]="true"
+            [optionSelectFirstItem]="true">
+          </app-cms-enum-record-status-selector>
+          <!-- OwnerSiteSetStatus Field -->
+          <div class="input-style has-borders input-style-always-active validate-field no-icon mb-4">
+            <select id="dataModel.ownerSiteSetStatus" [(ngModel)]="dataModel.ownerSiteSetStatus"
+              name="dataModel.ownerSiteSetStatus" #OwnerSiteSetStatus="ngModel" class="form-control validate-name">
+              <option *ngFor="
+                let item of dataModelEnumSiteStatusResult.listItems;
+                index as i" [value]="item.value">
+                {{ item.description }}
+              </option>
+            </select>
+          </div>
+          <!-- UserLanguage Field -->
+          <div class="input-style has-borders no-icon input-style-always-active validate-field mb-4">
+            <label for="dataModel.userLanguage" class="color-highlight"></label>
+            <select [(ngModel)]="dataModel.userLanguage" name="dataModel.userLanguage" #UserLanguage="ngModel"
+              ngClass="UserLanguage-{{ dataModel.userLanguage }}" class="form-control validate-name"
+              id="dataModel.userLanguage">
+              <option *ngFor="
+                                  let item of dataModelEnumLanguageResult.listItems;
+                                  index as i
+                                " [value]="item.value">{{ item.description }}</option>
+            </select>
+          </div>
+          <!-- LinkSiteCategoryId Field -->
+          <app-core-sitecategory-selector (optionChange)="onActionSelectCategory($event)" [(optionLoading)]="loading"
+            [optionSelectForce]="this.dataModel.linkSiteCategoryId"
+            [optionPlaceholder]="this.translate.instant('TITLE.Website_Type')"
+            [optionDisabled]="!fieldsInfo['linkSiteCategoryId']?.accessEditField"></app-core-sitecategory-selector>
+          <!-- linkCreatedBySiteId Field -->
+          <app-core-site-selector (optionChange)="onActionSelectCreatedBy($event)" [(optionLoading)]="loading"
+            [optionSelectForce]="this.dataModel.linkCreatedBySiteId"
+            [optionPlaceholder]="this.translate.instant('TITLE.Parent_Site')"
+            [optionDisabled]="!fieldsInfo['linkCreatedBySiteId']?.accessEditField"></app-core-site-selector>
+          <!-- Title Field -->
+          <div *ngIf="fieldsInfo['title']?.accessWatchField"
+            class="input-style has-borders no-icon input-style-always-active validate-field mb-4">
+            <label for="dataModel.title" class="color-highlight">{{ fieldsInfo["title"]?.fieldTitle }}</label>
+            <input matInput type="text" [(ngModel)]="dataModel.title" name="dataModel.title" #Title type="text"
+              placeholder="{{fieldsInfo['title']?.fieldTitle }}" minlength="3" maxlength="100" required
+              [disabled]="!fieldsInfo['description']?.accessEditField" class="form-control validate-name"
+              id="dataModel.title" />
+            <i *ngIf="!Title.value" class="fa fa-times  invalid color-red-dark"></i>
+            <i *ngIf="Title.value" class="fa fa-check  valid color-green-dark"></i>
+            <em>{{ Title.value.length }} / 100</em>
+            <mat-error *ngIf="Title.errors?.required">
+              Title is <strong>{{'MESSAGE.required' | translate}}</strong>
+            </mat-error>
+          </div>
+          <!-- SubDomain Field -->
+          <div class="input-style has-borders no-icon input-style-always-active validate-field mb-4"
+            *ngIf="fieldsInfo['subDomain']?.accessWatchField">
+            <label for="dataModel.subDomain" class="color-highlight">{{
+              fieldsInfo['subDomain']?.fieldTitle }}</label>
+            <input matInput [(ngModel)]="dataModel.subDomain" [disabled]="!fieldsInfo['subDomain']?.accessEditField"
+              name="dataModel.subDomain" #SubDomain type="text" placeholder="test" minlength="0" maxlength="20"
+              class="form-control validate-name" id="dataModel.subDomain" />
+            <em>{{fieldsInfo['subDomain']?.fieldDescription}}</em>
+            <em>{{ SubDomain.value.length }} / 20</em>
+          </div>
+          <!-- Domain Field -->
+          <div class="input-style has-borders no-icon input-style-always-active validate-field mb-4"
+            *ngIf="fieldsInfo['domain']?.accessWatchField">
+            <label for="dataModel.domain" class="color-highlight">{{
+              fieldsInfo['domain']?.fieldTitle }}</label>
+            <input matInput [(ngModel)]="dataModel.domain" [disabled]="!fieldsInfo['domain']?.accessEditField"
+              name="dataModel.domain" #Domain type="text" placeholder="domain.com" minlength="3" maxlength="100"
+              class="form-control validate-name" id="dataModel.domain" />
+            <em>{{fieldsInfo['domain']?.fieldDescription}}</em>
+            <em>{{ Domain.value.length }} / 20</em>
+          </div>
+          <!-- SSL Field -->
+          <div class="ntk-full-width">
+            <mat-slide-toggle [(ngModel)]="dataModel.ssl" *ngIf="fieldsInfo['sSL']?.accessWatchField"
+              [disabled]="!fieldsInfo['sSL']?.accessEditField" name="dataModel.sSL">
+              {{fieldsInfo['sSL']?.fieldTitle}}
+            </mat-slide-toggle>
+          </div>
+          <!-- ViewInCmsSiteList Field -->
+          <div class="ntk-full-width">
+            <mat-slide-toggle [(ngModel)]="dataModel.viewInCmsSiteList"
+              *ngIf="fieldsInfo['viewInCmsSiteList']?.accessWatchField"
+              [disabled]="!fieldsInfo['viewInCmsSiteList']?.accessEditField" name="dataModel.viewInCmsSiteList">
+              {{fieldsInfo['viewInCmsSiteList']?.fieldTitle}}
+            </mat-slide-toggle>
+          </div>
+          <!-- ExpireDate Field -->
+          <div *ngIf="fieldsInfo['expireDate']?.accessWatchField"
+            class="input-style has-borders no-icon input-style-always-active validate-field mb-4">
+            <label for="dataModel.expireDate" class="color-highlight">{{ fieldsInfo["expireDate"]?.fieldTitle }}</label>
+            <input matInput [matDatepicker]="ExpireDate" type="text" [(ngModel)]="dataModel.expireDate"
+              name="dataModel.expireDate" placeholder="{{fieldsInfo['expireDate']?.fieldTitle }}" minlength="3"
+              maxlength="100" disabled="{{!fieldsInfo['expireDate']?.accessEditField}}"
+              class="form-control validate-name" id="dataModel.expireDate" />
+            <mat-datepicker-toggle matSuffix [for]="ExpireDate"></mat-datepicker-toggle>
+            <mat-datepicker touchUi #ExpireDate></mat-datepicker>
+          </div>
+          <div *ngIf="formInfo.formSubmitAllow  && !loading?.display" class="ntk-button-row">
+            <button type="button" class="btn font-13 font-600 btn-s m-1 rounded-s shadow-xl border-0 gradient-gray"
+              (click)="onActionBackToParent()">
+              {{'ACTION.BACK' | translate}}
+            </button>
+            <button type="button" class="btn font-13 font-600 btn-s m-1 rounded-s shadow-xl border-0 gradient-blue"
+              [disabled]="!vform.form.valid" matStepperNext>
+              {{'ACTION.NEXT' | translate}}
+            </button>
+            <button type="submit" class="btn font-13 font-600 btn-s m-1 rounded-s shadow-xl border-0 gradient-green"
+              [disabled]="!vform.form.valid">
+              {{'ACTION.SAVE' | translate}}
+            </button>
+          </div>
+        </mat-step>
+        <mat-step label="{{'TITLE.Web_Application' | translate}}" state="seo">
+          <!-- PwaName Field -->
+          <div class="input-style has-borders no-icon input-style-always-active validate-field mb-4"
+            *ngIf="fieldsInfo['pwaName']?.accessWatchField">
+            <label for="dataModel.pwaName" class="color-highlight">{{
+              fieldsInfo['pwaName']?.fieldTitle }}</label>
+            <input matInput [(ngModel)]="dataModel.pwaName" [disabled]="!fieldsInfo['pwaName']?.accessEditField"
+              name="dataModel.pwaName" #PwaName type="text" placeholder="Site Application"
+              class="form-control validate-name" id="dataModel.pwaName" />
+            <em>{{ PwaName.value.length }} / 100</em>
+          </div>
+          <!-- PwaShortName Field -->
+          <div class="input-style has-borders no-icon input-style-always-active validate-field mb-4"
+            *ngIf="fieldsInfo['pwaShortName']?.accessWatchField">
+            <label for="dataModel.pwaShortName" class="color-highlight">{{ fieldsInfo['pwaShortName']?.fieldTitle
+              }}</label>
+            <input matInput [(ngModel)]="dataModel.pwaShortName"
+              [disabled]="!fieldsInfo['pwaShortName']?.accessEditField" name="dataModel.pwaShortName" #PwaShortName
+              type="text" placeholder="SiteApp" class="form-control validate-name" id="dataModel.pwaShortName" />
+            <em>{{ PwaShortName.value.length }} / 100</em>
+          </div>
+          <!-- PwaDescription Field -->
+          <div class="input-style has-borders no-icon input-style-always-active validate-field mb-4"
+            *ngIf="fieldsInfo['pwaDescription']?.accessWatchField">
+            <label for="dataModel.pwaDescription" class="color-highlight">{{
+              fieldsInfo['pwaDescription']?.fieldTitle }}</label>
+            <input matInput [(ngModel)]="dataModel.pwaDescription"
+              [disabled]="!fieldsInfo['pwaDescription']?.accessEditField" name="dataModel.pwaDescription"
+              #PwaDescription type="text" placeholder="..." class="form-control validate-name"
+              id="dataModel.pwaDescription" />
+            <em>{{ PwaDescription.value.length }} / 100</em>
+          </div>
+          <!-- PwaDisplay Field -->
+          <div class="input-style has-borders no-icon input-style-always-active validate-field mb-4"
+            *ngIf="fieldsInfo['pwaDisplay']?.accessWatchField">
+            <label for="dataModel.pwaDisplay" class="color-highlight">{{
+              fieldsInfo['pwaDisplay']?.fieldTitle }}</label>
+            <input matInput [(ngModel)]="dataModel.pwaDisplay" [disabled]="!fieldsInfo['pwaDisplay']?.accessEditField"
+              name="dataModel.pwaDisplay" #PwaDisplay type="text" placeholder="" class="form-control validate-name"
+              id="dataModel.pwaDisplay" />
+            <em>{{ PwaDisplay.value.length }} / 100</em>
+          </div>
+          <!-- PwaIconSize72x72Id Field -->
+          <div class="mb-3">
+            <img *ngIf="dataModel?.pwaIconSize72x72IdSrc?.length>0" style="vertical-align:middle;"
+              class="ntk-hover-zoom" aria-hidden src="{{dataModel.pwaIconSize72x72IdSrc | cmsthumbnail}}" height="50"
+              width="50" />
+          </div>
+          <div class="mb-9">
+            <div class="input-style has-borders no-icon input-style-always-active validate-field mb-4"
+              *ngIf="fieldsInfo['pwaIconSize72x72Id']?.accessWatchField">
+              <label for="dataModel.pwaIconSize72x72Id" class="color-highlight">
+                {{fieldsInfo['pwaIconSize72x72Id']?.fieldTitle}}
+              </label>
+              <input matInput [(ngModel)]="dataModel.pwaIconSize72x72Id"
+                [disabled]="!fieldsInfo['pwaIconSize72x72Id']?.accessEditField" name="dataModel.pwaIconSize72x72Id"
+                #PwaIconSize72x72Id type="text" placeholder="{{'TITLE.Original_File_ID' | translate}}"
+                autocomplete="off" (click)="fileManagerOpenFormPwaIconSize72x72Id = true"
+                class="form-control validate-name" id="dataModel.pwaIconSize72x72Id" />
+            </div>
+            <cms-file-manager (itemSelected)="onActionFileSelectedPwaIconSize72x72Id($event)" [language]="appLanguage"
+              [isPopup]="true" [(openForm)]="fileManagerOpenFormPwaIconSize72x72Id" [tree]="fileManagerTree"
+              [openDirectUploadView]="true" [openFilemanagerButtonLabelKey]="'select'"
+              [selectFileType]="selectFileTypeMainImage" [openFilemanagerButtonView]="false"></cms-file-manager>
+          </div>
+          <!-- PwaIconSize192x192Id Field -->
+          <div class="mb-3">
+            <img *ngIf="dataModel?.pwaIconSize192x192IdSrc?.length>0" style="vertical-align:middle;"
+              class="ntk-hover-zoom" aria-hidden src="{{dataModel.pwaIconSize192x192IdSrc | cmsthumbnail}}" height="50"
+              width="50" />
+          </div>
+          <div class="mb-9">
+            <div class="input-style has-borders no-icon input-style-always-active validate-field mb-4"
+              *ngIf="fieldsInfo['pwaIconSize192x192Id']?.accessWatchField">
+              <label for="dataModel.pwaIconSize192x192Id" class="color-highlight">
+                {{fieldsInfo['pwaIconSize192x192Id']?.fieldTitle}}
+              </label>
+              <input matInput [(ngModel)]="dataModel.pwaIconSize192x192Id"
+                [disabled]="!fieldsInfo['pwaIconSize192x192Id']?.accessEditField" name="dataModel.pwaIconSize192x192Id"
+                #PwaIconSize192x192Id type="text" placeholder="{{'TITLE.Original_File_ID' | translate}}"
+                autocomplete="off" (click)="fileManagerOpenFormPwaIconSize192x192Id = true"
+                class="form-control validate-name" id="dataModel.pwaIconSize192x192Id" />
+            </div>
+            <cms-file-manager (itemSelected)="onActionFileSelectedPwaIconSize192x192Id($event)" [language]="appLanguage"
+              [isPopup]="true" [(openForm)]="fileManagerOpenFormPwaIconSize192x192Id" [tree]="fileManagerTree"
+              [openDirectUploadView]="true" [openFilemanagerButtonLabelKey]="'select'"
+              [selectFileType]="selectFileTypeMainImage" [openFilemanagerButtonView]="false"></cms-file-manager>
+          </div>
+          <!-- PwaIconSize384x384Id Field -->
+          <div class="mb-3">
+            <img *ngIf="dataModel?.pwaIconSize384x384IdSrc?.length>0" style="vertical-align:middle;"
+              class="ntk-hover-zoom" aria-hidden src="{{dataModel.pwaIconSize384x384IdSrc | cmsthumbnail}}" height="50"
+              width="50" />
+          </div>
+          <div class="mb-9">
+            <div class="input-style has-borders no-icon input-style-always-active validate-field mb-4"
+              *ngIf="fieldsInfo['pwaIconSize384x384Id']?.accessWatchField">
+              <label for="dataModel.pwaIconSize384x384Id"
+                class="color-highlight">{{fieldsInfo['pwaIconSize384x384Id']?.fieldTitle}}</label>
+              <input matInput [(ngModel)]="dataModel.pwaIconSize384x384Id"
+                [disabled]="!fieldsInfo['pwaIconSize384x384Id']?.accessEditField" name="dataModel.pwaIconSize384x384Id"
+                #PwaIconSize384x384Id type="text" placeholder="{{'TITLE.Original_File_ID' | translate}}"
+                autocomplete="off" (click)="fileManagerOpenFormPwaIconSize384x384Id = true"
+                class="form-control validate-name" id="dataModel.pwaIconSize384x384Id" />
+            </div>
+            <cms-file-manager (itemSelected)="onActionFileSelectedPwaIconSize384x384Id($event)" [language]="appLanguage"
+              [isPopup]="true" [(openForm)]="fileManagerOpenFormPwaIconSize384x384Id" [tree]="fileManagerTree"
+              [openDirectUploadView]="true" [openFilemanagerButtonLabelKey]="'select'"
+              [selectFileType]="selectFileTypeMainImage" [openFilemanagerButtonView]="false"></cms-file-manager>
+          </div>
+          <!-- PwaIconSize512x512Id Field -->
+          <div class="mb-3">
+            <img *ngIf="dataModel?.pwaIconSize512x512IdSrc?.length>0" style="vertical-align:middle;"
+              class="ntk-hover-zoom" aria-hidden src="{{dataModel.pwaIconSize512x512IdSrc | cmsthumbnail}}" height="50"
+              width="50" />
+          </div>
+          <div class="mb-9">
+            <div class="input-style has-borders no-icon input-style-always-active validate-field mb-4"
+              *ngIf="fieldsInfo['pwaIconSize512x512Id']?.accessWatchField">
+              <label for="dataModel.pwaIconSize512x512Id" class="color-highlight">
+                {{fieldsInfo['pwaIconSize512x512Id']?.fieldTitle}}</label>
+              <input matInput [(ngModel)]="dataModel.pwaIconSize512x512Id"
+                [disabled]="!fieldsInfo['pwaIconSize512x512Id']?.accessEditField" name="dataModel.pwaIconSize512x512Id"
+                #PwaIconSize512x512Id type="text" placeholder="{{'TITLE.Original_File_ID' | translate}}"
+                autocomplete="off" (click)="fileManagerOpenFormPwaIconSize512x512Id = true"
+                class="form-control validate-name" id="dataModel.pwaIconSize512x512Id" />
+            </div>
+            <cms-file-manager (itemSelected)="onActionFileSelectedPwaIconSize512x512Id($event)" [language]="appLanguage"
+              [isPopup]="true" [(openForm)]="fileManagerOpenFormPwaIconSize512x512Id" [tree]="fileManagerTree"
+              [openDirectUploadView]="true" [openFilemanagerButtonLabelKey]="'select'"
+              [selectFileType]="selectFileTypeMainImage" [openFilemanagerButtonView]="false"></cms-file-manager>
+          </div>
+          <!-- pwaThemeColor Field -->
+          <div class="input-style has-borders no-icon input-style-always-active validate-field mb-4"
+            *ngIf="fieldsInfo['pwaThemeColor']?.accessWatchField">
+            <label for="dataModel.pwaThemeColor"
+              class="color-highlight">{{fieldsInfo['pwaThemeColor']?.fieldTitle}}</label>
+            <input matInput [(ngModel)]="dataModel.pwaThemeColor" name="dataModel.pwaThemeColor" #pwaThemeColor
+              [style.background]="dataModel.pwaThemeColor" [ngxMatColorPicker]="pwaThemeColorPicker" type="text"
+              [disabled]="!fieldsInfo['pwaThemeColor']?.accessEditField"
+              placeholder="{{fieldsInfo['pwaThemeColor']?.fieldTitle}}" class="form-control validate-name"
+              id="dataModel.pwaThemeColor" />
+            <ngx-ntk-mat-color-toggle matSuffix [for]="pwaThemeColorPicker"></ngx-ntk-mat-color-toggle>
+            <ngx-ntk-mat-color-picker #pwaThemeColorPicker [touchUi]="true"
+              [color]="'primary'"></ngx-ntk-mat-color-picker>
+          </div>
+          <!-- pwaThemeBackgroundColor Field -->
+          <div class="input-style has-borders no-icon input-style-always-active validate-field mb-4"
+            *ngIf="fieldsInfo['pwaThemeBackgroundColor']?.accessWatchField">
+            <label for="dataModel.pwaThemeBackgroundColor"
+              class="color-highlight">{{fieldsInfo['pwaThemeBackgroundColor']?.fieldTitle}}</label>
+            <input matInput [(ngModel)]="dataModel.pwaThemeBackgroundColor" name="dataModel.pwaThemeBackgroundColor"
+              #pwaThemeBackgroundColor [style.background]="dataModel.pwaThemeBackgroundColor"
+              [ngxMatColorPicker]="pwaThemeBackgroundColorPicker" type="text"
+              [disabled]="!fieldsInfo['pwaThemeBackgroundColor']?.accessEditField"
+              placeholder="{{fieldsInfo['pwaThemeBackgroundColor']?.fieldTitle}}" class="form-control validate-name"
+              id="dataModel.pwaThemeBackgroundColor" />
+            <ngx-ntk-mat-color-toggle matSuffix [for]="pwaThemeBackgroundColorPicker"></ngx-ntk-mat-color-toggle>
+            <ngx-ntk-mat-color-picker #pwaThemeBackgroundColorPicker [touchUi]="true"
+              [color]="'primary'"></ngx-ntk-mat-color-picker>
+          </div>
+          <fieldset>
+            <legend>Notification</legend>
+            <!-- PwaNotifySubject Field -->
+            <div class="input-style has-borders no-icon input-style-always-active validate-field mb-4"
+              *ngIf="fieldsInfo['pwaNotifySubject']?.accessWatchField">
+              <label for="dataModel.pwaNotifySubject" class="color-highlight">{{
+                fieldsInfo['pwaNotifySubject']?.fieldTitle }}</label>
+              <input matInput [(ngModel)]="dataModel.pwaNotifySubject"
+                [disabled]="!fieldsInfo['pwaNotifySubject']?.accessEditField" name="dataModel.pwaNotifySubject"
+                #PwaDisplay type="text" placeholder="" class="form-control validate-name"
+                id="dataModel.pwaNotifySubject" />
+              <!-- <em>{{ PwaNotifySubject.value.length }} / 100</em> -->
+            </div>
+            <!-- PwaNotifyPublicKey Field -->
+            <div class="input-style has-borders no-icon input-style-always-active validate-field mb-4"
+              *ngIf="fieldsInfo['pwaNotifyPublicKey']?.accessWatchField">
+              <label for="dataModel.pwaNotifyPublicKey" class="color-highlight">{{
+                fieldsInfo['pwaNotifyPublicKey']?.fieldTitle }}</label>
+              <input matInput [(ngModel)]="dataModel.pwaNotifyPublicKey"
+                [disabled]="!fieldsInfo['pwaNotifyPublicKey']?.accessEditField" name="dataModel.pwaNotifyPublicKey"
+                #PwaDisplay type="text" placeholder="" class="form-control validate-name"
+                id="dataModel.pwaNotifyPublicKey" />
+              <!-- <em>{{ PwaNotifyPublicKey.value.length }} / 100</em> -->
+            </div>
+            <!-- PwaNotifyPrivateKey Field -->
+            <div class="input-style has-borders no-icon input-style-always-active validate-field mb-4"
+              *ngIf="fieldsInfo['pwaNotifyPrivateKey']?.accessWatchField">
+              <label for="dataModel.pwaNotifyPrivateKey" class="color-highlight">{{
+                fieldsInfo['pwaNotifyPrivateKey']?.fieldTitle }}</label>
+              <input matInput [(ngModel)]="dataModel.pwaNotifyPrivateKey"
+                [disabled]="!fieldsInfo['pwaNotifyPrivateKey']?.accessEditField" name="dataModel.pwaNotifyPrivateKey"
+                #PwaDisplay type="text" placeholder="" class="form-control validate-name"
+                id="dataModel.pwaNotifyPrivateKey" />
+              <!-- <em>{{ PwaNotifyPrivateKey.value.length }} / 100</em> -->
+            </div>
+          </fieldset>
+          <div *ngIf="formInfo.formSubmitAllow  && !loading?.display" class="ntk-button-row">
+            <button type="button" class="btn font-13 font-600 btn-s m-1 rounded-s shadow-xl border-0 gradient-blue"
+              matStepperPrevious>
+              {{'ACTION.BEFOR' | translate}}
+            </button>
+            <button type="button" class="btn font-13 font-600 btn-s m-1 rounded-s shadow-xl border-0 gradient-blue"
+              [disabled]="!vform.form.valid" matStepperNext>
+              {{'ACTION.NEXT' | translate}}
+            </button>
+            <button type="submit" class="btn font-13 font-600 btn-s m-1 rounded-s shadow-xl border-0 gradient-green"
+              [disabled]="!vform.form.valid">
+              {{'ACTION.SAVE' | translate}}
+            </button>
+          </div>
+        </mat-step>
+        <mat-step label="{{'TITLE.FireBase' | translate}}" state="seo">
+
+          <!-- FirebaseApiKey Field -->
+          <div class="input-style has-borders no-icon input-style-always-active validate-field mb-4"
+            *ngIf="fieldsInfo['firebaseApiKey']?.accessWatchField">
+            <label for="dataModel.firebaseApiKey" class="color-highlight">{{
+              fieldsInfo['firebaseApiKey']?.fieldTitle }}</label>
+            <input matInput [(ngModel)]="dataModel.firebaseApiKey"
+              [disabled]="!fieldsInfo['firebaseApiKey']?.accessEditField" name="dataModel.firebaseApiKey"
+              #FirebaseApiKey type="text" placeholder="SiteApp" class="form-control validate-name"
+              id="dataModel.firebaseApiKey" />
+            <!-- <em>{{ FirebaseApiKey.value.length }} / 100</em> -->
+          </div>
+          <!-- FirebaseAuthDomain Field -->
+          <div class="input-style has-borders no-icon input-style-always-active validate-field mb-4"
+            *ngIf="fieldsInfo['firebaseAuthDomain']?.accessWatchField">
+            <label for="dataModel.firebaseAuthDomain" class="color-highlight">{{
+              fieldsInfo['firebaseAuthDomain']?.fieldTitle }}</label>
+            <input matInput [(ngModel)]="dataModel.firebaseAuthDomain"
+              [disabled]="!fieldsInfo['firebaseAuthDomain']?.accessEditField" name="dataModel.firebaseAuthDomain"
+              #FirebaseAuthDomain type="text" placeholder="..." class="form-control validate-name"
+              id="dataModel.firebaseAuthDomain" />
+            <!-- <em>{{ FirebaseAuthDomain.value.length }} / 100</em> -->
+          </div>
+          <!-- FirebaseDatabaseURL Field -->
+          <div class="input-style has-borders no-icon input-style-always-active validate-field mb-4"
+            *ngIf="fieldsInfo['firebaseDatabaseURL']?.accessWatchField">
+            <label for="dataModel.firebaseDatabaseURL" class="color-highlight">{{
+              fieldsInfo['firebaseDatabaseURL']?.fieldTitle }}</label>
+            <input matInput [(ngModel)]="dataModel.firebaseDatabaseURL"
+              [disabled]="!fieldsInfo['firebaseDatabaseURL']?.accessEditField" name="dataModel.firebaseDatabaseURL"
+              #FirebaseDatabaseURL type="text" placeholder="" class="form-control validate-name"
+              id="dataModel.firebaseDatabaseURL" />
+            <!-- <em>{{ FirebaseDatabaseURL.value.length }} / 100</em> -->
+          </div>
+          <!-- FirebaseProjectId Field -->
+          <div class="input-style has-borders no-icon input-style-always-active validate-field mb-4"
+            *ngIf="fieldsInfo['firebaseProjectId']?.accessWatchField">
+            <label for="dataModel.firebaseProjectId" class="color-highlight">{{
+              fieldsInfo['firebaseProjectId']?.fieldTitle }}</label>
+            <input matInput [(ngModel)]="dataModel.firebaseProjectId"
+              [disabled]="!fieldsInfo['firebaseProjectId']?.accessEditField" name="dataModel.firebaseProjectId"
+              #FirebaseProjectId type="text" placeholder="" class="form-control validate-name"
+              id="dataModel.firebaseProjectId" />
+            <!-- <em>{{ FirebaseProjectId.value.length }} / 100</em> -->
+          </div>
+          <div class="input-style has-borders no-icon input-style-always-active validate-field mb-4"
+            *ngIf="fieldsInfo['firebaseStorageBucket']?.accessWatchField">
+            <label for="dataModel.firebaseStorageBucket" class="color-highlight">{{
+              fieldsInfo['firebaseStorageBucket']?.fieldTitle }}</label>
+            <input matInput [(ngModel)]="dataModel.firebaseStorageBucket"
+              [disabled]="!fieldsInfo['firebaseStorageBucket']?.accessEditField" name="dataModel.firebaseStorageBucket"
+              #FirebaseStorageBucket type="text" placeholder="" class="form-control validate-name"
+              id="dataModel.firebaseStorageBucket" />
+            <!-- <em>{{ FirebaseStorageBucket.value.length }} / 100</em> -->
+          </div>
+          <!-- FirebaseMessagingSenderId Field -->
+          <div class="input-style has-borders no-icon input-style-always-active validate-field mb-4"
+            *ngIf="fieldsInfo['firebaseMessagingSenderId']?.accessWatchField">
+            <label for="dataModel.firebaseMessagingSenderId" class="color-highlight">{{
+              fieldsInfo['firebaseMessagingSenderId']?.fieldTitle }}</label>
+            <input matInput [(ngModel)]="dataModel.firebaseMessagingSenderId"
+              [disabled]="!fieldsInfo['firebaseMessagingSenderId']?.accessEditField"
+              name="dataModel.firebaseMessagingSenderId" #FirebaseMessagingSenderId type="text" placeholder=""
+              class="form-control validate-name" id="dataModel.firebaseMessagingSenderId" />
+            <!-- <em>{{ FirebaseMessagingSenderId.value.length }} / 100</em> -->
+          </div>
+          <!-- FirebaseAppId Field -->
+          <div class="input-style has-borders no-icon input-style-always-active validate-field mb-4"
+            *ngIf="fieldsInfo['firebaseAppId']?.accessWatchField">
+            <label for="dataModel.firebaseAppId" class="color-highlight">{{
+              fieldsInfo['firebaseAppId']?.fieldTitle }}</label>
+            <input matInput [(ngModel)]="dataModel.firebaseAppId"
+              [disabled]="!fieldsInfo['firebaseAppId']?.accessEditField" name="dataModel.firebaseAppId" #FirebaseAppId
+              type="text" placeholder="" class="form-control validate-name" id="dataModel.firebaseAppId" />
+            <!-- <em>{{ FirebaseAppId.value.length }} / 100</em> -->
+          </div>
+          <div *ngIf="formInfo.formSubmitAllow  && !loading?.display" class="ntk-button-row">
+            <button type="button" class="btn font-13 font-600 btn-s m-1 rounded-s shadow-xl border-0 gradient-blue"
+              matStepperPrevious>
+              {{'ACTION.BEFOR' | translate}}
+            </button>
+            <button type="button" class="btn font-13 font-600 btn-s m-1 rounded-s shadow-xl border-0 gradient-blue"
+              [disabled]="!vform.form.valid" matStepperNext>
+              {{'ACTION.NEXT' | translate}}
+            </button>
+            <button type="submit" class="btn font-13 font-600 btn-s m-1 rounded-s shadow-xl border-0 gradient-green"
+              [disabled]="!vform.form.valid">
+              {{'ACTION.SAVE' | translate}}
+            </button>
+          </div>
+        </mat-step>
+        <mat-step label="{{'TITLE.SEO' | translate}}" state="seo">
+          <p>{{'TITLE.SEO_optimization_settings' | translate}}</p>
+          <div class="mb-3">
+            <img *ngIf="dataModel?.linkFavIconIdSrc?.length>0" style="vertical-align:middle;" class="ntk-hover-zoom"
+              aria-hidden src="{{dataModel.linkFavIconIdSrc | cmsthumbnail}}" height="50" width="50" />
+          </div>
+          <div class="mb-9">
+            <div class="input-style has-borders no-icon input-style-always-active validate-field mb-4"
+              *ngIf="fieldsInfo['linkFavIconId']?.accessWatchField">
+              <label for="dataModel.linkFavIconId" class="color-highlight"> {{fieldsInfo['linkFavIconId']?.fieldTitle}}
+              </label>
+              <input matInput [(ngModel)]="dataModel.linkFavIconId"
+                [disabled]="!fieldsInfo['linkFavIconId']?.accessEditField" name="dataModel.linkFavIconId" #LinkFavIconId
+                type="text" placeholder="{{'TITLE.Original_File_ID' | translate}}" autocomplete="off"
+                (click)="fileManagerOpenFormLinkFavIconId = true" class="form-control validate-name"
+                id="dataModel.linkFavIconId" />
+              <em>{{fieldsInfo['linkFavIconId']?.fieldDescription}}</em>
+            </div>
+            <cms-file-manager (itemSelected)="onActionFileSelectedLinkFavIconId($event)" [language]="appLanguage"
+              [isPopup]="true" [(openForm)]="fileManagerOpenFormLinkFavIconId" [tree]="fileManagerTree"
+              [openDirectUploadView]="true" [openFilemanagerButtonLabelKey]="'select'"
+              [selectFileType]="selectFileTypeMainImage" [openFilemanagerButtonView]="false"></cms-file-manager>
+          </div>
+          <!-- SeoDescription Field -->
+          <div class="input-style has-borders no-icon input-style-always-active validate-field mb-4"
+            *ngIf="fieldsInfo['seoDescription']?.accessWatchField">
+            <label for="dataModel.seoDescription" class="color-highlight">{{
+              fieldsInfo['seoDescription']?.fieldDescription }}</label>
+            <textarea matInput [(ngModel)]="dataModel.seoDescription"
+              [disabled]="!fieldsInfo['seoDescription']?.accessEditField" name="dataModel.seoDescription"
+              #SeoDescription type="text" placeholder="{{fieldsInfo['seoDescription']?.fieldTitle}}" row="6"
+              minlength="0" maxlength="1000" class="form-control validate-name"
+              id="dataModel.seoDescription"></textarea>
+            <em>{{fieldsInfo['seoDescription']?.fieldDescription}}</em>
+            <em>{{ SeoDescription.value.length }} / 1000</em>
+          </div>
+          <!-- KeywordModel Field -->
+          <mat-form-field style="width:100%" appearance="fill">
+            <mat-label>{{'TITLE.Choose_keywords_relative_to_the_content' | translate}}</mat-label>
+            <mat-chip-grid #chipList aria-label="this.translate.instant('TITLE.key_word')">
+              <mat-chip *ngFor="let item of  keywordDataModel" (removed)="removeTag(item)">
+                {{item}}
+                <button matChipRemove class="btn font-13 font-600 btn-s m-1 rounded-s shadow-xl border-0 gradient-gray">
+                  <mat-icon>cancel</mat-icon>
+                </button>
+              </mat-chip>
+              <input [placeholder]="' + '+this.translate.instant('TITLE.key_word')" #tagInput
+                [matChipInputAddOnBlur]="addOnBlurTag" [matChipInputFor]="chipList"
+                [matChipInputSeparatorKeyCodes]="separatorKeysCodes" (matChipInputTokenEnd)="addTag($event)">
+            </mat-chip-grid>
+          </mat-form-field>
+          <!-- CurrentSiteDomainUrl Field -->
+          <div class="input-style has-borders no-icon input-style-always-active validate-field mb-4"
+            *ngIf="fieldsInfo['currentSiteDomainUrl']?.accessWatchField">
+            <label for="dataModel.currentSiteDomainUrl" class="color-highlight">{{
+              fieldsInfo['currentSiteDomainUrl']?.fieldTitle }}</label>
+            <input matInput [(ngModel)]="dataModel.currentSiteDomainUrl"
+              [disabled]="!fieldsInfo['currentSiteDomainUrl']?.accessEditField" name="dataModel.currentSiteDomainUrl"
+              #CurrentSiteDomainUrl type="text" placeholder="https://...." minlength="3" maxlength="100"
+              class="form-control validate-name" id="dataModel.currentSiteDomainUrl" />
+            <em>{{fieldsInfo['currentSiteDomainUrl']?.fieldDescription}}</em>
+            <em>{{ CurrentSiteDomainUrl.value.length }} / 100</em>
+          </div>
+          <!-- Redirect Field -->
+          <div class="input-style has-borders no-icon input-style-always-active validate-field mb-4"
+            *ngIf="fieldsInfo['redirect']?.accessWatchField">
+            <label for="dataModel.redirect" class="color-highlight">{{ fieldsInfo['redirect']?.fieldTitle }}</label>
+            <input matInput [(ngModel)]="dataModel.redirect" [disabled]="!fieldsInfo['redirect']?.accessEditField"
+              name="dataModel.redirect" #Redirect type="text" placeholder="https://...." minlength="3" maxlength="100"
+              class="form-control validate-name input-ltr" id="dataModel.redirect" />
+            <em>{{fieldsInfo['redirect']?.fieldDescription}}</em>
+            <em>{{ Redirect.value.length }} / 100</em>
+          </div>
+          <!-- Copyright Field -->
+          <div class="input-style has-borders no-icon input-style-always-active validate-field mb-4"
+            *ngIf="fieldsInfo['copyright']?.accessWatchField">
+            <label for="dataModel.copyright" class="color-highlight">{{
+              fieldsInfo['copyright']?.fieldTitle }}</label>
+            <input matInput [(ngModel)]="dataModel.copyright" [disabled]="!fieldsInfo['copyright']?.accessEditField"
+              name="dataModel.copyright" #Copyright type="text" placeholder="this site ..." minlength="3"
+              maxlength="100" class="form-control validate-name" id="dataModel.copyright" />
+            <em>{{fieldsInfo['copyright']?.fieldDescription}}</em>
+            <em>{{ Copyright.value.length }} / 100</em>
+          </div>
+          <!-- ConfigNeshanMapApiKey Field -->
+          <div class="input-style has-borders no-icon input-style-always-active validate-field mb-4"
+            *ngIf="fieldsInfo['configNeshanMapApiKey']?.accessWatchField">
+            <label for="dataModel.configNeshanMapApiKey" class="color-highlight">{{
+              fieldsInfo['configNeshanMapApiKey']?.fieldTitle }}</label>
+            <input matInput [(ngModel)]="dataModel.configNeshanMapApiKey"
+              [disabled]="!fieldsInfo['configNeshanMapApiKey']?.accessEditField" name="dataModel.configNeshanMapApiKey"
+              #ConfigNeshanMapApiKey type="text" placeholder="Api Key ..." minlength="3" maxlength="100"
+              class="form-control validate-name" id="dataModel.configNeshanMapApiKey" />
+            <em>{{fieldsInfo['configNeshanMapApiKey']?.fieldDescription}}</em>
+            <em>{{ ConfigNeshanMapApiKey.value.length }} / 100</em>
+          </div>
+          <hr>
+          <!-- SeoGoogleHTMLtag Field -->
+          <div class="input-style has-borders no-icon input-style-always-active validate-field mb-4"
+            *ngIf="fieldsInfo['seoGoogleHTMLtag']?.accessWatchField">
+            <label for="dataModel.seoGoogleHTMLtag" class="color-highlight">{{
+              fieldsInfo['seoGoogleHTMLtag']?.fieldTitle }}</label>
+            <textarea matInput [(ngModel)]="dataModel.seoGoogleHTMLtag"
+              [disabled]="!fieldsInfo['seoGoogleHTMLtag']?.accessEditField" name="dataModel.seoGoogleHTMLtag"
+              #SeoGoogleHTMLtag type="text" placeholder="<meta  ...." minlength="0" class="form-control validate-name"
+              id="dataModel.seoGoogleHTMLtag"></textarea>
+            <em>{{fieldsInfo['seoGoogleHTMLtag']?.fieldDescription}}</em>
+            <em>{{ SeoGoogleHTMLtag.value.length }}</em>
+          </div>
+          <!-- SeoGoogleAnalytics Field -->
+          <div class="input-style has-borders no-icon input-style-always-active validate-field mb-4"
+            *ngIf="fieldsInfo['seoGoogleAnalytics']?.accessWatchField">
+            <label for="dataModel.seoGoogleAnalytics" class="color-highlight">{{
+              fieldsInfo['seoGoogleAnalytics']?.fieldTitle }}</label>
+            <textarea matInput [(ngModel)]="dataModel.seoGoogleAnalytics"
+              [disabled]="!fieldsInfo['seoGoogleAnalytics']?.accessEditField" name="dataModel.seoGoogleAnalytics"
+              #SeoGoogleAnalytics type="text" placeholder="" minlength="" class="form-control validate-name"
+              id="dataModel.seoGoogleAnalytics"></textarea>
+            <em>{{fieldsInfo['seoGoogleAnalytics']?.fieldDescription}}</em>
+            <em>{{ SeoGoogleAnalytics.value.length }}</em>
+          </div>
+          <hr>
+          <p>{{'TITLE.Settings' | translate}} Twitter Card</p>
+          <!-- SeoTwitterCardSite Field -->
+          <div class="input-style has-borders no-icon input-style-always-active validate-field mb-4"
+            *ngIf="fieldsInfo['seoTwitterCardSite']?.accessWatchField">
+            <label for="dataModel.seoTwitterCardSite" class="color-highlight">{{
+              fieldsInfo['seoTwitterCardSite']?.fieldTitle }}</label>
+            <input matInput [(ngModel)]="dataModel.seoTwitterCardSite"
+              [disabled]="!fieldsInfo['seoTwitterCardSite']?.accessEditField" name="dataModel.seoTwitterCardSite"
+              #SeoTwitterCardSite type="text" placeholder="@username" class="form-control validate-name input-ltr"
+              id="dataModel.seoTwitterCardSite" />
+            <em>{{fieldsInfo['seoTwitterCardSite']?.fieldDescription}}</em>
+          </div>
+          <!-- SeoTwitterCardCreator Field -->
+          <div class="input-style has-borders no-icon input-style-always-active validate-field mb-4"
+            *ngIf="fieldsInfo['seoTwitterCardCreator']?.accessWatchField">
+            <label for="dataModel.seoTwitterCardCreator" class="color-highlight">{{
+              fieldsInfo['seoTwitterCardCreator']?.fieldTitle }}</label>
+            <input matInput [(ngModel)]="dataModel.seoTwitterCardCreator"
+              [disabled]="!fieldsInfo['seoTwitterCardCreator']?.accessEditField" name="dataModel.seoTwitterCardCreator"
+              #SeoTwitterCardCreator type="text" placeholder="@username" class="form-control validate-name input-ltr"
+              id="dataModel.seoTwitterCardCreator" />
+            <em>{{fieldsInfo['seoTwitterCardCreator']?.fieldDescription}}</em>
+          </div>
+          <div *ngIf="formInfo.formSubmitAllow  && !loading?.display" class="ntk-button-row">
+            <button type="button" class="btn font-13 font-600 btn-s m-1 rounded-s shadow-xl border-0 gradient-blue"
+              matStepperPrevious>
+              {{'ACTION.BEFOR' | translate}}
+            </button>
+            <button type="button" class="btn font-13 font-600 btn-s m-1 rounded-s shadow-xl border-0 gradient-blue"
+              [disabled]="!vform.form.valid" matStepperNext>
+              {{'ACTION.NEXT' | translate}}
+            </button>
+            <button type="submit" class="btn font-13 font-600 btn-s m-1 rounded-s shadow-xl border-0 gradient-green"
+              [disabled]="!vform.form.valid">
+              {{'ACTION.SAVE' | translate}}
+            </button>
+          </div>
+        </mat-step>
+        <mat-step label="{{'ACTION.ABOUT' | translate}}" state="seo">
+          <p>{{'TITLE.Content_Of_The_About_Us_App' | translate}}</p>
+          <div class="mb-3">
+            <img *ngIf="dataModel?.linkImageLogoIdSrc?.length>0" style="vertical-align:middle;" class="ntk-hover-zoom"
+              aria-hidden src="{{dataModel.linkImageLogoIdSrc | cmsthumbnail}}" height="50" width="50" />
+          </div>
+          <div class="mb-9">
+            <div class="input-style has-borders no-icon input-style-always-active validate-field mb-4"
+              *ngIf="fieldsInfo['linkImageLogoId']?.accessWatchField">
+              <label for="dataModel.linkImageLogoId"
+                class="color-highlight">{{fieldsInfo['linkImageLogoId']?.fieldTitle}}</label>
+              <input matInput [(ngModel)]="dataModel.linkImageLogoId"
+                [disabled]="!fieldsInfo['linkImageLogoId']?.accessEditField" name="dataModel.linkImageLogoId"
+                #LinkImageLogoId type="text" placeholder="{{'TITLE.Original_File_ID' | translate}}"
+                (click)="fileManagerOpenFormLinkImageLogoId = true" class="form-control validate-name"
+                id="dataModel.linkImageLogoId" />
+              <em>{{fieldsInfo['linkImageLogoId']?.fieldDescription}}</em>
+            </div>
+            <cms-file-manager (itemSelected)="onActionFileSelectedLinkImageLogoId($event)" [language]="appLanguage"
+              [isPopup]="true" [(openForm)]="fileManagerOpenFormLinkImageLogoId" [tree]="fileManagerTree"
+              [openDirectUploadView]="true" [openFilemanagerButtonLabelKey]="'select'"
+              [selectFileType]="selectFileTypeMainImage" [openFilemanagerButtonView]="false"></cms-file-manager>
+          </div>
+          <!-- AboutUsTitle Field -->
+          <div class="input-style has-borders no-icon input-style-always-active validate-field mb-4"
+            *ngIf="fieldsInfo['aboutUsTitle']?.accessWatchField">
+            <label for="dataModel.aboutUsTitle" class="color-highlight">{{
+              fieldsInfo['aboutUsTitle']?.fieldTitle }}</label>
+            <input matInput [(ngModel)]="dataModel.aboutUsTitle"
+              [disabled]="!fieldsInfo['aboutUsTitle']?.accessEditField" name="dataModel.aboutUsTitle" #AboutUsTitle
+              type="text" placeholder="{{fieldsInfo['title']?.fieldTitle}}" minlength="0" maxlength="100"
+              class="form-control validate-name" id="dataModel.aboutUsTitle" />
+            <em>{{fieldsInfo['aboutUsTitle']?.fieldDescription}}</em>
+            <em>{{ AboutUsTitle.value.length }} / 100</em>
+          </div>
+          <!-- AboutUsDescription Field -->
+          <div class="input-style has-borders no-icon input-style-always-active validate-field mb-4"
+            *ngIf="fieldsInfo['aboutUsDescription']?.accessWatchField">
+            <label for="dataModel.aboutUsDescription" class="color-highlight">{{
+              fieldsInfo['aboutUsDescription']?.fieldTitle }}</label>
+            <textarea matInput [(ngModel)]="dataModel.aboutUsDescription"
+              [disabled]="!fieldsInfo['aboutUsDescription']?.accessEditField" name="dataModel.aboutUsDescription"
+              #AboutUsDescription type="text" placeholder="{{fieldsInfo['description']?.fieldTitle}}" row="5"
+              minlength="0" maxlength="1000" class="form-control validate-name"
+              id="dataModel.aboutUsDescription"></textarea>
+            <em>{{fieldsInfo['aboutUsDescription']?.fieldDescription}}</em>
+            <em>{{ AboutUsDescription.value.length }} / 1000</em>
+          </div>
+          <!-- AboutUsTel Field -->
+          <div class="input-style has-borders no-icon input-style-always-active validate-field mb-4"
+            *ngIf="fieldsInfo['aboutUsTel']?.accessWatchField">
+            <label for="dataModel.aboutUsTel" class="color-highlight">{{ fieldsInfo['aboutUsTel']?.fieldTitle }}</label>
+            <input matInput [(ngModel)]="dataModel.aboutUsTel" [disabled]="!fieldsInfo['aboutUsTel']?.accessEditField"
+              class="input-Mobile" name="dataModel.aboutUsTel" #AboutUsTel type="text" placeholder="021444444444"
+              minlength="0" maxlength="100" class="form-control validate-name" id="dataModel.aboutUsTel" />
+            <em>{{fieldsInfo['aboutUsTel']?.fieldDescription}}</em>
+            <em>{{ AboutUsTel.value.length }} / 100</em>
+          </div>
+          <!-- AboutUsFax Field -->
+          <div class="input-style has-borders no-icon input-style-always-active validate-field mb-4"
+            *ngIf="fieldsInfo['aboutUsFax']?.accessWatchField">
+            <label for="dataModel.aboutUsFax" class="color-highlight">{{
+              fieldsInfo['aboutUsFax']?.fieldTitle }}</label>
+            <input matInput [(ngModel)]="dataModel.aboutUsFax" [disabled]="!fieldsInfo['aboutUsFax']?.accessEditField"
+              name="dataModel.aboutUsFax" #AboutUsFax type="text" placeholder="02133333333" minlength="0"
+              maxlength="100" class="form-control validate-name" id="dataModel.aboutUsFax" />
+            <em>{{fieldsInfo['aboutUsFax']?.fieldDescription}}</em>
+            <em>{{ AboutUsFax.value.length }} / 100</em>
+          </div>
+          <!-- AboutUsEmail Field -->
+          <div class="input-style has-borders no-icon input-style-always-active validate-field mb-4"
+            *ngIf="fieldsInfo['aboutUsEmail']?.accessWatchField">
+            <label for="dataModel.aboutUsEmail" class="color-highlight">{{
+              fieldsInfo['aboutUsEmail']?.fieldTitle }}</label>
+            <input matInput [(ngModel)]="dataModel.aboutUsEmail"
+              [disabled]="!fieldsInfo['aboutUsEmail']?.accessEditField" name="dataModel.aboutUsEmail" #AboutUsEmail
+              type="text" placeholder="info@yourdomain.com" minlength="0" maxlength="100"
+              class="form-control validate-name" id="dataModel.aboutUsEmail" />
+            <em>{{fieldsInfo['aboutUsEmail']?.fieldDescription}}</em>
+            <em>{{ AboutUsEmail.value.length }} / 100</em>
+          </div>
+          <!-- AboutUsAddress Field -->
+          <div class="input-style has-borders no-icon input-style-always-active validate-field mb-4"
+            *ngIf="fieldsInfo['aboutUsAddress']?.accessWatchField">
+            <label for="dataModel.aboutUsAddress" class="color-highlight">{{ fieldsInfo['aboutUsAddress']?.fieldTitle
+              }}</label>
+            <textarea matInput [(ngModel)]="dataModel.aboutUsAddress"
+              [disabled]="!fieldsInfo['aboutUsAddress']?.accessEditField" name="dataModel.aboutUsAddress"
+              #AboutUsAddress type="text" placeholder="{{'TITLE.Iran_Tehran' | translate}} ..." row="5" minlength="0"
+              maxlength="100" class="form-control validate-name" id="dataModel.aboutUsAddress"></textarea>
+            <em>{{fieldsInfo['aboutUsAddress']?.fieldDescription}}</em>
+            <em>{{ AboutUsAddress.value.length }} / 100</em>
+          </div>
+          <!-- AboutUsMoreInfoUrl Field -->
+          <div class="input-style has-borders no-icon input-style-always-active validate-field mb-4"
+            *ngIf="fieldsInfo['aboutUsMoreInfoUrl']?.accessWatchField">
+            <label for="dataModel.aboutUsMoreInfoUrl" class="color-highlight">{{
+              fieldsInfo['aboutUsMoreInfoUrl']?.fieldTitle }}</label>
+            <input matInput [(ngModel)]="dataModel.aboutUsMoreInfoUrl"
+              [disabled]="!fieldsInfo['aboutUsMoreInfoUrl']?.accessEditField" name="dataModel.aboutUsMoreInfoUrl"
+              #AboutUsMoreInfoUrl type="text" placeholder="https://...." class="form-control validate-name"
+              id="dataModel.aboutUsMoreInfoUrl" />
+            <em>{{fieldsInfo['aboutUsMoreInfoUrl']?.fieldDescription}}</em>
+          </div>
+          <!-- AboutUsLinkCompanyAuthorSite Field -->
+          <div class="input-style has-borders no-icon input-style-always-active validate-field mb-4"
+            *ngIf="fieldsInfo['aboutUsLinkCompanyAuthorSite']?.accessWatchField">
+            <label for="dataModel.aboutUsLinkCompanyAuthorSite" class="color-highlight">{{
+              fieldsInfo['aboutUsLinkCompanyAuthorSite']?.fieldTitle }}</label>
+            <input matInput [(ngModel)]="dataModel.aboutUsLinkCompanyAuthorSite"
+              [disabled]="!fieldsInfo['aboutUsLinkCompanyAuthorSite']?.accessEditField"
+              name="dataModel.aboutUsLinkCompanyAuthorSite" #AboutUsLinkCompanyAuthorSite type="text"
+              placeholder="https://...." class="form-control validate-name input-ltr"
+              id="dataModel.aboutUsLinkCompanyAuthorSite" />
+            <em>{{fieldsInfo['aboutUsLinkCompanyAuthorSite']?.fieldDescription}}</em>
+          </div>
+          <!-- AboutUsLinkCompanyPublisherSite Field -->
+          <div class="input-style has-borders no-icon input-style-always-active validate-field mb-4"
+            *ngIf="fieldsInfo['aboutUsLinkCompanyPublisherSite']?.accessWatchField">
+            <label for="dataModel.aboutUsLinkCompanyPublisherSite" class="color-highlight">{{
+              fieldsInfo['aboutUsLinkCompanyPublisherSite']?.fieldTitle }}</label>
+            <input matInput [(ngModel)]="dataModel.aboutUsLinkCompanyPublisherSite"
+              [disabled]="!fieldsInfo['aboutUsLinkCompanyPublisherSite']?.accessEditField"
+              name="dataModel.aboutUsLinkCompanyPublisherSite" #AboutUsLinkCompanyPublisherSite type="text"
+              placeholder="https://...." class="form-control validate-name input-ltr"
+              id="dataModel.aboutUsLinkCompanyPublisherSite" />
+            <em>{{fieldsInfo['aboutUsLinkCompanyPublisherSite']?.fieldDescription}}</em>
+          </div>
+          <!-- AboutUsLinkFacebook Field -->
+          <div class="input-style has-borders no-icon input-style-always-active validate-field mb-4"
+            *ngIf="fieldsInfo['aboutUsLinkFacebook']?.accessWatchField">
+            <label for="dataModel.aboutUsLinkFacebook" class="color-highlight">{{
+              fieldsInfo['aboutUsLinkFacebook']?.fieldTitle }}</label>
+            <input matInput [(ngModel)]="dataModel.aboutUsLinkFacebook"
+              [disabled]="!fieldsInfo['aboutUsLinkFacebook']?.accessEditField" name="dataModel.aboutUsLinkFacebook"
+              #AboutUsLinkFacebook type="text" placeholder="https://...." class="form-control validate-name input-ltr"
+              id="dataModel.aboutUsLinkFacebook" />
+            <em>">{{fieldsInfo['aboutUsLinkFacebook']?.fieldDescription}}</em>
+          </div>
+          <!-- AboutUsLinkTwitter Field -->
+          <div class="input-style has-borders no-icon input-style-always-active validate-field mb-4"
+            *ngIf="fieldsInfo['aboutUsLinkTwitter']?.accessWatchField">
+            <label for="dataModel.aboutUsLinkTwitter" class="color-highlight">{{
+              fieldsInfo['aboutUsLinkTwitter']?.fieldTitle }}</label>
+            <input matInput [(ngModel)]="dataModel.aboutUsLinkTwitter"
+              [disabled]="!fieldsInfo['aboutUsLinkTwitter']?.accessEditField" name="dataModel.aboutUsLinkTwitter"
+              #AboutUsLinkTwitter type="text" placeholder="https://...." class="form-control validate-name input-ltr"
+              id="dataModel.aboutUsLinkTwitter" />
+            <em>{{fieldsInfo['aboutUsLinkTwitter']?.fieldDescription}}</em>
+          </div>
+          <!-- AboutUsLinkGooglePlus Field -->
+          <div class="input-style has-borders no-icon input-style-always-active validate-field mb-4"
+            *ngIf="fieldsInfo['aboutUsLinkGooglePlus']?.accessWatchField">
+            <label for="dataModel.aboutUsLinkGooglePlus" class="color-highlight">{{
+              fieldsInfo['aboutUsLinkGooglePlus']?.fieldTitle }}</label>
+            <input matInput [(ngModel)]="dataModel.aboutUsLinkGooglePlus"
+              [disabled]="!fieldsInfo['aboutUsLinkGooglePlus']?.accessEditField" name="dataModel.aboutUsLinkGooglePlus"
+              #AboutUsLinkGooglePlus type="text" placeholder="https://...." class="form-control validate-name input-ltr"
+              id="dataModel.aboutUsLinkGooglePlus" />
+            <em>{{fieldsInfo['aboutUsLinkGooglePlus']?.fieldDescription}}</em>
+          </div>
+          <!-- AboutUsLinkInstagram Field -->
+          <div class="input-style has-borders no-icon input-style-always-active validate-field mb-4"
+            *ngIf="fieldsInfo['aboutUsLinkInstagram']?.accessWatchField">
+            <label for="dataModel.aboutUsLinkInstagram" class="color-highlight">{{
+              fieldsInfo['aboutUsLinkInstagram']?.fieldTitle }}</label>
+            <input matInput [(ngModel)]="dataModel.aboutUsLinkInstagram"
+              [disabled]="!fieldsInfo['aboutUsLinkInstagram']?.accessEditField" name="dataModel.aboutUsLinkInstagram"
+              #AboutUsLinkInstagram type="text" placeholder="https://...." class="form-control validate-name input-ltr"
+              id="dataModel.aboutUsLinkInstagram" />
+            <em>{{fieldsInfo['aboutUsLinkInstagram']?.fieldDescription}}</em>
+          </div>
+          <!-- AboutUsLinkWhatsapp Field -->
+          <div class="input-style has-borders no-icon input-style-always-active validate-field mb-4"
+            *ngIf="fieldsInfo['aboutUsLinkWhatsapp']?.accessWatchField">
+            <label for="dataModel.aboutUsLinkWhatsapp" class="color-highlight">{{
+              fieldsInfo['aboutUsLinkWhatsapp']?.fieldTitle }}</label>
+            <input matInput [(ngModel)]="dataModel.aboutUsLinkWhatsapp"
+              [disabled]="!fieldsInfo['aboutUsLinkWhatsapp']?.accessEditField" name="dataModel.aboutUsLinkWhatsapp"
+              #AboutUsLinkWhatsapp type="text" placeholder="https://...." class="form-control validate-name input-ltr"
+              id="dataModel.aboutUsLinkWhatsapp" />
+            <em>{{fieldsInfo['aboutUsLinkWhatsapp']?.fieldDescription}}</em>
+          </div>
+          <!-- AboutUsLinklinkedin Field -->
+          <div class="input-style has-borders no-icon input-style-always-active validate-field mb-4"
+            *ngIf="fieldsInfo['aboutUsLinklinkedin']?.accessWatchField">
+            <label for="dataModel.aboutUsLinklinkedin" class="color-highlight">{{
+              fieldsInfo['aboutUsLinklinkedin']?.fieldTitle }}</label>
+            <input matInput [(ngModel)]="dataModel.aboutUsLinklinkedin"
+              [disabled]="!fieldsInfo['aboutUsLinklinkedin']?.accessEditField" name="dataModel.aboutUsLinklinkedin"
+              #AboutUsLinklinkedin type="text" placeholder="https://...." class="form-control validate-name input-ltr"
+              id="dataModel.aboutUsLinklinkedin" />
+            <em>{{fieldsInfo['aboutUsLinklinkedin']?.fieldDescription}}</em>
+          </div>
+          <!-- AboutUsLinkYahoo Field -->
+          <div class="input-style has-borders no-icon input-style-always-active validate-field mb-4"
+            *ngIf="fieldsInfo['aboutUsLinkYahoo']?.accessWatchField">
+            <label for="dataModel.aboutUsLinkYahoo" class="color-highlight">{{
+              fieldsInfo['aboutUsLinkYahoo']?.fieldTitle }}</label>
+            <input matInput [(ngModel)]="dataModel.aboutUsLinkYahoo"
+              [disabled]="!fieldsInfo['aboutUsLinkYahoo']?.accessEditField" name="dataModel.aboutUsLinkYahoo"
+              #AboutUsLinkYahoo type="text" placeholder="https://...." class="form-control validate-name input-ltr"
+              id="dataModel.aboutUsLinkYahoo" />
+            <em>{{fieldsInfo['aboutUsLinkYahoo']?.fieldDescription}}</em>
+          </div>
+          <!-- AboutUsLinkYoutube Field -->
+          <div class="input-style has-borders no-icon input-style-always-active validate-field mb-4"
+            *ngIf="fieldsInfo['aboutUsLinkYoutube']?.accessWatchField">
+            <label for="dataModel.aboutUsLinkYoutube" class="color-highlight">{{
+              fieldsInfo['aboutUsLinkYoutube']?.fieldTitle }}</label>
+            <input matInput [(ngModel)]="dataModel.aboutUsLinkYoutube"
+              [disabled]="!fieldsInfo['aboutUsLinkYoutube']?.accessEditField" name="dataModel.aboutUsLinkYoutube"
+              #AboutUsLinkYoutube type="text" placeholder="https://...." class="form-control validate-name input-ltr"
+              id="dataModel.aboutUsLinkYoutube" />
+            <em>{{fieldsInfo['aboutUsLinkYoutube']?.fieldDescription}}</em>
+          </div>
+          <!-- AboutUsLinkTelegram Field -->
+          <div class="input-style has-borders no-icon input-style-always-active validate-field mb-4"
+            *ngIf="fieldsInfo['aboutUsLinkTelegram']?.accessWatchField">
+            <label for="dataModel.aboutUsLinkTelegram" class="color-highlight">{{
+              fieldsInfo['aboutUsLinkTelegram']?.fieldTitle }}</label>
+            <input matInput [(ngModel)]="dataModel.aboutUsLinkTelegram"
+              [disabled]="!fieldsInfo['aboutUsLinkTelegram']?.accessEditField" name="dataModel.aboutUsLinkTelegram"
+              #AboutUsLinkTelegram type="text" placeholder="https://...." class="form-control validate-name input-ltr"
+              id="dataModel.aboutUsLinkTelegram" />
+            <em>{{fieldsInfo['aboutUsLinkTelegram']?.fieldDescription}}</em>
+          </div>
+          <!-- AboutUsLinkPinterest Field -->
+          <div class="input-style has-borders no-icon input-style-always-active validate-field mb-4"
+            *ngIf="fieldsInfo['aboutUsLinkPinterest']?.accessWatchField">
+            <label for="dataModel.aboutUsLinkPinterest" class="color-highlight">{{
+              fieldsInfo['aboutUsLinkPinterest']?.fieldTitle }}</label>
+            <input matInput [(ngModel)]="dataModel.aboutUsLinkPinterest"
+              [disabled]="!fieldsInfo['aboutUsLinkPinterest']?.accessEditField" name="dataModel.aboutUsLinkPinterest"
+              #AboutUsLinkPinterest type="text" placeholder="https://...." class="form-control validate-name input-ltr"
+              id="dataModel.aboutUsLinkPinterest" />
+            <em>{{fieldsInfo['aboutUsLinkPinterest']?.fieldDescription}}</em>
+          </div>
+          <!-- AboutUsLinkRss Field -->
+          <div class="input-style has-borders no-icon input-style-always-active validate-field mb-4"
+            *ngIf="fieldsInfo['aboutUsLinkRss']?.accessWatchField">
+            <label for="dataModel.aboutUsLinkRss" class="color-highlight">{{
+              fieldsInfo['aboutUsLinkRss']?.fieldTitle }}</label>
+            <input matInput [(ngModel)]="dataModel.aboutUsLinkRss"
+              [disabled]="!fieldsInfo['aboutUsLinkRss']?.accessEditField" name="dataModel.aboutUsLinkRss"
+              #AboutUsLinkRss type="text" placeholder="https://...." class="form-control validate-name input-ltr"
+              id="dataModel.aboutUsLinkRss" />
+            <em>{{fieldsInfo['aboutUsLinkRss']?.fieldDescription}}</em>
+          </div>
+          <hr>
+          <div class="mb-3">
+            <img *ngIf="dataModel?.aboutUsLinkImageIdSrc?.length>0" style="vertical-align:middle;"
+              class="ntk-hover-zoom" aria-hidden src="{{dataModel.aboutUsLinkImageIdSrc | cmsthumbnail}}" height="50"
+              width="50" />
+          </div>
+          <div class="mb-9">
+            <div class="input-style has-borders no-icon input-style-always-active validate-field mb-4"
+              *ngIf="fieldsInfo['aboutUsLinkImageId']?.accessWatchField">
+              <label for="dataModel.aboutUsLinkImageId" class="color-highlight">
+                {{fieldsInfo['aboutUsLinkImageId']?.fieldTitle}}</label>
+              <input matInput [(ngModel)]="dataModel.aboutUsLinkImageId"
+                [disabled]="!fieldsInfo['aboutUsLinkImageId']?.accessEditField" name="dataModel.aboutUsLinkImageId"
+                #AboutUsLinkImageId type="text" placeholder="{{'TITLE.Original_File_ID' | translate}}"
+                (click)="fileManagerOpenFormAboutUsLinkImageId = true" class="form-control validate-name"
+                id="dataModel.aboutUsLinkImageId" />
+            </div>
+            <cms-file-manager (itemSelected)="onActionFileSelectedAboutUsLinkImageId($event)" [language]="appLanguage"
+              [isPopup]="true" [(openForm)]="fileManagerOpenFormAboutUsLinkImageId" [tree]="fileManagerTree"
+              [openDirectUploadView]="true" [openFilemanagerButtonLabelKey]="'select'"
+              [selectFileType]="selectFileTypeMainImage" [openFilemanagerButtonView]="false"></cms-file-manager>
+          </div>
+          <div class="mb-12">
+            <!-- aboutUsLicensesHtmlBody Field -->
+            <div class="input-style has-borders no-icon input-style-always-active validate-field mb-4"
+              *ngIf="fieldsInfo['aboutUsLicensesHtmlBody']?.accessWatchField">
+              <label for="dataModel.aboutUsLicensesHtmlBody" class="color-highlight">{{
+                "TITLE.Enter_the_user_licenses_text"|translate }}</label>
+              <textarea matInput [(ngModel)]="dataModel.aboutUsLicensesHtmlBody"
+                [disabled]="!fieldsInfo['aboutUsLicensesHtmlBody']?.accessEditField"
+                name="dataModel.aboutUsLicensesHtmlBody" #aboutUsLicensesHtmlBody type="text"
+                placeholder="{{fieldsInfo['aboutUsLicensesHtmlBody']?.fieldTitle}}" row="6" minlength="0"
+                class="form-control validate-name" id="dataModel.aboutUsLicensesHtmlBody"></textarea>
+              <em>{{fieldsInfo['aboutUsLicensesHtmlBody']?.fieldDescription}}</em>
+              <em>{{ aboutUsLicensesHtmlBody.value.length }} / 10000</em>
+            </div>
+          </div>
+          <div class="mb-12">
+            <!-- aboutUsSupportHtmlBody Field -->
+            <div class="input-style has-borders no-icon input-style-always-active validate-field mb-4"
+              *ngIf="fieldsInfo['aboutUsSupportHtmlBody']?.accessWatchField">
+              <label for="dataModel.aboutUsSupportHtmlBody" class="color-highlight">{{
+                fieldsInfo['aboutUsSupportHtmlBody']?.fieldTitle }}</label>
+              <textarea matInput [(ngModel)]="dataModel.aboutUsSupportHtmlBody"
+                [disabled]="!fieldsInfo['aboutUsSupportHtmlBody']?.accessEditField"
+                name="dataModel.aboutUsSupportHtmlBody" #aboutUsSupportHtmlBody type="text"
+                placeholder="{{fieldsInfo['aboutUsSupportHtmlBody']?.fieldTitle}}" row="6" minlength="0"
+                class="form-control validate-name" id="dataModel.aboutUsSupportHtmlBody"></textarea>
+              <em>{{fieldsInfo['aboutUsSupportHtmlBody']?.fieldDescription}}</em>
+              <em>{{ aboutUsSupportHtmlBody.value.length }} / 10000</em>
+            </div>
+          </div>
+          <div class="mb-12">
+            <angular-editor [placeholder]="this.translate.instant('TITLE.Enter_the_user_privacy_text')"
+              [config]="publicHelper.editorConfigFull" id="main"
+              *ngIf="fieldsInfo['aboutUsPrivacyPolicyHtmlBody']?.accessWatchField"
+              [disabled]="!fieldsInfo['aboutUsPrivacyPolicyHtmlBody']?.accessEditField"
+              [(ngModel)]="dataModel.aboutUsPrivacyPolicyHtmlBody" name="dataModel.aboutUsPrivacyPolicyHtmlBody">
+            </angular-editor>
+          </div>
+          <p>{{'TITLE.Click_on_the_map_to_specify_the_location' | translate}}</p>
+          <app-cms-map (map$)="receiveMap($event)" [optonCenter]="mapOptonCenter" [optonCenter]="mapOptonCenter"
+            id='main-map'></app-cms-map>
+          <div class="mb-12">
+
+
+            <!-- adminSiteMemo Field -->
+            <div class="input-style has-borders no-icon input-style-always-active validate-field mb-4"
+              *ngIf="fieldsInfo['adminSiteMemo']?.accessWatchField">
+              <label for="dataModel.adminSiteMemo" class="color-highlight">{{
+                fieldsInfo['adminSiteMemo']?.fieldTitle }}</label>
+              <textarea matInput [(ngModel)]="dataModel.adminSiteMemo"
+                [disabled]="!fieldsInfo['adminSiteMemo']?.accessEditField" name="dataModel.adminSiteMemo" #adminSiteMemo
+                type="text" placeholder="{{fieldsInfo['adminSiteMemo']?.fieldTitle}}" row="6" minlength="0"
+                class="form-control validate-name" id="dataModel.adminSiteMemo"></textarea>
+              <em>{{fieldsInfo['adminSiteMemo']?.fieldDescription}}</em>
+              <em>{{ adminSiteMemo.value.length }} / 10000</em>
+            </div>
+
+          </div>
+          <div class="mb-12">
+
+            <!-- adminMainMemo Field -->
+            <div class="input-style has-borders no-icon input-style-always-active validate-field mb-4"
+              *ngIf="fieldsInfo['adminMainMemo']?.accessWatchField">
+              <label for="dataModel.adminMainMemo" class="color-highlight">{{
+                fieldsInfo['adminMainMemo']?.fieldTitle }}</label>
+              <textarea matInput [(ngModel)]="dataModel.adminMainMemo"
+                [disabled]="!fieldsInfo['adminMainMemo']?.accessEditField" name="dataModel.adminMainMemo" #adminMainMemo
+                type="text" placeholder="{{fieldsInfo['adminMainMemo']?.fieldTitle}}" row="6" minlength="0"
+                class="form-control validate-name" id="dataModel.adminMainMemo"></textarea>
+              <em>{{fieldsInfo['adminMainMemo']?.fieldDescription}}</em>
+              <em>{{ adminMainMemo.value.length }} / 10000</em>
+            </div>
+
+
+          </div>
+          <div *ngIf="formInfo.formSubmitAllow  && !loading?.display" class="ntk-button-row">
+            <button type="button" class="btn font-13 font-600 btn-s m-1 rounded-s shadow-xl border-0 gradient-blue"
+              matStepperPrevious>
+              {{'ACTION.BEFOR' | translate}}
+            </button>
+            <button type="button" class="btn font-13 font-600 btn-s m-1 rounded-s shadow-xl border-0 gradient-blue"
+              [disabled]="!vform.form.valid" matStepperNext>
+              {{'ACTION.NEXT' | translate}}
+            </button>
+            <button type="submit" class="btn font-13 font-600 btn-s m-1 rounded-s shadow-xl border-0 gradient-green"
+              [disabled]="!vform.form.valid">
+              {{'ACTION.SAVE' | translate}}
+            </button>
+          </div>
+        </mat-step>
+        <mat-step label="{{'TITLE.Accounting' | translate}}" state="seo">
+          <p>{{'TITLE.Financial_Status_And_Sccounting_Transactions' | translate}}</p>
+          <!-- LinkResellerUserId Field -->
+          <app-cms-user-selector [optionDisabled]="!fieldsInfo['linkResellerUserId']?.accessEditField"
+            [optionSelectForce]="dataModel.linkResellerUserId" [(optionLoading)]="loading"
+            (optionChange)="onActionSelectorLinkResellerUserIdSelect($event)"
+            [optionPlaceholder]="this.translate.instant('TITLE.Representative_User')">
+          </app-cms-user-selector>
+          <!-- LinkResellerSiteId Field -->
+          <app-cms-site-selector [optionDisabled]="!fieldsInfo['linkResellerSiteId']?.accessEditField"
+            [optionSelectForce]="dataModel.linkResellerSiteId" [(optionLoading)]="loading"
+            (optionChange)="onActionSelectorLinkResellerSiteIdSelect($event)"
+            [optionPlaceholder]="this.translate.instant('TITLE.Representative_Site')">
+          </app-cms-site-selector>
+          <!-- HasAccountingForm Field -->
+          <div class="d-flex mb-3">
+            <div class="pt-1">
+              <h5 data-trigger-switch="dataModel.hasAccountingForm" class="font-600 font-14">
+                {{fieldsInfo['hasAccountingForm']?.fieldTitle}}</h5>
+            </div>
+            <div class="ms-auto me-3 pe-2">
+              <label class="custom-control-label" for="dataModel.hasAccountingForm"></label>
+              <div class="custom-control ios-switch small-switch">
+                <input type="checkbox" class="ios-input" id="dataModel.hasAccountingForm"
+                  [(ngModel)]="dataModel.hasAccountingForm" *ngIf="fieldsInfo['hasAccountingForm']?.accessWatchField"
+                  [disabled]="!fieldsInfo['hasAccountingForm']?.accessEditField" name="dataModel.hasAccountingForm">
+              </div>
+            </div>
+          </div>
+          <!-- AccountingFormNo Field -->
+          <div class="input-style has-borders no-icon input-style-always-active validate-field mb-4"
+            *ngIf="fieldsInfo['accountingFormNo']?.accessWatchField">
+            <label for="dataModel.accountingFormNo" class="color-highlight">{{
+              fieldsInfo['accountingFormNo']?.fieldTitle }}</label>
+            <input matInput [(ngModel)]="dataModel.accountingFormNo"
+              [disabled]="!fieldsInfo['accountingFormNo']?.accessEditField" name="dataModel.accountingFormNo"
+              #AccountingFormNo type="number" placeholder="123" class="form-control validate-name"
+              id="dataModel.accountingFormNo" />
+            <em>{{ AccountingFormNo.value.length }} / 100</em>
+          </div>
+          <!-- AccountingFormCreatedDate Field -->
+          <div class="input-style has-borders no-icon input-style-always-active validate-field mb-4"
+            *ngIf="fieldsInfo['accountingFormCreatedDate']?.accessWatchField">
+            <label for="dataModel.accountingFormCreatedDate"
+              class="color-highlight">{{fieldsInfo['accountingFormCreatedDate']?.fieldTitle}}</label>
+            <input matInput [matDatepicker]="AccountingFormCreatedDate"
+              [(ngModel)]="dataModel.accountingFormCreatedDate" name="dataModel.accountingFormCreatedDate"
+              class="form-control validate-name" id="dataModel.accountingFormCreatedDate" />
+            <mat-datepicker-toggle matSuffix [for]="AccountingFormCreatedDate"></mat-datepicker-toggle>
+            <mat-datepicker touchUi #AccountingFormCreatedDate></mat-datepicker>
+          </div>
+          <!-- AccountingFormUpdatedDate Field -->
+          <div class="input-style has-borders no-icon input-style-always-active validate-field mb-4"
+            *ngIf="fieldsInfo['accountingFormUpdatedDate']?.accessWatchField">
+            <label for="dataModel.accountingFormUpdatedDate"
+              class="color-highlight">{{fieldsInfo['accountingFormUpdatedDate']?.fieldTitle}}</label>
+            <input matInput [matDatepicker]="AccountingFormUpdatedDate"
+              [(ngModel)]="dataModel.accountingFormUpdatedDate" name="dataModel.accountingFormUpdatedDate"
+              class="form-control validate-name" id="dataModel.accountingFormUpdatedDate" />
+            <mat-datepicker-toggle matSuffix [for]="AccountingFormUpdatedDate"></mat-datepicker-toggle>
+            <mat-datepicker touchUi #AccountingFormUpdatedDate></mat-datepicker>
+          </div>
+          <div class="mb-12">
+            <angular-editor [placeholder]="this.translate.instant('TITLE.Memory_Accounting')"
+              [config]="publicHelper.editorConfigFull" id="main" *ngIf="fieldsInfo['accountingMemo']?.accessWatchField"
+              [disabled]="!fieldsInfo['accountingMemo']?.accessEditField" [(ngModel)]="dataModel.accountingMemo"
+              name="dataModel.accountingMemo">
+            </angular-editor>
+          </div>
+          <div *ngIf="formInfo.formSubmitAllow  && !loading?.display" class="ntk-button-row">
+            <button type="button" class="btn font-13 font-600 btn-s m-1 rounded-s shadow-xl border-0 gradient-blue"
+              matStepperPrevious>
+              {{'ACTION.BEFOR' | translate}}
+            </button>
+            <button type="submit" class="btn font-13 font-600 btn-s m-1 rounded-s shadow-xl border-0 gradient-green"
+              [disabled]="!vform.form.valid">
+              {{'ACTION.SAVE' | translate}}
+            </button>
+          </div>
+        </mat-step>
+      </mat-vertical-stepper>
+    </form>
+    <!--Content-->
+  </div>
+</div>
