@@ -35,7 +35,10 @@
               "@angular/material/prebuilt-themes/azure-blue.css",
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [],
+            "allowedCommonJsDependencies": [
+              "jalali-moment"
+            ]
           },
           "configurations": {
             "production": {

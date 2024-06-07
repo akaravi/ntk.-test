@@ -7,8 +7,8 @@
     "outDir": "./dist/out-tsc",
     "strict": false, //default is true karavi change
     "noImplicitOverride": true,
-    "noPropertyAccessFromIndexSignature": true,
-    "noImplicitReturns": true,
+    "noPropertyAccessFromIndexSignature": false, //default is true
+    "noImplicitReturns": true, //default is true
     "noFallthroughCasesInSwitch": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
@@ -44,5 +44,6 @@
     "strictLiteralTypes": false,
     "strictNullChecks": false
     /*karavi add*/
-  }
+  },
+  "include": ["**/*.js", "**/*.ts"]
 }

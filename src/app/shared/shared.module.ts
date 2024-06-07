@@ -135,6 +135,7 @@ import { CmsMemberSelectorComponent } from './cms-member-selector/cmsMemberSelec
 import { CmsSearchListComponent } from './cms-search-list/cms-search-list.component';
 import { CmsStatistListComponent } from './cms-statist-list/cms-statist-list.component';
 //karavi error on angular 18//import { NgApexchartsModule } from 'ng-apexcharts';
+import { CmsFileManagerModule } from 'ntk-cms-filemanager';
 import { NgOtpInputModule } from '../core/cmsComponent/ng-otp-input/ng-otp-input.module';
 import { InlineSVGComponent } from '../core/directive/inline-svg.component';
 import { InlineSVGDirective } from '../core/directive/inline-svg.directive';
@@ -164,13 +165,10 @@ import { CmsTokenAccessComponent } from './cms-token-access/cmsTokenAccess.compo
 import { CmsUserGroupSelectorComponent } from './cms-user-group-selector/cmsUserGroupSelector.component';
 import { CmsUserSelectorComponent } from './cms-user-selector/cmsUserSelector.component';
 import { CmsViewComponent } from './cms-view/cms-view.component';
-import { CodePreviewComponent } from './code-preview/code-preview.component';
-import { LanguageSelectorComponent } from './language-selector/language-selector.component';
 import { MaterialPersianDateAdapter, PERSIAN_DATE_FORMATS } from './material/material.persian-date.adapter';
 import { OverlayService } from './overlay/overlay.service';
 import { PasswordStrengthComponent } from './password-strength/password-strength.component';
 import { ProgressSpinnerComponent } from './progress-spinner/progress-spinner.component';
-import { CmsFileManagerModule } from 'ntk-cms-filemanager';
 @NgModule({
   declarations: [
     // common and shared components/directives/pipes between more than one module and components will be listed here.
@@ -196,7 +194,7 @@ import { CmsFileManagerModule } from 'ntk-cms-filemanager';
     FirstLetterPipe,
     SafePipe,
     /** Component */
-    LanguageSelectorComponent,
+
     CmsSearchListComponent,
     CmsStatistListComponent,
     CmsExportListComponent,
@@ -241,7 +239,6 @@ import { CmsFileManagerModule } from 'ntk-cms-filemanager';
     CmsHtmlModalComponent,
     CmsHtmlListComponent,
     CmsHtmlTreeComponent,
-    CodePreviewComponent,
     CmsSiteCreditViewComponent,
     CmsSiteUserCreditViewComponent,
     CmsContactCategoryTreeSelectorComponent,
@@ -343,7 +340,7 @@ import { CmsFileManagerModule } from 'ntk-cms-filemanager';
     BoolStatusClassPipe,
     ValueArrayPipe,
     /** Component */
-    LanguageSelectorComponent,
+
     CmsSearchListComponent,
     CmsStatistListComponent,
     CmsExportListComponent,
@@ -388,7 +385,6 @@ import { CmsFileManagerModule } from 'ntk-cms-filemanager';
     CmsHtmlModalComponent,
     CmsHtmlListComponent,
     CmsHtmlTreeComponent,
-    CodePreviewComponent,
     CmsSiteCreditViewComponent,
     CmsSiteUserCreditViewComponent,
     CmsContactCategoryTreeSelectorComponent,
@@ -473,7 +469,7 @@ import { CmsFileManagerModule } from 'ntk-cms-filemanager';
     //PerfectScrollbarModule,
     //karavi error on angular 18//NgbNavModule,
     NgOtpInputModule,
-     CmsFileManagerModule.forRoot()
+    CmsFileManagerModule.forRoot()
   ],
   providers: [
     OverlayService,
