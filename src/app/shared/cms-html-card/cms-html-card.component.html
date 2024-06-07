@@ -1,0 +1,24 @@
+<!--begin::Card-->
+<div class="card card-style">
+  <div class="content mb-0">
+    <!--begin::Header-->
+    <p *ngIf="formInfo.formTitle?.length>0" class="mb-0 color-highlight font-600 font-12">
+      {{ formInfo.formTitle }}
+    </p>
+    <p *ngIf="formInfo.formDescription?.length>0">
+      {{ formInfo.formDescription }}
+    </p>
+    <br>
+    <ng-content select="[cms-message]"></ng-content>
+    <!--end::Header-->
+    <!--begin::Body-->
+    <app-progress-spinner [options]="loading"> </app-progress-spinner>
+    <ng-content select="[cms-body]"></ng-content>
+    <!--end::Body-->
+    <!--begin::Footer-->
+
+    <ng-content select="[cms-footer]"></ng-content>
+    <!--end::Footer-->
+  </div>
+</div>
+<!--end::Card-->

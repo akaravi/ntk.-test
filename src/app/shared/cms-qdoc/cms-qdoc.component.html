@@ -1,0 +1,26 @@
+<div *ngIf="optionUrl && optionUrl.length>0">
+  <!-- username Field -->
+  <p>{{'TITLE.Code_of_Knowledge' | translate}}</p>
+  <div style="text-align: center;">
+    <ng-otp-input #ngOtpInput (onInputChange)="onOtpChange($event)" [config]="otpConfig"></ng-otp-input>
+  </div>
+
+  <div class="col-m-4 col-sm-12">
+    <button type="button" (click)="onActionSendUrlToQDoc()"
+      class="btn font-13 font-600 btn-s m-1 rounded-s shadow-xl border-0 gradient-highlight"
+      *ngIf="optionUrl && optionUrl.length>0 && QDocModel.username?.length===5">
+      <span>{{'ACTION.VIEW' | translate}}</span>
+      <i class="fas fa-street-view"></i>
+    </button>
+  </div>
+
+  <h5 style="text-align: right;">{{'TITLE.Description' | translate}}:</h5>
+  <p dir="rtl" style="text-align: right;" style="font-size: 15px;">
+    {{'TITLE.To_do_this_it_is_enough_to_enter_the_site_on_the_device_that_you_want_your_content_to_be_displayed_on' |
+    translate}}
+    <a href="https://qdoc.ir" target="_blank"> https://qdoc.ir </a>
+    {{'TITLE.Enter_the_display_code_in_this_section_so_that_your_content_will_be_displayed_on_the_monitor_of_the_device_in_question'
+    | translate}}
+
+  </p>
+</div>

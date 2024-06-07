@@ -1,0 +1,81 @@
+<app-progress-spinner [options]="loading"> </app-progress-spinner>
+<div class="card card-style">
+    <div class="content mb-0">
+        <p class="mb-0 color-highlight font-600 font-12">
+            {{ formInfo.formTitle }}
+        </p>
+
+
+        <p>
+      {{'TITLE.Be_Careful_When_Entering_Information' | translate}}
+    </p>
+        <!--Content-->
+        <table class="table table-hover" *ngIf="!showFormAdd">
+            <thead>
+                <tr>
+                    <th scope="col"></th>
+                    <th scope="col">{{'TITLE.createdBy'|translate}}</th>
+                    <th scope="col">{{'TITLE.createdDate'|translate}}</th>
+                    <th scope="col">{{'TITLE.expireDateTime'|translate}}</th>
+                    <th scope="col">{{'TITLE.showKey'|translate}}</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <ng-container *ngFor="let item of dataModelResult.listItems ; let i = index">
+                    <tr class="myDIV">
+                        <th scope="row">{{ i+1 }}</th>
+                        <td>{{ item.createdBy }}</td>
+                        <td>{{ publicHelper.LocaleDateTime(item.createdDate) }}</td>
+                        <td>{{ publicHelper.LocaleDateTime(item.expireDateTime) }}</td>
+                        <td>{{item.showKey}}</td>
+                        <td>{{this.requestContentUrl+'/'+ item.showKey}}</td>
+                    </tr>
+                    <tr class="hide">
+                        <td></td>
+                        <td colspan="4">
+                            {{ item.subjectTitle }}
+                        </td>
+                    </tr>
+                </ng-container>
+            </tbody>
+        </table>
+        <form *ngIf="showFormAdd" (ngSubmit)="onFormSubmit()" #vform="ngForm">
+            <!-- SubjectTitle Field -->
+            <div class="input-style has-borders no-icon input-style-always-active validate-field mb-4">
+                <label for="dataModel.subjectTitle" class="color-highlight">{{ "TITLE.subjectTitle" | translate
+                    }}</label>
+                <input matInput type="text" [(ngModel)]="dataModel.subjectTitle" name="dataModel.subjectTitle"
+                    id="dataModel.subjectTitle" class="form-control validate-name"
+                    placeholder="{{'TITLE.subjectTitle' | translate }}" required />
+            </div>
+            <!-- Priority Field -->
+            <div class="input-style has-borders input-style-always-active validate-field no-icon mb-4">
+                <select id="dataModel.minLive" [(ngModel)]="dataModel.minLive" name="dataModel.minLive"
+                    #Priority="ngModel" class="form-control validate-name">
+                    <option *ngFor="
+                    let number of numbers;" [value]="number">
+                        {{ number }}
+                    </option>
+                </select>
+                <em>{{'MESSAGE.Enter_Time_Duration_In_Minutes' | translate}}</em>
+            </div>
+            <div class="form-actions" *ngIf="formInfo.formSubmitAllow  && !loading?.display">
+                <button type="submit" *ngIf="showFormAdd" (click)="onFormSubmit()"
+                    class="btn font-13 font-600 btn-s m-1 rounded-s shadow-xl border-0 gradient-green"
+                    [disabled]="!formGroup?.valid">
+                    <i class="fa fa-check-square-o"></i> {{'ACTION.SAVE' | translate}}
+                </button>
+                <button type="button" *ngIf="!showFormAdd"
+                    class="btn font-13 font-600 btn-s m-1 rounded-s shadow-xl border-0 gradient-highlight"
+                    (click)="onActionAdd()">{{'ACTION.SHOW_KEY'
+                    |translate}}</button>
+                <button type="button" (click)="onFormCancel()"
+                    class="btn font-13 font-600 btn-s m-1 rounded-s shadow-xl border-0 gradient-gray">
+                    <i class="ft-x"></i> {{'ACTION.CANCEL' | translate}}
+                </button>
+            </div>
+        </form>
+        <!--Content-->
+    </div>
+</div>
