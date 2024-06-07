@@ -134,7 +134,7 @@ import { CmsMapComponent } from './cms-map/cms-map.component';
 import { CmsMemberSelectorComponent } from './cms-member-selector/cmsMemberSelector.component';
 import { CmsSearchListComponent } from './cms-search-list/cms-search-list.component';
 import { CmsStatistListComponent } from './cms-statist-list/cms-statist-list.component';
-//karavi error on angular 18//import { NgApexchartsModule } from 'ng-apexcharts';
+import { NgApexchartsModule } from 'ng-apexcharts';
 import { CmsFileManagerModule } from 'ntk-cms-filemanager';
 import { NgOtpInputModule } from '../core/cmsComponent/ng-otp-input/ng-otp-input.module';
 import { InlineSVGComponent } from '../core/directive/inline-svg.component';
@@ -278,7 +278,7 @@ import { ProgressSpinnerComponent } from './progress-spinner/progress-spinner.co
     TranslateModule,
     FormsModule,
     HttpClientModule,
-    //karavi error on angular 18//NgApexchartsModule,
+    NgApexchartsModule,
     //Material
     MatAutocompleteModule,
     MatButtonModule,
@@ -423,7 +423,7 @@ import { ProgressSpinnerComponent } from './progress-spinner/progress-spinner.co
     FormsModule,
     ReactiveFormsModule.withConfig({ warnOnNgModelWithFormControl: 'never' }),
     CurrencyMaskModule,
-    //karavi error on angular 18//NgApexchartsModule,
+    NgApexchartsModule,
     //Material
     MatAutocompleteModule,
     MatButtonModule,

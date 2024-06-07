@@ -313,3 +313,4 @@ extension extension extension extension extension extension extension extension 
 npm i ngx-icon-picker --force
 npm i ngx-window-token --force
 npm i ngx-material-timepicker --force
+npm i ngx-ntk-pannellum --force

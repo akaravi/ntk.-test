@@ -36,6 +36,7 @@
     "ngx-ntk-cron-editor": "^18.0.1",
     "ngx-ntk-file-picker": "^17.0.2",
     "ngx-ntk-mat-color-picker": "^18.0.8",
+    "ngx-ntk-pannellum": "^2.5.7",
     "ngx-toastr": "^19.0.0",
     "ngx-window-token": "^7.0.0",
     "ntk-cms-api": "^1.2.262",
