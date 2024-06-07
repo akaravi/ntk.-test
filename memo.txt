@@ -1,0 +1,315 @@
+
+http://localhost:4209/#/auth/singin
+
+##########################################################
+npm install --save --legacy-peer-deps
+npm i --legacy-peer-deps
+
+
+برای رفع مشکل نام فولدر ها
+git config core.ignorecase false
+git config --global core.ignorecase false
+========================*
+node --max-old-space-size=1024 index.js #increase to 1gb
+node --max-old-space-size=2048 index.js #increase to 2gb
+node --max-old-space-size=3072 index.js #increase to 3gb
+node --max-old-space-size=4096 index.js #increase to 4gb
+node --max-old-space-size=5120 index.js #increase to 5gb
+node --max-old-space-size=6144 index.js #increase to 6gb
+node --max-old-space-size=7168 index.js #increase to 7gb
+node --max-old-space-size=8192 index.js #increase to 8gb
+node --max-old-space-size=16384 index.js #increase to 16gb
+node --max-old-space-size=32768 index.js #increase to 32gb
+
+See the current value of max-old-space-size (in MB)
+node -e 'console.log(v8.getHeapStatistics().heap_size_limit/(1024*1024))'
+
+setx NODE_OPTIONS "--max-old-space-size=8384"
+# formula:
+export NODE_OPTIONS="--max-old-space-size=(X * 1024)" # Increase to X GB
+
+node --max-old-space-size=4096 `which npm` install
+npm install --max-old-space-size=4096
+
+========================*
+git init
+git add README.md
+git commit -m "first commit"
+git branch -M main
+git remote add origin https://github.com/akaravi/Ntk.Cms.Web.AngularV3.git
+git push -u origin main
+
+
+npm run build-prod
+ng build --prod --source-map
+
+ng serve  --open
+===================RTL
+npm run rtl
+=========================================
+npm rebuild node-sass
+
+=========================================
+
+=========================================Update all npm
+npm i -g npm-check-updates
+ncu -u
+npm install --force
+ng serve --open
+=========================================Update all npm
+
+=========================================formate auto on seve
+edit this file settings.json
+C:\Users\Administrator\AppData\Roaming\Code\User\settings.json
+
+
+
+
+"editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.formatDocument": "explicit",
+    "source.fixAll.eslint": "explicit",
+    "source.organizeImports": "explicit"
+  },
+=========================================formate auto on seve
+
+============================ this only ok
+Press the windows-button on your keyboard.
+Type ‘PowerShell’
+Right-click Windows PowerShell
+Click Run as Administrator
+Run the following command and confirm with ‘Y’
+Set-ExecutionPolicy RemoteSigned -Force     اجرای همین تک خط آخرین باز همه چیز درست شد
+Set-ExecutionPolicy RemoteSigned -Scope CurrentUser -Force
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope LocalMachine
+============================
+path Add
+%appdata%\npm
+=======================
+setx path %path%;%appdata%\npm
+npm install --global http-server
+==============================
+git config core.ignorecase false
+git config --global core.ignorecase false
+=============================
+ng update --next @angular/cli --force
+npm install typescript@latest
+=========================================
+ng build --prod
+ng build --prod --build-optimizer
+ng serve --disable-host-check
+./ngrok http 4200 -host-header=rewrite localhost:4200
+./ngrok http  -host-header=rewrite localhost:4200
+
+===============================================
+
+BabelEdit
+https://www.codeandweb.com/babeledit/start-download?os=win&bits=64
+
+=========================
+//it is version mismatch, just update all dependencies with npm-check-updates
+npm i -g npm-check-updates
+ncu -u
+npm install
+
+=========================
+npm uninstall -g @angular/cli
+npm cache clean
+
+
+
+npm update @angular/cli @angular/cdk rxjs
+npm install -S @angular/material @angular/cdk @angular/animations
+npm uninstall @angular/core
+npm install -S @angular/core
+=============================================================================================================================
+Check the unused dependencies
+npm install depcheck -g
+depcheck
+
+ENDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD
+http://localhost:4200/#/estate/property/edit/63fcd99b5513193e755bd4ad
+
+
+=============================================================================================================================
+https://blog.angular-university.io/angular-push-notifications/
+ web-push generate-vapid-keys --json
+{
+  "publicKey":"BOr78Ceadeel4AyuayJxgsPXC5Eo3yIpSq__q6uPF6losigIi9HTSFHnp-Itqhq4UGfujxeTf0PxScyyJO3lfng",
+  "privateKey":"VKfr1tI3yvJaO1B1B8J15XaZnLVQcwCyT_szcXOrQtU"
+}
+##########################################################################################
+====normal
+btn font-13 font-600 btn-m m-1 rounded-s shadow-xl border-0 gradient-highlight
+
+====save
+btn font-13 font-600 btn-m m-1 rounded-s shadow-xl border-0 gradient-green
+====back cancel
+btn font-13 font-600 btn-m m-1 rounded-s shadow-xl border-0 gradient-gray
+====delete
+btn font-13 font-600 btn-m m-1 rounded-s shadow-xl border-0 gradient-red
+====edit
+btn font-13 font-600 btn-m m-1 rounded-s shadow-xl border-0 gradient-magenta
+====add
+btn font-13 font-600 btn-m m-1 rounded-s shadow-xl border-0 gradient-teal
+====befor
+btn font-13 font-600 btn-m m-1 rounded-s shadow-xl border-0 gradient-blue
+====next
+btn font-13 font-600 btn-m m-1 rounded-s shadow-xl border-0 gradient-blue
+====end
+btn font-13 font-600 btn-m m-1 rounded-s shadow-xl border-0 gradient-blue
+
+
+
+====select ed
+btn font-13 font-600 btn-m m-1 rounded-xl shadow-xl border-0 gradient-highlight btn-full
+====select
+btn font-13 font-600 btn-m m-1 rounded-xl shadow-xl border-blue-dark color-blue-dark bg-theme btn-border btn-full
+##########################################################################################
+#angular ng not found
+##########################################################################################
+#remove from local account
+npm list
+npm uninstall @angular/cli
+
+#remove from global account
+npm list -g
+npm uninstall -g @angular/cli
+
+#reinstall in global account
+npm install -g @angular/cli
+
+#set up environment variable
+npm config get prefix
+add obtained prefix in windows user environment variables>path
+
+
+
+##########################################################################################
+git git git git git git git git git git git git git git
+##########################################################################################
+git branch -r
+git remote update
+git fetch --all
+git pull --all
+
+
+
+
+##########################################################################################
+git git git git git git git git git git git git git git
+##########################################################################################
+
+
+
+
+
+
+##########################################################################################
+##########################################################################################
+chart
+https://apexcharts.com/angular-chart-demos/
+
+##########################################################################################
+##########################################################################################
+extension extension extension extension extension extension extension extension extension
+##########################################################################################
+code --list-extensions | % { "code --install-extension $_" }
+##########################################################################################
+extension extension extension extension extension extension extension extension extension
+##########################################################################################
+code --install-extension 1tontech.angular-material
+code --install-extension aaron-bond.better-comments
+code --install-extension Angular.ng-template
+code --install-extension apk27.ngx-translate-lookup
+code --install-extension Archety.material-icons
+code --install-extension batisteo.vscode-django
+code --install-extension blackmist.LinkCheckMD
+code --install-extension bmewburn.vscode-intelephense-client
+code --install-extension ChakrounAnas.turbo-console-log
+code --install-extension christian-kohler.npm-intellisense
+code --install-extension christian-kohler.path-intellisense
+code --install-extension codeandstuff.package-json-upgrade
+code --install-extension Dart-Code.dart-code
+code --install-extension Dart-Code.flutter
+code --install-extension DavidAnson.vscode-markdownlint
+code --install-extension dbaeumer.vscode-eslint
+code --install-extension docsmsft.docs-article-templates
+code --install-extension docsmsft.docs-authoring-pack
+code --install-extension docsmsft.docs-build
+code --install-extension docsmsft.docs-images
+code --install-extension docsmsft.docs-linting
+code --install-extension docsmsft.docs-markdown
+code --install-extension docsmsft.docs-metadata
+code --install-extension docsmsft.docs-preview
+code --install-extension docsmsft.docs-scaffolding
+code --install-extension docsmsft.docs-yaml
+code --install-extension donjayamanne.python-environment-manager
+code --install-extension donjayamanne.python-extension-pack
+code --install-extension ecmel.vscode-html-css
+code --install-extension EditorConfig.EditorConfig
+code --install-extension eg2.vscode-npm-script
+code --install-extension esbenp.prettier-vscode
+code --install-extension firefox-devtools.vscode-firefox-debug
+code --install-extension forevolve.git-extensions-for-vs-code
+code --install-extension funkyremi.vscode-google-translate
+code --install-extension github.vscode-github-actions
+code --install-extension GitHub.vscode-pull-request-github
+code --install-extension googlecloudtools.cloudcode
+code --install-extension Gruntfuggly.todo-tree
+code --install-extension idleberg.icon-fonts
+code --install-extension johnpapa.Angular2
+code --install-extension johnpapa.vscode-peacock
+code --install-extension jorgeserrano.vscode-csharp-snippets
+code --install-extension k--kato.intellij-idea-keybindings
+code --install-extension KevinRose.vsc-python-indent
+code --install-extension magicstack.MagicPython
+code --install-extension Megan.20-20-20
+code --install-extension mhutchie.git-graph
+code --install-extension ms-azuretools.vscode-docker
+code --install-extension ms-dotnettools.vscode-dotnet-runtime
+code --install-extension ms-python.isort
+code --install-extension ms-python.python
+code --install-extension ms-python.vscode-pylance
+code --install-extension ms-toolsai.jupyter
+code --install-extension ms-toolsai.jupyter-keymap
+code --install-extension ms-toolsai.jupyter-renderers
+code --install-extension ms-toolsai.vscode-jupyter-cell-tags
+code --install-extension ms-toolsai.vscode-jupyter-slideshow
+code --install-extension ms-vscode-remote.remote-containers
+code --install-extension ms-vscode-remote.remote-ssh
+code --install-extension ms-vscode-remote.remote-ssh-edit
+code --install-extension ms-vscode.cmake-tools
+code --install-extension ms-vscode.cpptools
+code --install-extension ms-vscode.cpptools-extension-pack
+code --install-extension ms-vscode.cpptools-themes
+code --install-extension ms-vscode.makefile-tools
+code --install-extension ms-vscode.remote-explorer
+code --install-extension ms-vscode.remote-server
+code --install-extension ms-vsliveshare.vsliveshare
+code --install-extension njpwerner.autodocstring
+code --install-extension PKief.material-icon-theme
+code --install-extension Postman.postman-for-vscode
+code --install-extension pranaygp.vscode-css-peek
+code --install-extension rangav.vscode-thunder-client
+code --install-extension redhat.vscode-yaml
+code --install-extension streetsidesoftware.code-spell-checker
+code --install-extension TheHolyCoder.swagger-tools
+code --install-extension twxs.cmake
+code --install-extension VisualStudioExptTeam.intellicode-api-usage-examples
+code --install-extension VisualStudioExptTeam.vscodeintellicode
+code --install-extension wholroyd.jinja
+code --install-extension yzhang.markdown-all-in-one
+code --install-extension zobo.php-intellisense
+##########################################################################################
+extension extension extension extension extension extension extension extension extension
+##########################################################################################
+
+
+این ها مشکل داشتند
+بعدا بررسی کن برای ورژن 18 آپدیت داشته باشند
+
+
+npm i ngx-icon-picker --force
+npm i ngx-window-token --force
+npm i ngx-material-timepicker --force

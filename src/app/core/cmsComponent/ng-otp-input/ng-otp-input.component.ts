@@ -76,7 +76,7 @@ export class NgOtpInputComponent implements OnInit, AfterViewInit {
     // tslint:disable-next-line: triple-equals
     return key == targetCode ? true : false;
   }
-  onKeyDown($event: any) {
+  onKeyDown($event: any): boolean {
     var isSpace = this.ifKeyCode($event, 32)
     if (isSpace) {// prevent space
       return false;

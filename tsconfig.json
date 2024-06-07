@@ -6,7 +6,7 @@
     "baseUrl": "./",
     "outDir": "./dist/out-tsc",
     "strict": false, //default is true karavi change
-    "noImplicitOverride": true,
+    "noImplicitOverride": false,//default is true karavi change
     "noPropertyAccessFromIndexSignature": false, //default is true
     "noImplicitReturns": true, //default is true
     "noFallthroughCasesInSwitch": true,
