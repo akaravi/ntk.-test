@@ -45,7 +45,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatTreeModule } from '@angular/material/tree';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
-//karavi error on angular 18// import { NgbDropdownModule, NgbNavModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbDropdownModule, NgbNavModule } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateModule } from '@ngx-translate/core';
 import { NgApexchartsModule } from 'ng-apexcharts';
 import { CurrencyMaskModule } from 'ng2-currency-mask';
@@ -463,11 +463,9 @@ import { ProgressSpinnerComponent } from './progress-spinner/progress-spinner.co
     //Material
     TreeModule,
     LeafletModule,
-    //karavi error on angular 18//NgbDropdownModule,
     ClipboardModule,
-    //
-    //PerfectScrollbarModule,
-    //karavi error on angular 18//NgbNavModule,
+    NgbDropdownModule,
+    NgbNavModule,
     NgOtpInputModule,
     CmsFileManagerModule.forRoot()
   ],

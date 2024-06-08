@@ -5,7 +5,7 @@ import { MAT_CHIPS_DEFAULT_OPTIONS } from '@angular/material/chips';
 import { RouterModule } from '@angular/router';
 import { ServiceWorkerModule } from '@angular/service-worker';
 //todo: check
-//karavi error on angular 18//import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
@@ -89,7 +89,7 @@ export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
 
     CmsStoreModule.forRoot(),
     AppRoutingModule,
-    //karavi error on angular 18//NgbModule,
+    NgbModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,
       // Register the ServiceWorker as soon as the application is stable
