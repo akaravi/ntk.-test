@@ -29,10 +29,6 @@
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": [
-              {
-                "glob": "**/*",
-                "input": "public"
-              },
               "src/assets",
               "src/manifest.webmanifest",
               {
@@ -48,9 +44,16 @@
             ],
             "styles": [
               "@angular/material/prebuilt-themes/azure-blue.css",
+              "node_modules/@ali-hm/angular-tree-component/css/angular-tree-component.css",
+              "node_modules/leaflet/dist/leaflet.css",
               "node_modules/ngx-toastr/toastr.css",
               "node_modules/ngx-ntk-pannellum/src/css/pannellum.css",
-              "@ali-hm/angular-tree-component/css/angular-tree-component.css",
+              "node_modules/ngx-ntk-smart-module/src/assets/ngx-ntk-smart-loader.scss",
+              "node_modules/ngx-ntk-smart-module/src/assets/ngx-ntk-smart-modal.scss",
+              "node_modules/ntk-cms-filemanager/src/assets/ntk-cms-filemanager.scss",
+              "src/assets/styles/bootstrap.rtl.min.css",
+              "src/assets/styles/style.css",
+              "src/assets/fonts/css/all.min.css",
               "src/styles.scss"
             ],
             "scripts": [
@@ -124,10 +127,7 @@
             "tsConfig": "tsconfig.spec.json",
             "inlineStyleLanguage": "scss",
             "assets": [
-              {
-                "glob": "**/*",
-                "input": "public"
-              }
+              "src/assets"
             ],
             "styles": [
               "@angular/material/prebuilt-themes/azure-blue.css",
