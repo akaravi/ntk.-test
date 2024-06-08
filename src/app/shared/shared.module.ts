@@ -3,7 +3,7 @@ import { ClipboardModule } from '@angular/cdk/clipboard';
 import { PlatformModule } from '@angular/cdk/platform';
 import { CdkTableModule } from '@angular/cdk/table';
 import { CommonModule } from '@angular/common';
-import { HTTP_INTERCEPTORS, HttpClientModule, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
@@ -47,6 +47,7 @@ import { MatTreeModule } from '@angular/material/tree';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 //karavi error on angular 18// import { NgbDropdownModule, NgbNavModule } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateModule } from '@ngx-translate/core';
+import { NgApexchartsModule } from 'ng-apexcharts';
 import { CurrencyMaskModule } from 'ng2-currency-mask';
 import {
   ApplicationAppService,
@@ -71,10 +72,17 @@ import {
   SmsMainApiNumberService,
   SmsMainApiPathService
 } from 'ntk-cms-api';
+import { CmsFileManagerModule } from 'ntk-cms-filemanager';
+import { NgOtpInputModule } from '../core/cmsComponent/ng-otp-input/ng-otp-input.module';
 import { CmsHtmlTreeActionDirective, CmsHtmlTreeBodyDirective, CmsHtmlTreeFooterDirective, CmsHtmlTreeHeaderDirective } from '../core/directive/cms-html-tree.directive';
 import { CmsRecordStatusSelfSaveDirective } from '../core/directive/cms-record-status-self-save.directive';
 import { DirDirective } from '../core/directive/dir.directive';
+import { InlineSVGComponent } from '../core/directive/inline-svg.component';
+import { InlineSVGDirective } from '../core/directive/inline-svg.directive';
 import { MatInputCommifiedDirective } from '../core/directive/mat-input-commified.directive';
+import { MatVerticalStepperScrollerDirective } from '../core/directive/mat-vertical-stepper.directive';
+import { ClipboardIfSupportedDirective } from '../core/directive/ngx-clipboard-if-supported.directive';
+import { ClipboardDirective } from '../core/directive/ngx-clipboard.directive';
 import { PhoneDirective } from '../core/directive/phone.directive';
 import { RunScriptsDirective } from '../core/directive/runScripts.directive';
 import { SelfSaveDirective } from '../core/directive/self-save.directive';
@@ -104,8 +112,10 @@ import { RecordStatusIconClassPipe } from '../core/pipe/recordStatusIconClass.pi
 import { ReplaceTextPipe } from '../core/pipe/repalaceTest.pip';
 import { SafePipe } from '../core/pipe/safe.pipe';
 import { SafeHtmlPipe } from '../core/pipe/safeHtml.pipe';
+import { SortTypeIconClassPipe } from '../core/pipe/sortTypeIconClass.pipe';
 import { TruncatePipe } from '../core/pipe/truncate.pipe';
 import { ValueArrayPipe } from '../core/pipe/valueArray.pipe';
+import { NgxQueryBuilderComponent } from '../core/query-builder/ngx-ntk-query-builder.component';
 import { Cms360ImageListComponent } from './cms-360-image-list/cms-360-image-list.component';
 import { Cms360TourListComponent } from './cms-360-tour-list/cms-360-tour-list.component';
 import { CmsAccessInfoComponent } from './cms-access-info/cms-access-info.component';
@@ -115,6 +125,12 @@ import { CmsBankpaymentTransactionInfoComponent } from './cms-bankpayment-transa
 import { CmsContactCategoryTreeSelectorComponent } from './cms-contact-category-tree-selector/cms-contact-category-tree-selector.component';
 import { CmsContactContentSelectionListComponent } from './cms-contact-content-selection-list/cms-contact-content-selection-list.component';
 import { CmsCurrencySelectorComponent } from './cms-currency-selector/cms-currency-selector.component';
+import { CmsDataCommentComponent } from './cms-data-comment/cms-data-comment.component';
+import { CmsDataMemoComponent } from './cms-data-memo/cms-data-memo.component';
+import { CmsDataPinComponent } from './cms-data-pin/cms-data-pin.component';
+import { CmsDataTaskComponent } from './cms-data-task/cms-data-task.component';
+import { CmsEnumRecordStatusSelectorComponent } from './cms-enum-record-status-selector/cms-enum-record-status-selector.component';
+import { CmsEnumXSelectorComponent } from './cms-enum-x-selector/cms-enum-x-selector.component';
 import { CmsExportEntityComponent } from './cms-export-entity/cms-export-entity.component';
 import { CmsExportListComponent } from './cms-export-list/cmsExportList.component';
 import { CmsFilesSelectorComponent } from './cms-files-selector/cms-files-selector.component';
@@ -132,26 +148,9 @@ import { CmsLocationCompleteComponent } from './cms-location-autocomplete/cms-lo
 import { CmsLocationSelectorComponent } from './cms-location-selector/cms-location-selector.component';
 import { CmsMapComponent } from './cms-map/cms-map.component';
 import { CmsMemberSelectorComponent } from './cms-member-selector/cmsMemberSelector.component';
-import { CmsSearchListComponent } from './cms-search-list/cms-search-list.component';
-import { CmsStatistListComponent } from './cms-statist-list/cms-statist-list.component';
-import { NgApexchartsModule } from 'ng-apexcharts';
-import { CmsFileManagerModule } from 'ntk-cms-filemanager';
-import { NgOtpInputModule } from '../core/cmsComponent/ng-otp-input/ng-otp-input.module';
-import { InlineSVGComponent } from '../core/directive/inline-svg.component';
-import { InlineSVGDirective } from '../core/directive/inline-svg.directive';
-import { MatVerticalStepperScrollerDirective } from '../core/directive/mat-vertical-stepper.directive';
-import { ClipboardIfSupportedDirective } from '../core/directive/ngx-clipboard-if-supported.directive';
-import { ClipboardDirective } from '../core/directive/ngx-clipboard.directive';
-import { SortTypeIconClassPipe } from '../core/pipe/sortTypeIconClass.pipe';
-import { NgxQueryBuilderComponent } from '../core/query-builder/ngx-ntk-query-builder.component';
-import { CmsDataCommentComponent } from './cms-data-comment/cms-data-comment.component';
-import { CmsDataMemoComponent } from './cms-data-memo/cms-data-memo.component';
-import { CmsDataPinComponent } from './cms-data-pin/cms-data-pin.component';
-import { CmsDataTaskComponent } from './cms-data-task/cms-data-task.component';
-import { CmsEnumRecordStatusSelectorComponent } from './cms-enum-record-status-selector/cms-enum-record-status-selector.component';
-import { CmsEnumXSelectorComponent } from './cms-enum-x-selector/cms-enum-x-selector.component';
 import { CmsModuleSelectorComponent } from './cms-module-selector/cms-module-selector.component';
 import { CmsQDocComponent } from './cms-qdoc/cms-qdoc.component';
+import { CmsSearchListComponent } from './cms-search-list/cms-search-list.component';
 import { CmsShowKeyComponent } from './cms-show-key/cms-show-key.component';
 import { CmsSiteCategorySelectionListComponent } from './cms-site-category-selection-list/cmsSiteCategorySelectionList.component';
 import { CmsSiteCategorySelectorComponent } from './cms-site-category-selector/cmsSiteCategorySelector.component';
@@ -160,6 +159,7 @@ import { CmsSiteSelectorComponent } from './cms-site-selector/cmsSiteSelector.co
 import { CmsSiteUserCreditViewComponent } from './cms-site-user-credit-view/cms-site-user-credit-view.component';
 import { CmsSmsMainApiNumberSelectorComponent } from './cms-sms-api-number-selector/cms-sms-api-number-selector.component';
 import { CmsSmsMainApiPathSelectorComponent } from './cms-sms-apipath-selector/cms-sms-apipath-selector.component';
+import { CmsStatistListComponent } from './cms-statist-list/cms-statist-list.component';
 import { CmsTagAutocompleteComponent } from './cms-tag-autocomplete/cms-tag-autocomplete.component';
 import { CmsTokenAccessComponent } from './cms-token-access/cmsTokenAccess.component';
 import { CmsUserGroupSelectorComponent } from './cms-user-group-selector/cmsUserGroupSelector.component';
@@ -277,7 +277,6 @@ import { ProgressSpinnerComponent } from './progress-spinner/progress-spinner.co
     CommonModule,
     TranslateModule,
     FormsModule,
-    HttpClientModule,
     NgApexchartsModule,
     //Material
     MatAutocompleteModule,
@@ -418,7 +417,8 @@ import { ProgressSpinnerComponent } from './progress-spinner/progress-spinner.co
     ClipboardDirective,
     InlineSVGDirective,
   ],
-  imports: [CommonModule,
+  imports: [
+    CommonModule,
     TranslateModule,
     FormsModule,
     ReactiveFormsModule.withConfig({ warnOnNgModelWithFormControl: 'never' }),

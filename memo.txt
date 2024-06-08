@@ -51,19 +51,24 @@ npm rebuild node-sass
 
 =========================================
 
-=========================================Update all npm
+##########################################################################################
+#Update all npm
+##########################################################################################
 npm i -g npm-check-updates
 ncu -u
 npm install --force
 ng serve --open
-=========================================Update all npm
+##########################################################################################
+#Update all npm
+##########################################################################################
 
-=========================================formate auto on seve
+
+##########################################################################################
+#formate auto on seve
+##########################################################################################
+
 edit this file settings.json
 C:\Users\Administrator\AppData\Roaming\Code\User\settings.json
-
-
-
 
 "editor.formatOnSave": true,
   "editor.codeActionsOnSave": {
@@ -71,9 +76,14 @@ C:\Users\Administrator\AppData\Roaming\Code\User\settings.json
     "source.fixAll.eslint": "explicit",
     "source.organizeImports": "explicit"
   },
-=========================================formate auto on seve
+##########################################################################################
+#formate auto on seve
+##########################################################################################
 
-============================ this only ok
+
+##########################################################################################
+#angular ng not found
+##########################################################################################
 Press the windows-button on your keyboard.
 Type ‘PowerShell’
 Right-click Windows PowerShell
@@ -88,6 +98,33 @@ path Add
 =======================
 setx path %path%;%appdata%\npm
 npm install --global http-server
+##########################################################################################
+#angular ng not found
+##########################################################################################
+##########################################################################################
+#angular ng not found
+##########################################################################################
+#remove from local account
+npm list
+npm uninstall @angular/cli
+
+#remove from global account
+npm list -g
+npm uninstall -g @angular/cli
+
+#reinstall in global account
+npm install -g @angular/cli
+
+#set up environment variable
+npm config get prefix
+add obtained prefix in windows user environment variables>path
+
+##########################################################################################
+#angular ng not found
+##########################################################################################
+
+
+
 ==============================
 git config core.ignorecase false
 git config --global core.ignorecase false
@@ -165,24 +202,6 @@ btn font-13 font-600 btn-m m-1 rounded-s shadow-xl border-0 gradient-blue
 btn font-13 font-600 btn-m m-1 rounded-xl shadow-xl border-0 gradient-highlight btn-full
 ====select
 btn font-13 font-600 btn-m m-1 rounded-xl shadow-xl border-blue-dark color-blue-dark bg-theme btn-border btn-full
-##########################################################################################
-#angular ng not found
-##########################################################################################
-#remove from local account
-npm list
-npm uninstall @angular/cli
-
-#remove from global account
-npm list -g
-npm uninstall -g @angular/cli
-
-#reinstall in global account
-npm install -g @angular/cli
-
-#set up environment variable
-npm config get prefix
-add obtained prefix in windows user environment variables>path
-
 
 
 ##########################################################################################

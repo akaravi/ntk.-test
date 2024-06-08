@@ -58,59 +58,69 @@ export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
   thousands: " "
 };
 @NgModule({
-  declarations: [AppComponent],
-  bootstrap: [AppComponent], imports: [BrowserModule.withServerTransition({ appId: 'serverApp' }),
+  declarations: [
+    AppComponent
+  ],
+  bootstrap: [
+    AppComponent
+  ],
+  imports: [
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
     BrowserAnimationsModule,
-  SharedModule.forRoot(),
-  ToastrModule.forRoot({
-    // timeOut: 0,
-    timeOut: 5000,
-    enableHtml: true,
-    positionClass: 'toast-bottom-right',
-    // positionClass: "toast-bottom-full-width",
-    preventDuplicates: true,
-    closeButton: true,
-    // extendedTimeOut: 0,
-    extendedTimeOut: 1000,
-  }),
-  TranslateModule.forRoot({
-    loader: {
-      provide: TranslateLoader,
-      useFactory: (CreateTranslateLoader),
-      deps: [HttpClient]
-    }
-  }),
-  CmsStoreModule.forRoot(),
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: (CreateTranslateLoader),
+        deps: [HttpClient]
+      }
+    }),
+    SharedModule.forRoot(),
+    ToastrModule.forRoot({
+      // timeOut: 0,
+      timeOut: 5000,
+      enableHtml: true,
+      positionClass: 'toast-bottom-right',
+      // positionClass: "toast-bottom-full-width",
+      preventDuplicates: true,
+      closeButton: true,
+      // extendedTimeOut: 0,
+      extendedTimeOut: 1000,
+    }),
+
+    CmsStoreModule.forRoot(),
     AppRoutingModule,
-  //karavi error on angular 18//NgbModule,
-  ServiceWorkerModule.register('ngsw-worker.js', {
-    enabled: environment.production,
-    // Register the ServiceWorker as soon as the application is stable
-    // or after 30 seconds (whichever comes first).
-    registrationStrategy: 'registerWhenStable:30000'
-  }),
+    //karavi error on angular 18//NgbModule,
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: environment.production,
+      // Register the ServiceWorker as soon as the application is stable
+      // or after 30 seconds (whichever comes first).
+      registrationStrategy: 'registerWhenStable:30000'
+    }),
     RouterModule,
-    ComponentsModule], providers: [
-      CoreAuthService,
-      CoreEnumService,
-      CoreModuleService,
-      CoreConfigurationService,
-      {
-        provide: APP_INITIALIZER,
-        useFactory: appInitializer,
-        multi: true,
-        deps: [CmsAuthService],
-      },
-      { provide: LocationStrategy, useClass: HashLocationStrategy },
-      {
-        provide: MAT_CHIPS_DEFAULT_OPTIONS,
-        useValue: {
-          separatorKeyCodes: [13]
-        }
-      },
-      { provide: CURRENCY_MASK_CONFIG, useValue: CustomCurrencyMaskConfig },
-      { provide: MAT_COLOR_FORMATS, useValue: CUSTOM_MAT_COLOR_FORMATS },
-      provideHttpClient(withInterceptorsFromDi()),
-    ]
+    ComponentsModule
+  ],
+  providers: [
+    //provideHttpClient(),
+    provideHttpClient(withInterceptorsFromDi()),
+    CoreAuthService,
+    CoreEnumService,
+    CoreModuleService,
+    CoreConfigurationService,
+    {
+      provide: APP_INITIALIZER,
+      useFactory: appInitializer,
+      multi: true,
+      deps: [CmsAuthService],
+    },
+    { provide: LocationStrategy, useClass: HashLocationStrategy },
+    {
+      provide: MAT_CHIPS_DEFAULT_OPTIONS,
+      useValue: {
+        separatorKeyCodes: [13]
+      }
+    },
+    { provide: CURRENCY_MASK_CONFIG, useValue: CustomCurrencyMaskConfig },
+    { provide: MAT_COLOR_FORMATS, useValue: CUSTOM_MAT_COLOR_FORMATS },
+  ]
 })
 export class AppModule { }
