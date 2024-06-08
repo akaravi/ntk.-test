@@ -1,5 +1,4 @@
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
-import { HttpClient } from '@angular/common/http';
 import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { MAT_CHIPS_DEFAULT_OPTIONS } from '@angular/material/chips';
 import { BrowserModule } from '@angular/platform-browser';
@@ -7,7 +6,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { CURRENCY_MASK_CONFIG, CurrencyMaskConfig } from 'ng2-currency-mask';
 import { MAT_COLOR_FORMATS, MatColorFormats } from 'ngx-ntk-mat-color-picker';
 import { ToastrModule } from 'ngx-toastr';
@@ -37,9 +35,7 @@ function appInitializer(authService: CmsAuthService) {
     });
   };
 }
-export function CreateTranslateLoader(http: HttpClient): any {
-  return new TranslateHttpLoader(http, '/assets/i18n/', '.json');
-}
+
 export const CUSTOM_MAT_COLOR_FORMATS: MatColorFormats = {
   display: {
     colorInput: 'hex'
