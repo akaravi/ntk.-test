@@ -57,7 +57,9 @@
               "src/styles.scss"
             ],
             "scripts": [
-              "node_modules/apexcharts/dist/apexcharts.min.js"
+              "node_modules/apexcharts/dist/apexcharts.min.js",
+              "src/assets/scripts/bootstrap.min.js",
+              "src/assets/scripts/custom.js"
             ],
             "allowedCommonJsDependencies": [
               "leaflet",
