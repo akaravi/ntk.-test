@@ -21,6 +21,7 @@ import { AppRoutingModule } from './app.routes';
 import { ComponentsModule } from './components/components.module';
 import { CmsStoreModule } from './core/reducers/cmsStore.module';
 import { CmsAuthService } from './core/services/cmsAuth.service';
+import { SharedModule } from './shared/shared.module';
 
 
 declare module "@angular/core" {
@@ -82,7 +83,7 @@ export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
     //   missingTranslationHandler: { provide: MissingTranslationHandler, useClass: CustomHandler },
     //   isolate: true
     // }),
-    //SharedModule.forRoot(),
+    SharedModule.forRoot(),
     ToastrModule.forRoot({
       // timeOut: 0,
       timeOut: 5000,
