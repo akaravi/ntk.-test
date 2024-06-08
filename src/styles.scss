@@ -1,4 +1,105 @@
 /* You can add global styles to this file, and also import other style files */
+/*
+ karavi import
+*/
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+@import "leaflet/dist/leaflet.css";
+@import "ngx-ntk-smart-module/loader";
+@import "ngx-ntk-smart-module/modal";
+@import "ntk-cms-filemanager/filemanager";
+// boostrap 5
+//@import 'ngx-toastr/toastr-bs5-alert';
+
+/*
+ karavi import
+*/
+.tree-parent .tree-child-hidden {
+  display: none;
+}
+
+.tree-parent:hover .tree-child-hidden,
+.tree-parent:focus .tree-child-hidden,
+.tree-parent:focus-within .tree-child-hidden {
+  display: block;
+}
+
+.input-ltr {
+  direction: ltr !important;
+}
+
+.input-ltr-center {
+  direction: ltr !important;
+  text-align: center !important;
+}
+
+.input-ltr-left {
+  direction: ltr !important;
+  text-align: left !important;
+  //float: left;
+}
+
+.input-ltr-right {
+  direction: ltr !important;
+  text-align: right !important;
+  //float: right;
+}
+
+.mat-option {
+  word-wrap: break-word !important;
+  white-space: normal !important;
+  font-family: "Times New Roman", Times, serif;
+}
+
+.mat-option-text {
+  line-height: initial !important;
+}
+
+.mat-mdc-dialog-container {
+  --mdc-dialog-container-color: none !important;
+}
+
+.mat-mdc-dialog-container .mdc-dialog__surface {
+  box-shadow: none !important;
+}
+@keyframes jump {
+  0%   {transform: translate3d(0,0,0) scale3d(1,1,1);}
+  //40%  {transform: translate3d(0,30%,0) scale3d(.7,1.5,1);}
+  40%  {transform: translate3d(1%,1%,0) scale3d(1.01,1.01,1.01);}
+  //100% {transform: translate3d(0,100%,0) scale3d(1.5,.7,1);}
+  100% {transform: translate3d(2%,2%,0) scale3d(1.02,1.02,1.02);}
+}
+.jump {
+  transform-origin: 50% 50%;
+  animation: jump .5s linear alternate infinite;
+}
+
+
+/*
+ NTK optimaze
+*/
+.mdc-text-field {
+  padding: 0px !important;
+}
+
+.mdc-text-field--filled:not(.mdc-text-field--disabled) {
+  background-color: transparent !important;
+}
+
+.ali {
+
+  font-size: large;
+}
+
+//  .ntk-col-b{
+// @extend .ali;
+//  @extend .col-xl-1;
+//   @extend .col-lg-2;
+//   @extend .col-md-3;
+//   @extend .col-sm-4;
+
+//  }
+//col-xl-1 col-lg-2 col-md-3 col-sm-4
+
+/*
+ NTK optimaze
+*/
