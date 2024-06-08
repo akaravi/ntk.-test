@@ -1,3 +1,4 @@
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { provideHttpClient } from '@angular/common/http';
 import { ApplicationConfig, importProvidersFrom, isDevMode, provideZoneChangeDetection } from '@angular/core';
 import { provideAnimations } from '@angular/platform-browser/animations';
@@ -18,7 +19,8 @@ export const appConfig: ApplicationConfig = {
       {
         enabled: !isDevMode(),
         registrationStrategy: 'registerWhenStable:30000'
-      })
+      }),
+    { provide: LocationStrategy, useClass: HashLocationStrategy },
   ]
 };
 
@@ -34,7 +36,8 @@ export const appConfig1: ApplicationConfig = {
       {
         enabled: !isDevMode(),
         registrationStrategy: 'registerWhenStable:30000'
-      })
+      }),
+
   ]
   ,
 
