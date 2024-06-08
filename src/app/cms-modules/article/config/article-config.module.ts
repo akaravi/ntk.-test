@@ -33,7 +33,7 @@ import { ArticleConfigSiteComponent } from './site/config-site.component';
     FormsModule,
     ArticleConfigRouting,
     ReactiveFormsModule.withConfig({ warnOnNgModelWithFormControl: 'never' }),
-    SharedModule.forRoot(),
+    SharedModule,
     AngularEditorModule,
   ],
   providers: [

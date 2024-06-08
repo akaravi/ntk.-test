@@ -15,7 +15,8 @@ import { AuthSingoutComponent } from './singout/singout.component';
 import { AuthSingUpComponent } from './singup/singup.component';
 import { SingupRuleComponent } from './singupRule/singupRule.Component';
 
-@NgModule({ declarations: [
+@NgModule({
+    declarations: [
         AuthSingInComponent,
         AuthSingInBySmsComponent,
         AuthSingUpComponent,
@@ -24,15 +25,16 @@ import { SingupRuleComponent } from './singupRule/singupRule.Component';
         AuthComponent,
         SingupRuleComponent,
     ], imports: [CommonModule,
-        SharedModule.forRoot(),
+        SharedModule,
         AuthRoutingModule,
         FormsModule,
         ReactiveFormsModule,
         ComponentsModule,
         NgOtpInputModule], providers: [
-        CoreModuleService,
-        CoreConfigurationService,
-        CoreAuthService,
-        provideHttpClient(withInterceptorsFromDi())
-    ] })
+            CoreModuleService,
+            CoreConfigurationService,
+            CoreAuthService,
+            provideHttpClient(withInterceptorsFromDi())
+        ]
+})
 export class AuthModule { }

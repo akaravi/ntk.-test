@@ -46,7 +46,6 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatTreeModule } from '@angular/material/tree';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import { NgbDropdownModule, NgbNavModule } from '@ng-bootstrap/ng-bootstrap';
-import { TranslateModule } from '@ngx-translate/core';
 import { NgApexchartsModule } from 'ng-apexcharts';
 import { CurrencyMaskModule } from 'ng2-currency-mask';
 import {
@@ -94,6 +93,7 @@ import { FloatComponent } from '../core/dynamic-input-builder/float/float.compon
 import { IntComponent } from '../core/dynamic-input-builder/int/int.component';
 import { StringComponent } from '../core/dynamic-input-builder/string/string.component';
 import { TextAreaComponent } from '../core/dynamic-input-builder/text-area/text-area.component';
+import { NgxTranslateModule } from '../core/i18n/ngxTranslateModule';
 import { HttpConfigInterceptor } from '../core/interceptor/httpConfigInterceptor';
 import { BoolStatusClassPipe } from '../core/pipe/boolStatusClass.pipe';
 import { CmsImageThumbnailPipe } from '../core/pipe/cms-image-thumbnail.pipe';
@@ -275,7 +275,7 @@ import { ProgressSpinnerComponent } from './progress-spinner/progress-spinner.co
   exports: [
     // common and shared components/directives/pipes between more than one module and components will be listed here.
     CommonModule,
-    TranslateModule,
+    NgxTranslateModule,
     FormsModule,
     NgApexchartsModule,
     //Material
@@ -419,7 +419,7 @@ import { ProgressSpinnerComponent } from './progress-spinner/progress-spinner.co
   ],
   imports: [
     CommonModule,
-    TranslateModule,
+    NgxTranslateModule,
     FormsModule,
     ReactiveFormsModule.withConfig({ warnOnNgModelWithFormControl: 'never' }),
     CurrencyMaskModule,
@@ -467,7 +467,7 @@ import { ProgressSpinnerComponent } from './progress-spinner/progress-spinner.co
     NgbDropdownModule,
     NgbNavModule,
     NgOtpInputModule,
-    CmsFileManagerModule.forRoot()
+    CmsFileManagerModule
   ],
   providers: [
     OverlayService,

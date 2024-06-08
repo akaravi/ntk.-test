@@ -27,6 +27,7 @@ import { CoreSiteTreeComponent } from './tree/tree.component';
 import { AngularEditorModule } from '@kolkov/angular-editor';
 
 import { NgxMatColorPickerModule } from 'ngx-ntk-mat-color-picker';
+import { CmsFileManagerModule } from 'ntk-cms-filemanager';
 import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
 import { CoreSharedModule } from '../core.shared.module';
 import { CoreModuleModule } from '../module/coreModule.module';
@@ -43,7 +44,6 @@ import { CoreSiteResellerChartComponent } from './reseller-chart/reseller-chart.
 import { CoreSiteUserAddComponent } from './userAdd/userAdd.component';
 import { CoreSiteUserEditComponent } from './userEdit/userEdit.component';
 import { CoreSiteUserListComponent } from './userList/userList.component';
-import { CmsFileManagerModule } from 'ntk-cms-filemanager';
 
 
 @NgModule({
@@ -94,7 +94,7 @@ import { CmsFileManagerModule } from 'ntk-cms-filemanager';
     FormsModule,
     CoreSiteRouting,
     ReactiveFormsModule.withConfig({ warnOnNgModelWithFormControl: 'never' }),
-    SharedModule.forRoot(),
+    SharedModule,
     AngularEditorModule,
 
     CoreSiteCategoryCmsModule,
@@ -104,7 +104,7 @@ import { CmsFileManagerModule } from 'ntk-cms-filemanager';
     CoreUserGroupCmsModule,
     NgxMatColorPickerModule,
     CoreSharedModule,
-    CmsFileManagerModule.forRoot(),
+    CmsFileManagerModule,
   ],
   providers: [
     CoreSiteService,

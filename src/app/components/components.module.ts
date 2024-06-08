@@ -34,7 +34,7 @@ import { ScrollTopComponent } from './scroll-top/scroll-top.component';
   imports: [
     CommonModule,
     RouterModule,
-    SharedModule.forRoot(),
+    SharedModule,
   ],
   exports: [
     MenuMainComponent,

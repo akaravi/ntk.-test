@@ -1,5 +1,5 @@
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
-import { HttpClient, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { MAT_CHIPS_DEFAULT_OPTIONS } from '@angular/material/chips';
 import { BrowserModule } from '@angular/platform-browser';
@@ -7,27 +7,28 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { CURRENCY_MASK_CONFIG, CurrencyMaskConfig } from 'ng2-currency-mask';
 import { MAT_COLOR_FORMATS, MatColorFormats } from 'ngx-ntk-mat-color-picker';
 import { ToastrModule } from 'ngx-toastr';
 import { CoreAuthService, CoreConfigurationService, CoreEnumService, CoreModuleService } from 'ntk-cms-api';
+import { CmsFileManagerModule } from 'ntk-cms-filemanager';
 import { environment } from 'src/environments/environment';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app.routes';
 import { ComponentsModule } from './components/components.module';
+import { NgxTranslateModule } from './core/i18n/ngxTranslateModule';
 import { CmsStoreModule } from './core/reducers/cmsStore.module';
 import { CmsAuthService } from './core/services/cmsAuth.service';
 import { SharedModule } from './shared/shared.module';
 
 
-declare module "@angular/core" {
-  interface ModuleWithProviders<T = any> {
-    ngModule: Type<T>;
+// declare module "@angular/core" {
+//   interface ModuleWithProviders<T = any> {
+//     ngModule: Type<T>;
 
-  }
-}
+//   }
+// }
 function appInitializer(authService: CmsAuthService) {
   return () => {
     return new Promise((resolve) => {
@@ -63,17 +64,7 @@ export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
   imports: [
     BrowserModule,//.withServerTransition({ appId: 'serverApp' }),
     BrowserAnimationsModule,
-
-    TranslateModule.forRoot({
-      isolate: true,
-      loader: {
-        provide: TranslateLoader,
-        useFactory: (CreateTranslateLoader),
-        deps: [HttpClient]
-      }
-    }),
-
-    SharedModule.forRoot(),
+    NgxTranslateModule,
     ToastrModule.forRoot({
       // timeOut: 0,
       timeOut: 5000,
@@ -85,8 +76,9 @@ export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
       // extendedTimeOut: 0,
       extendedTimeOut: 1000,
     }),
-
+    SharedModule.forRoot(),
     CmsStoreModule.forRoot(),
+    CmsFileManagerModule.forRoot(),
     AppRoutingModule,
     NgbModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
@@ -96,11 +88,12 @@ export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
       registrationStrategy: 'registerWhenStable:30000'
     }),
     RouterModule,
-    ComponentsModule
+    ComponentsModule,
+    //HttpClientModule,
+    //provideHttpClient(),
+    //provideHttpClient(withInterceptorsFromDi()),
   ],
   providers: [
-    //provideHttpClient(),
-    provideHttpClient(withInterceptorsFromDi()),
     CoreAuthService,
     CoreEnumService,
     CoreModuleService,
@@ -120,6 +113,9 @@ export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
     },
     { provide: CURRENCY_MASK_CONFIG, useValue: CustomCurrencyMaskConfig },
     { provide: MAT_COLOR_FORMATS, useValue: CUSTOM_MAT_COLOR_FORMATS },
+  ],
+  exports: [
+    NgxTranslateModule
   ]
 })
 export class AppModule { }

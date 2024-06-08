@@ -33,7 +33,7 @@ import { ApiTelegramConfigSiteComponent } from './site/config-site.component';
     FormsModule,
     ApiTelegramConfigRouting,
     ReactiveFormsModule.withConfig({ warnOnNgModelWithFormControl: 'never' }),
-    SharedModule.forRoot(),
+    SharedModule,
     AngularEditorModule,
   ],
   providers: [
