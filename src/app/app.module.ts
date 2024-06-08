@@ -2,21 +2,19 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { HttpClient, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { MAT_CHIPS_DEFAULT_OPTIONS } from '@angular/material/chips';
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 import { ServiceWorkerModule } from '@angular/service-worker';
-//todo: check
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-
 import { CURRENCY_MASK_CONFIG, CurrencyMaskConfig } from 'ng2-currency-mask';
-
 import { MAT_COLOR_FORMATS, MatColorFormats } from 'ngx-ntk-mat-color-picker';
 import { ToastrModule } from 'ngx-toastr';
 import { CoreAuthService, CoreConfigurationService, CoreEnumService, CoreModuleService } from 'ntk-cms-api';
 import { environment } from 'src/environments/environment';
 import { AppComponent } from './app.component';
-
 import { AppRoutingModule } from './app.routes';
 import { ComponentsModule } from './components/components.module';
 import { CmsStoreModule } from './core/reducers/cmsStore.module';
@@ -63,26 +61,18 @@ export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
     AppComponent
   ],
   imports: [
-    //BrowserModule,//.withServerTransition({ appId: 'serverApp' }),
-    //BrowserAnimationsModule,
+    BrowserModule,//.withServerTransition({ appId: 'serverApp' }),
+    BrowserAnimationsModule,
+
     TranslateModule.forRoot({
-      defaultLanguage: 'en'
+      isolate: true,
+      loader: {
+        provide: TranslateLoader,
+        useFactory: (CreateTranslateLoader),
+        deps: [HttpClient]
+      }
     }),
-    // TranslateModule.forRoot({
-    //   isolate: true,
-    //   loader: {
-    //     provide: TranslateLoader,
-    //     useFactory: (CreateTranslateLoader),
-    //     deps: [HttpClient]
-    //   }
-    // }),
-    // TranslateModule.forChild({
-    //   loader: { provide: TranslateLoader, useClass: CustomLoader },
-    //   compiler: { provide: TranslateCompiler, useClass: CustomCompiler },
-    //   parser: { provide: TranslateParser, useClass: CustomParser },
-    //   missingTranslationHandler: { provide: MissingTranslationHandler, useClass: CustomHandler },
-    //   isolate: true
-    // }),
+
     SharedModule.forRoot(),
     ToastrModule.forRoot({
       // timeOut: 0,
