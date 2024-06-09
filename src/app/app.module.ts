@@ -65,9 +65,10 @@ export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
-        useFactory: (http: HttpClient) => new TranslateHttpLoader(http, './assets/i18n/', '.json'),
+        useFactory: (http: HttpClient) => new TranslateHttpLoader(http, '/assets/i18n/', '.json'),
         deps: [HttpClient]
-      }
+      },
+      isolate: true
     }),
     SharedModule.forRoot(),
     CmsStoreModule.forRoot(),
@@ -91,7 +92,8 @@ export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
       registrationStrategy: 'registerWhenStable:30000'
     }),
     RouterModule,
-    ComponentsModule
+    ComponentsModule,
+
   ],
   providers: [
     //provideHttpClient(),
@@ -118,7 +120,7 @@ export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
 
   ],
   exports: [
-
+    TranslateModule
   ]
 })
 export class AppModule { }

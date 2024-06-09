@@ -5,7 +5,7 @@ import { AuthRenewTokenModel, CoreAuthService, TokenInfoModel } from 'ntk-cms-ap
 import { Subscription, filter } from 'rxjs';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
-import { TranslationService } from 'src/app/core/i18n/translation.service';
+import { CmsTranslationService } from 'src/app/core/i18n/translation.service';
 import { ThemeStoreModel } from 'src/app/core/models/themeStoreModel';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 interface LanguageFlag {
@@ -23,7 +23,7 @@ export class MenuLanguageComponent implements OnInit {
   static nextId = 0;
   id = ++MenuLanguageComponent.nextId;
   constructor(
-    private translationService: TranslationService,
+    private cmsTranslationService: CmsTranslationService,
     public coreAuthService: CoreAuthService,
     private cmsToastrService: CmsToastrService,
     private tokenHelper: TokenHelper,
@@ -96,7 +96,7 @@ export class MenuLanguageComponent implements OnInit {
       .subscribe((event) => {
         this.setSelectedLanguage();
       });
-    var lastLang = this.translationService.getSelectedLanguage()
+    var lastLang = this.cmsTranslationService.getSelectedLanguage()
     if (lastLang?.length > 0) {
       const indexId = this.languages.findIndex(x => x.lang == lastLang);
       const to = 0;
@@ -164,11 +164,11 @@ export class MenuLanguageComponent implements OnInit {
       }
     });
 
-    this.translationService.setLanguage(lang);
+    this.cmsTranslationService.setLanguage(lang);
   }
 
   setSelectedLanguage(): any {
-    this.setLanguage(this.translationService.getSelectedLanguage());
+    this.setLanguage(this.cmsTranslationService.getSelectedLanguage());
   }
 
 }

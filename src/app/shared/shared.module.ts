@@ -3,7 +3,7 @@ import { ClipboardModule } from '@angular/cdk/clipboard';
 import { PlatformModule } from '@angular/cdk/platform';
 import { CdkTableModule } from '@angular/cdk/table';
 import { CommonModule } from '@angular/common';
-import { HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClient } from '@angular/common/http';
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
@@ -46,7 +46,8 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatTreeModule } from '@angular/material/tree';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import { NgbDropdownModule, NgbNavModule } from '@ng-bootstrap/ng-bootstrap';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { NgApexchartsModule } from 'ng-apexcharts';
 import { CurrencyMaskModule } from 'ng2-currency-mask';
 import {
@@ -169,6 +170,8 @@ import { MaterialPersianDateAdapter, PERSIAN_DATE_FORMATS } from './material/mat
 import { OverlayService } from './overlay/overlay.service';
 import { PasswordStrengthComponent } from './password-strength/password-strength.component';
 import { ProgressSpinnerComponent } from './progress-spinner/progress-spinner.component';
+
+
 @NgModule({
   declarations: [
     // common and shared components/directives/pipes between more than one module and components will be listed here.
@@ -300,14 +303,13 @@ import { ProgressSpinnerComponent } from './progress-spinner/progress-spinner.co
     CoreModuleDataCommentService,
     SmsMainApiPathService,
     SmsMainApiNumberService,
-    provideHttpClient(withInterceptorsFromDi()),
+    // provideHttpClient(withInterceptorsFromDi()),
 
   ],
 
-
   imports: [
     CommonModule,
-    TranslateModule,
+
     FormsModule,
     ReactiveFormsModule.withConfig({ warnOnNgModelWithFormControl: 'never' }),
     CurrencyMaskModule,
@@ -356,12 +358,21 @@ import { ProgressSpinnerComponent } from './progress-spinner/progress-spinner.co
     NgbNavModule,
     NgOtpInputModule,
     CmsFileManagerModule.forRoot(),
+    //TranslateModule,
+    TranslateModule.forChild({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: (http: HttpClient) => new TranslateHttpLoader(http, '/assets/i18n/', '.json'),
+        deps: [HttpClient]
+      },
+      isolate: true
+    }),
   ],
 
   exports: [
     // common and shared components/directives/pipes between more than one module and components will be listed here.
     CommonModule,
-    TranslateModule,
+
     FormsModule,
     NgApexchartsModule,
     //Material
@@ -502,6 +513,7 @@ import { ProgressSpinnerComponent } from './progress-spinner/progress-spinner.co
     ClipboardIfSupportedDirective,
     ClipboardDirective,
     InlineSVGDirective,
+    TranslateModule,
   ],
 })
 export class SharedModule {

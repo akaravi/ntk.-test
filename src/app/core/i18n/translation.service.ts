@@ -11,10 +11,11 @@ export interface Locale {
 
 const LOCALIZATION_LOCAL_STORAGE_KEY = 'language';
 
-@Injectable({
-  providedIn: 'root',
-})
-export class TranslationService {
+// @Injectable({
+//   providedIn: 'root',
+// })
+@Injectable()
+export class CmsTranslationService {
   // Private properties
   private langIds: any = [];
 

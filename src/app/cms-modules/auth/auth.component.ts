@@ -20,11 +20,18 @@ export class AuthComponent implements OnInit {
     public translate: TranslateService,
     private cdr: ChangeDetectorRef) {
     this.loading.cdr = this.cdr;
+    translate.use('fa');
     this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
+
+
+
+    this.tesettt = this.translate.instant('ACTION.ABOUT');
+
+
   }
   loading = new ProgressSpinnerModel();
   today: Date = new Date();
-
+  tesettt = 'gfjhgjh';
   showSplashModel = true;
   ngOnInit(): void {
     if (window.innerWidth < environment.cmsViewConfig.mobileWindowInnerWidth) {

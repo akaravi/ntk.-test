@@ -44,6 +44,7 @@ import { CoreSiteResellerChartComponent } from './reseller-chart/reseller-chart.
 import { CoreSiteUserAddComponent } from './userAdd/userAdd.component';
 import { CoreSiteUserEditComponent } from './userEdit/userEdit.component';
 import { CoreSiteUserListComponent } from './userList/userList.component';
+import { CmsTranslationService } from 'src/app/core/i18n/translation.service';
 
 
 @NgModule({
@@ -68,6 +69,36 @@ import { CoreSiteUserListComponent } from './userList/userList.component';
     CoreSiteModuleSiteOptimazeComponent,
 
   ],
+  providers: [
+    CoreSiteService,
+    CoreSiteCategoryCmsModuleService,
+    CoreModuleService,
+    CoreSiteCategoryService,
+    CoreSiteResolver,
+    CoreModuleSiteService,
+    CoreSiteDomainAliasService,
+    CmsConfirmationDialogService,
+    CoreUserService,
+    CoreSiteUserService,
+    CmsTranslationService,
+  ],
+  imports: [
+    CommonModule,
+    FormsModule,
+    CoreSiteRouting,
+    ReactiveFormsModule.withConfig({ warnOnNgModelWithFormControl: 'never' }),
+    SharedModule,
+    AngularEditorModule,
+
+    CoreSiteCategoryCmsModule,
+    CoreSiteCategoryCmsModuleModule,
+    CoreModuleModule,
+    CoreUserModule,
+    CoreUserGroupCmsModule,
+    NgxMatColorPickerModule,
+    CoreSharedModule,
+    CmsFileManagerModule,
+  ],
   exports: [
     CoreSiteComponent,
     CoreSiteAddFirstComponent,
@@ -89,35 +120,8 @@ import { CoreSiteUserListComponent } from './userList/userList.component';
     CoreSiteModuleSiteOptimazeComponent,
 
   ],
-  imports: [
-    CommonModule,
-    FormsModule,
-    CoreSiteRouting,
-    ReactiveFormsModule.withConfig({ warnOnNgModelWithFormControl: 'never' }),
-    SharedModule,
-    AngularEditorModule,
 
-    CoreSiteCategoryCmsModule,
-    CoreSiteCategoryCmsModuleModule,
-    CoreModuleModule,
-    CoreUserModule,
-    CoreUserGroupCmsModule,
-    NgxMatColorPickerModule,
-    CoreSharedModule,
-    CmsFileManagerModule,
-  ],
-  providers: [
-    CoreSiteService,
-    CoreSiteCategoryCmsModuleService,
-    CoreModuleService,
-    CoreSiteCategoryService,
-    CoreSiteResolver,
-    CoreModuleSiteService,
-    CoreSiteDomainAliasService,
-    CmsConfirmationDialogService,
-    CoreUserService,
-    CoreSiteUserService,
-  ]
+
 })
 export class CoreSiteModule {
 }

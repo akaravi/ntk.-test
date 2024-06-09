@@ -4,6 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CoreAuthService, CoreConfigurationService, CoreModuleService } from 'ntk-cms-api';
 import { ComponentsModule } from 'src/app/components/components.module';
 import { NgOtpInputModule } from 'src/app/core/cmsComponent/ng-otp-input/ng-otp-input.module';
+import { CmsTranslationService } from 'src/app/core/i18n/translation.service';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { AuthComponent } from './auth.component';
 import { AuthRoutingModule } from './auth.routing';
@@ -25,11 +26,10 @@ import { SingupRuleComponent } from './singupRule/singupRule.Component';
     SingupRuleComponent,
   ],
   providers: [
-
     CoreModuleService,
     CoreConfigurationService,
     CoreAuthService,
-
+    CmsTranslationService,
   ],
   imports: [
     CommonModule,
