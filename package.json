@@ -56,7 +56,7 @@
     "ngx-toastr": "^19.0.0",
     "ngx-window-token": "^7.0.0",
     "ntk-cms-api": "^18.0.10",
-    "ntk-cms-filemanager": "^18.0.10",
+    "ntk-cms-filemanager": "^18.0.11",
     "rxjs": "~7.8.1",
     "tslib": "^2.3.0",
     "zone.js": "~0.14.7"

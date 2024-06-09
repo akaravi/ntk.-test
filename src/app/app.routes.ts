@@ -20,11 +20,11 @@ export const routes: Routes = [
     loadChildren: () => import('./cms-modules/auth/auth.module').then((m) => m.AuthModule),
   },
   {
-    path: '11',
+    path: '',
     canActivate: [CmsAuthGuard],
     loadChildren: () => import('./modules/panel/panel.module').then((m) => m.PanelModule),
   },
-  //{ path: '**', redirectTo: 'error/404' },
+  { path: '**', redirectTo: 'error/404' },
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

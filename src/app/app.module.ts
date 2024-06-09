@@ -1,4 +1,5 @@
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { MAT_CHIPS_DEFAULT_OPTIONS } from '@angular/material/chips';
 import { BrowserModule } from '@angular/platform-browser';
@@ -14,7 +15,6 @@ import { CmsFileManagerModule } from 'ntk-cms-filemanager';
 import { environment } from 'src/environments/environment';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app.routes';
-import { ComponentsModule } from './components/components.module';
 import { NgxTranslateModule } from './core/i18n/ngxTranslateModule';
 import { CmsStoreModule } from './core/reducers/cmsStore.module';
 import { CmsAuthService } from './core/services/cmsAuth.service';
@@ -58,7 +58,7 @@ export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
     AppComponent
   ],
   imports: [
-    BrowserModule,//.withServerTransition({ appId: 'serverApp' }),
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
     BrowserAnimationsModule,
     NgxTranslateModule,
     ToastrModule.forRoot({
@@ -84,12 +84,13 @@ export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
       registrationStrategy: 'registerWhenStable:30000'
     }),
     RouterModule,
-    ComponentsModule,
-    //HttpClientModule,
-    //provideHttpClient(),
-    //provideHttpClient(withInterceptorsFromDi()),
+    //ComponentsModule,
+
   ],
   providers: [
+    //HttpClientModule,
+    //provideHttpClient(),
+    provideHttpClient(withInterceptorsFromDi()),
     CoreAuthService,
     CoreEnumService,
     CoreModuleService,
