@@ -505,7 +505,7 @@ import { ProgressSpinnerComponent } from './progress-spinner/progress-spinner.co
   ],
 })
 export class SharedModule {
-  static forRoot(): ModuleWithProviders  {
+  static forRoot(): ModuleWithProviders {
     // Forcing the whole app to use the returned providers from the AppModule only.
     return {
       ngModule: SharedModule,

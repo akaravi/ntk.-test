@@ -62,6 +62,17 @@ export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
     //BrowserModule.withServerTransition({ appId: 'serverApp' }),
     BrowserModule,
     BrowserAnimationsModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: (http: HttpClient) => new TranslateHttpLoader(http, './assets/i18n/', '.json'),
+        deps: [HttpClient]
+      }
+    }),
+    SharedModule.forRoot(),
+    CmsStoreModule.forRoot(),
+    AppRoutingModule,
+    NgbModule,
     ToastrModule.forRoot({
       // timeOut: 0,
       timeOut: 5000,
@@ -73,17 +84,6 @@ export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
       // extendedTimeOut: 0,
       extendedTimeOut: 1000,
     }),
-    TranslateModule.forRoot({
-      loader: {
-        provide: TranslateLoader,
-        useFactory: (http: HttpClient) => new TranslateHttpLoader(http, '/assets/i18n/', '.json'),
-        deps: [HttpClient]
-      }
-    }),
-    SharedModule.forRoot(),
-    CmsStoreModule.forRoot(),
-    AppRoutingModule,
-    NgbModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,
       // Register the ServiceWorker as soon as the application is stable
@@ -91,7 +91,8 @@ export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
       registrationStrategy: 'registerWhenStable:30000'
     }),
     RouterModule,
-    ComponentsModule],
+    ComponentsModule
+  ],
   providers: [
     //provideHttpClient(),
     provideHttpClient(withInterceptorsFromDi()),
@@ -117,7 +118,6 @@ export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
 
   ],
   exports: [
-    TranslateModule
 
   ]
 })
