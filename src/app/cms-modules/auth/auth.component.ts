@@ -20,6 +20,7 @@ export class AuthComponent implements OnInit {
     public translate: TranslateService,
     private cdr: ChangeDetectorRef) {
     this.loading.cdr = this.cdr;
+    translate.currentLang
     translate.use('fa');
     this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
 
