@@ -1,5 +1,4 @@
 import { CommonModule } from '@angular/common';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CoreAuthService, CoreConfigurationService, CoreModuleService } from 'ntk-cms-api';
@@ -24,19 +23,25 @@ import { SingupRuleComponent } from './singupRule/singupRule.Component';
     AuthSingoutComponent,
     AuthComponent,
     SingupRuleComponent,
-  ], imports: [CommonModule,
+  ],
+  providers: [
+
+    CoreModuleService,
+    CoreConfigurationService,
+    CoreAuthService,
+
+  ],
+  imports: [
+    CommonModule,
+
     SharedModule,
     AuthRoutingModule,
     FormsModule,
     ReactiveFormsModule,
     ComponentsModule,
-    NgOtpInputModule],
-  providers: [
-    provideHttpClient(withInterceptorsFromDi()),
-    CoreModuleService,
-    CoreConfigurationService,
-    CoreAuthService,
+    NgOtpInputModule,
+  ],
 
-  ]
+
 })
 export class AuthModule { }

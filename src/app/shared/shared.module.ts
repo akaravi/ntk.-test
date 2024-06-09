@@ -4,7 +4,7 @@ import { PlatformModule } from '@angular/cdk/platform';
 import { CdkTableModule } from '@angular/cdk/table';
 import { CommonModule } from '@angular/common';
 import { HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
-import { NgModule } from '@angular/core';
+import { ModuleWithProviders, NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatButtonModule } from '@angular/material/button';
@@ -46,6 +46,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatTreeModule } from '@angular/material/tree';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import { NgbDropdownModule, NgbNavModule } from '@ng-bootstrap/ng-bootstrap';
+import { TranslateModule } from '@ngx-translate/core';
 import { NgApexchartsModule } from 'ng-apexcharts';
 import { CurrencyMaskModule } from 'ng2-currency-mask';
 import {
@@ -93,7 +94,6 @@ import { FloatComponent } from '../core/dynamic-input-builder/float/float.compon
 import { IntComponent } from '../core/dynamic-input-builder/int/int.component';
 import { StringComponent } from '../core/dynamic-input-builder/string/string.component';
 import { TextAreaComponent } from '../core/dynamic-input-builder/text-area/text-area.component';
-import { NgxTranslateModule } from '../core/i18n/ngxTranslateModule';
 import { HttpConfigInterceptor } from '../core/interceptor/httpConfigInterceptor';
 import { BoolStatusClassPipe } from '../core/pipe/boolStatusClass.pipe';
 import { CmsImageThumbnailPipe } from '../core/pipe/cms-image-thumbnail.pipe';
@@ -274,7 +274,7 @@ import { ProgressSpinnerComponent } from './progress-spinner/progress-spinner.co
   ],
 
   providers: [
-    provideHttpClient(withInterceptorsFromDi()),
+
     OverlayService,
     { provide: HTTP_INTERCEPTORS, useClass: HttpConfigInterceptor, multi: true },
     { provide: DateAdapter, useClass: MaterialPersianDateAdapter, deps: [MAT_DATE_LOCALE] },
@@ -300,12 +300,14 @@ import { ProgressSpinnerComponent } from './progress-spinner/progress-spinner.co
     CoreModuleDataCommentService,
     SmsMainApiPathService,
     SmsMainApiNumberService,
+    provideHttpClient(withInterceptorsFromDi()),
 
   ],
 
+
   imports: [
     CommonModule,
-    NgxTranslateModule,
+    TranslateModule,
     FormsModule,
     ReactiveFormsModule.withConfig({ warnOnNgModelWithFormControl: 'never' }),
     CurrencyMaskModule,
@@ -359,7 +361,7 @@ import { ProgressSpinnerComponent } from './progress-spinner/progress-spinner.co
   exports: [
     // common and shared components/directives/pipes between more than one module and components will be listed here.
     CommonModule,
-    NgxTranslateModule,
+    TranslateModule,
     FormsModule,
     NgApexchartsModule,
     //Material
@@ -503,7 +505,7 @@ import { ProgressSpinnerComponent } from './progress-spinner/progress-spinner.co
   ],
 })
 export class SharedModule {
-  static forRoot(): any {
+  static forRoot(): ModuleWithProviders  {
     // Forcing the whole app to use the returned providers from the AppModule only.
     return {
       ngModule: SharedModule,

@@ -1,5 +1,5 @@
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { HttpClient, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { MAT_CHIPS_DEFAULT_OPTIONS } from '@angular/material/chips';
 //import { BrowserModule } from '@angular/platform-browser';
@@ -12,6 +12,8 @@ import { CURRENCY_MASK_CONFIG, CurrencyMaskConfig } from 'ng2-currency-mask';
 
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { MAT_COLOR_FORMATS, MatColorFormats } from 'ngx-ntk-mat-color-picker';
 import { ToastrModule } from 'ngx-toastr';
 import { CoreAuthService, CoreConfigurationService, CoreEnumService, CoreModuleService } from 'ntk-cms-api';
@@ -19,7 +21,6 @@ import { environment } from 'src/environments/environment';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app.routes';
 import { ComponentsModule } from './components/components.module';
-import { NgxTranslateModule } from './core/i18n/ngxTranslateModule';
 import { CmsStoreModule } from './core/reducers/cmsStore.module';
 import { CmsAuthService } from './core/services/cmsAuth.service';
 import { SharedModule } from './shared/shared.module';
@@ -39,9 +40,7 @@ function appInitializer(authService: CmsAuthService) {
     });
   };
 }
-// export function CreateTranslateLoader(http: HttpClient): any {
-//   return new TranslateHttpLoader(http, '/assets/i18n/', '.json');
-// }
+
 export const CUSTOM_MAT_COLOR_FORMATS: MatColorFormats = {
   display: {
     colorInput: 'hex'
@@ -63,7 +62,6 @@ export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
     //BrowserModule.withServerTransition({ appId: 'serverApp' }),
     BrowserModule,
     BrowserAnimationsModule,
-    SharedModule.forRoot(),
     ToastrModule.forRoot({
       // timeOut: 0,
       timeOut: 5000,
@@ -75,14 +73,14 @@ export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
       // extendedTimeOut: 0,
       extendedTimeOut: 1000,
     }),
-    // TranslateModule.forRoot({
-    //   loader: {
-    //     provide: TranslateLoader,
-    //     useFactory: (CreateTranslateLoader),
-    //     deps: [HttpClient]
-    //   }
-    // }),
-    NgxTranslateModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: (http: HttpClient) => new TranslateHttpLoader(http, '/assets/i18n/', '.json'),
+        deps: [HttpClient]
+      }
+    }),
+    SharedModule.forRoot(),
     CmsStoreModule.forRoot(),
     AppRoutingModule,
     NgbModule,
@@ -119,7 +117,8 @@ export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
 
   ],
   exports: [
-    NgxTranslateModule
+    TranslateModule
+
   ]
 })
 export class AppModule { }
