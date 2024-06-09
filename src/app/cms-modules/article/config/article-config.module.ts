@@ -20,13 +20,9 @@ import { ArticleConfigSiteComponent } from './site/config-site.component';
     ArticleConfigCheckSiteComponent,
     /*Config*/
   ],
-  exports: [
-    /*Config*/
-    ArticleConfigMainAdminComponent,
-    ArticleConfigSiteComponent,
-    ArticleConfigCheckUserComponent,
-    ArticleConfigCheckSiteComponent,
-    /*Config*/
+  providers: [
+    CoreModuleService,
+    ArticleConfigurationService,
   ],
   imports: [
     CommonModule,
@@ -36,10 +32,14 @@ import { ArticleConfigSiteComponent } from './site/config-site.component';
     SharedModule,
     AngularEditorModule,
   ],
-  providers: [
-    CoreModuleService,
-    ArticleConfigurationService,
-  ]
+  exports: [
+    /*Config*/
+    ArticleConfigMainAdminComponent,
+    ArticleConfigSiteComponent,
+    ArticleConfigCheckUserComponent,
+    ArticleConfigCheckSiteComponent,
+    /*Config*/
+  ],
 })
 export class ArticleConfigModule {
 }

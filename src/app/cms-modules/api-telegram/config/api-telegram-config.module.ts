@@ -20,13 +20,9 @@ import { ApiTelegramConfigSiteComponent } from './site/config-site.component';
     ApiTelegramConfigCheckSiteComponent,
     /*Config*/
   ],
-  exports: [
-    /*Config*/
-    ApiTelegramConfigMainAdminComponent,
-    ApiTelegramConfigSiteComponent,
-    ApiTelegramConfigCheckUserComponent,
-    ApiTelegramConfigCheckSiteComponent,
-    /*Config*/
+  providers: [
+    CoreModuleService,
+    ApiTelegramConfigurationService,
   ],
   imports: [
     CommonModule,
@@ -36,10 +32,14 @@ import { ApiTelegramConfigSiteComponent } from './site/config-site.component';
     SharedModule,
     AngularEditorModule,
   ],
-  providers: [
-    CoreModuleService,
-    ApiTelegramConfigurationService,
-  ]
+  exports: [
+    /*Config*/
+    ApiTelegramConfigMainAdminComponent,
+    ApiTelegramConfigSiteComponent,
+    ApiTelegramConfigCheckUserComponent,
+    ApiTelegramConfigCheckSiteComponent,
+    /*Config*/
+  ],
 })
 export class ApiTelegramConfigModule {
 }
