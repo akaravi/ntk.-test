@@ -1,4 +1,4 @@
-import { HashLocationStrategy, LOCATION_INITIALIZED, LocationStrategy } from '@angular/common';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { HttpClient, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { APP_INITIALIZER, Injector, NgModule } from '@angular/core';
 import { MAT_CHIPS_DEFAULT_OPTIONS } from '@angular/material/chips';
@@ -21,10 +21,10 @@ import { environment } from 'src/environments/environment';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app.routes';
 import { ComponentsModule } from './components/components.module';
+import { ApplicationInitializerFactory } from './core/i18n/application.initializer.factory';
 import { CmsStoreModule } from './core/reducers/cmsStore.module';
 import { CmsAuthService } from './core/services/cmsAuth.service';
 import { SharedModule } from './shared/shared.module';
-import { ApplicationInitializerFactory } from './core/i18n/application.initializer.factory';
 
 declare module "@angular/core" {
   interface ModuleWithProviders<T = any> {
@@ -49,47 +49,9 @@ export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
   thousands: " "
 };
 @NgModule({
-  declarations: [AppComponent],
   bootstrap: [AppComponent],
-  imports: [
-    //BrowserModule.withServerTransition({ appId: 'serverApp' }),
-    BrowserModule,
-    BrowserAnimationsModule,
-    TranslateModule.forRoot({
-      loader: {
-        provide: TranslateLoader,
-        useFactory: (http: HttpClient) => new TranslateHttpLoader(http, '/assets/i18n/', '.json'),
-        deps: [HttpClient]
-      },
-      isolate: true
-    }),
-    SharedModule.forRoot(),
-    CmsStoreModule.forRoot(),
-    AppRoutingModule,
-    NgbModule,
-    ToastrModule.forRoot({
-      // timeOut: 0,
-      timeOut: 5000,
-      enableHtml: true,
-      positionClass: 'toast-bottom-right',
-      // positionClass: "toast-bottom-full-width",
-      preventDuplicates: true,
-      closeButton: true,
-      // extendedTimeOut: 0,
-      extendedTimeOut: 1000,
-    }),
-    ServiceWorkerModule.register('ngsw-worker.js', {
-      enabled: environment.production,
-      // Register the ServiceWorker as soon as the application is stable
-      // or after 30 seconds (whichever comes first).
-      registrationStrategy: 'registerWhenStable:30000'
-    }),
-    RouterModule,
-    ComponentsModule,
-
-  ],
+  declarations: [AppComponent],
   providers: [
-    //provideHttpClient(),
     provideHttpClient(withInterceptorsFromDi()),
     CoreAuthService,
     CoreEnumService,
@@ -112,8 +74,48 @@ export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
     { provide: MAT_COLOR_FORMATS, useValue: CUSTOM_MAT_COLOR_FORMATS },
 
   ],
+  imports: [
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
+    //BrowserModule,
+    BrowserAnimationsModule,
+    SharedModule.forRoot(),
+    ToastrModule.forRoot({
+      // timeOut: 0,
+      timeOut: 5000,
+      enableHtml: true,
+      positionClass: 'toast-bottom-right',
+      // positionClass: "toast-bottom-full-width",
+      preventDuplicates: true,
+      closeButton: true,
+      // extendedTimeOut: 0,
+      extendedTimeOut: 1000,
+    }),
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: (http: HttpClient) => new TranslateHttpLoader(http, '/assets/i18n/', '.json'),
+        deps: [HttpClient]
+      },
+      //isolate: true
+    }),
+
+    CmsStoreModule.forRoot(),
+    AppRoutingModule,
+    NgbModule,
+
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: environment.production,
+      // Register the ServiceWorker as soon as the application is stable
+      // or after 30 seconds (whichever comes first).
+      registrationStrategy: 'registerWhenStable:30000'
+    }),
+    RouterModule,
+    ComponentsModule,
+
+  ],
+
   exports: [
-    TranslateModule
+    //TranslateModule
   ]
 })
 export class AppModule { }

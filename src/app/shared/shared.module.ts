@@ -3,7 +3,7 @@ import { ClipboardModule } from '@angular/cdk/clipboard';
 import { PlatformModule } from '@angular/cdk/platform';
 import { CdkTableModule } from '@angular/cdk/table';
 import { CommonModule } from '@angular/common';
-import { HTTP_INTERCEPTORS, HttpClient } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
@@ -277,7 +277,7 @@ import { ProgressSpinnerComponent } from './progress-spinner/progress-spinner.co
   ],
 
   providers: [
-
+    provideHttpClient(withInterceptorsFromDi()),
     OverlayService,
     { provide: HTTP_INTERCEPTORS, useClass: HttpConfigInterceptor, multi: true },
     { provide: DateAdapter, useClass: MaterialPersianDateAdapter, deps: [MAT_DATE_LOCALE] },
@@ -309,7 +309,15 @@ import { ProgressSpinnerComponent } from './progress-spinner/progress-spinner.co
 
   imports: [
     CommonModule,
-
+// TranslateModule,
+ TranslateModule.forChild({
+  loader: {
+    provide: TranslateLoader,
+    useFactory: (http: HttpClient) => new TranslateHttpLoader(http, '/assets/i18n/', '.json'),
+    deps: [HttpClient]
+  },
+  isolate: true
+}),
     FormsModule,
     ReactiveFormsModule.withConfig({ warnOnNgModelWithFormControl: 'never' }),
     CurrencyMaskModule,
@@ -358,21 +366,13 @@ import { ProgressSpinnerComponent } from './progress-spinner/progress-spinner.co
     NgbNavModule,
     NgOtpInputModule,
     CmsFileManagerModule.forRoot(),
-    //TranslateModule,
-    TranslateModule.forChild({
-      loader: {
-        provide: TranslateLoader,
-        useFactory: (http: HttpClient) => new TranslateHttpLoader(http, '/assets/i18n/', '.json'),
-        deps: [HttpClient]
-      },
-      isolate: true
-    }),
+   
   ],
 
   exports: [
     // common and shared components/directives/pipes between more than one module and components will be listed here.
     CommonModule,
-
+    TranslateModule,
     FormsModule,
     NgApexchartsModule,
     //Material
@@ -513,7 +513,7 @@ import { ProgressSpinnerComponent } from './progress-spinner/progress-spinner.co
     ClipboardIfSupportedDirective,
     ClipboardDirective,
     InlineSVGDirective,
-    TranslateModule,
+
   ],
 })
 export class SharedModule {
