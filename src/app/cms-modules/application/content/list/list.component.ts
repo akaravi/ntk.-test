@@ -124,7 +124,7 @@ export class ApplicationAppListComponent extends ListBaseComponent<ApplicationAp
     this.tableRowsSelected = [];
     this.onActionTableRowSelect(new ApplicationAppModel());
     const pName = this.constructor.name + 'contentService.ServiceGetAll';
-    this.loading.Start(pName, this.translate.instant('MESSAGE.get_information_list'));
+    this.translate.get('MESSAGE.get_information_list').subscribe((str: string) => { this.loading.Start(pName, str); });
     this.filteModelContent.accessLoad = true;
     const filter = new FilterDataModel();
     /*filter CLone*/
@@ -299,11 +299,11 @@ export class ApplicationAppListComponent extends ListBaseComponent<ApplicationAp
     statist.set('Active', 0);
     statist.set(this.translate.instant('MESSAGE.All'), 0);
     const pName = this.constructor.name + '.ServiceStatist';
-    this.loading.Start(pName, this.translate.instant('MESSAGE.Get_the_statist'));
+    this.translate.get('MESSAGE.Get_the_statist').subscribe((str: string) => { this.loading.Start(pName, str); });
     this.contentService.ServiceGetCount(this.filteModelContent).subscribe({
       next: (ret) => {
         if (ret.isSuccess) {
-          statist.set(this.translate.instant('MESSAGE.All'), ret.totalRowCount);
+          this.translate.get('MESSAGE.All').subscribe((str: string) => { statist.set(str, ret.totalRowCount) });
           this.optionsStatist.childMethods.setStatistValue(statist);
         }
         else {
@@ -325,7 +325,7 @@ export class ApplicationAppListComponent extends ListBaseComponent<ApplicationAp
     this.contentService.ServiceGetCount(filterStatist1).subscribe({
       next: (ret) => {
         if (ret.isSuccess) {
-          statist.set(this.translate.instant('MESSAGE.Active'), ret.totalRowCount);
+          this.translate.get('MESSAGE.Active').subscribe((str: string) => { statist.set(str, ret.totalRowCount) });
           this.optionsStatist.childMethods.setStatistValue(statist);
         } else {
           this.cmsToastrService.typeErrorMessage(ret.errorMessage);

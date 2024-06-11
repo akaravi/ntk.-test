@@ -56,7 +56,7 @@ export class CmsShowKeyComponent implements OnInit {
   formInfo: FormInfoModel = new FormInfoModel();
   DataGetAll(): void {
     const pName = this.constructor.name + 'main';
-    this.loading.Start(pName, this.translate.instant('MESSAGE.get_information_list'));
+    this.translate.get('MESSAGE.get_information_list').subscribe((str: string) => {this.loading.Start(pName, str);});
 
     /*filter CLone*/
     this.requestService.ServiceShowKeyGetAll(this.dataModel.moduleEntityId).subscribe({

@@ -61,7 +61,7 @@ export class CmsDataPinComponent implements OnInit {
 
   DataGetAll(): void {
     const pName = this.constructor.name + 'main';
-    this.loading.Start(pName, this.translate.instant('MESSAGE.get_information_list'));
+    this.translate.get('MESSAGE.get_information_list').subscribe((str: string) => { this.loading.Start(pName, str); });
 
     /*filter CLone*/
     if (this.dataModel.moduleEntityId && this.dataModel.moduleEntityId.length > 0) {

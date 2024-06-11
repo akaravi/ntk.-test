@@ -103,7 +103,7 @@ export class CmsExportListComponent implements OnInit {
 
   DataGetAll(): void {
     const pName = this.constructor.name + 'main';
-    this.loading.Start(pName, this.translate.instant('MESSAGE.get_information_list'));
+    this.translate.get('MESSAGE.get_information_list').subscribe((str: string) => { this.loading.Start(pName, str); });
     this.dataModelSubmitResult = new ErrorExceptionResultExportFile();
     this.formInfo.formSubmitAllow = false;
     this.requestService.ServiceReportFileGetAll().subscribe({
@@ -138,7 +138,7 @@ export class CmsExportListComponent implements OnInit {
   onFormSubmit(): void {
     this.dataModelSubmitResult = new ErrorExceptionResultExportFile();
     const pName = this.constructor.name + 'main';
-    this.loading.Start(pName, this.translate.instant('MESSAGE.get_information_list'));
+    this.translate.get('MESSAGE.get_information_list').subscribe((str: string) => { this.loading.Start(pName, str); });
     this.formInfo.formSubmitAllow = false;
 
     this.requestService.ServiceExportFile(this.filterModel).subscribe({

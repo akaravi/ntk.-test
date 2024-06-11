@@ -272,7 +272,7 @@ export class EstatePropertyQuickListComponent extends ListBaseComponent<EstatePr
     this.tableRowsSelected = [];
     this.onActionTableRowSelect(new EstatePropertyModel());
     const pName = this.constructor.name + "main";
-    this.loading.Start(pName, this.translate.instant('MESSAGE.get_information_list'));
+    this.translate.get('MESSAGE.get_information_list').subscribe((str: string) => { this.loading.Start(pName, str); });
     this.filteModelContent.accessLoad = true;
     /*filter CLone*/
     const filterModel = JSON.parse(JSON.stringify(this.filteModelContent));

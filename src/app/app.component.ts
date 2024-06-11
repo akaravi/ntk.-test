@@ -103,8 +103,11 @@ export class AppComponent implements OnInit {
       )
       .subscribe((title: string) => {
         if (title) {
-          this.titleService.setTitle(`${this.translate.instant(title)}`);
-          this.pageInfo.updateTitle(this.translate.instant(title));
+          this.translate.get(title).subscribe((str: string) => {
+            this.titleService.setTitle(str);
+            this.pageInfo.updateTitle(str);
+          });
+
         } //set title that defines in routing's files
       });
     //end change title when route happened
@@ -205,7 +208,8 @@ export class AppComponent implements OnInit {
   }
   getServiceVer(): void {
     const pName = this.constructor.name + 'ServiceIp';
-    this.loading.Start(pName, this.translate.instant('MESSAGE.Receiving_Information_From_The_Server'));
+    
+    this.translate.get('MESSAGE.Receiving_Information_From_The_Server').subscribe((str: string) => {this.loading.Start(pName, str);});
     this.configService.ServiceIp().subscribe({
       next: (ret) => {
         this.publicHelper.appServerVersion = ret.appVersion

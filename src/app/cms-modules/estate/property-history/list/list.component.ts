@@ -559,7 +559,7 @@ export class EstatePropertyHistoryListComponent extends ListBaseComponent<Estate
       return;
     }
     const statist = new Map<string, number>();
-    statist.set(this.translate.instant('MESSAGE.Active'), 0);
+    this.translate.get('MESSAGE.Active').subscribe((str: string) => { statist.set(str, 0); });
     statist.set(this.translate.instant('MESSAGE.All'), 0);
     const pName = this.constructor.name + '.ServiceStatist';
     this.loading.Start(
@@ -569,7 +569,7 @@ export class EstatePropertyHistoryListComponent extends ListBaseComponent<Estate
     this.contentService.ServiceGetCount(this.filteModelContent).subscribe({
       next: (ret) => {
         if (ret.isSuccess) {
-          statist.set(this.translate.instant('MESSAGE.All'), ret.totalRowCount);
+          this.translate.get('MESSAGE.All').subscribe((str: string) => { statist.set(str, ret.totalRowCount) });
           this.optionsStatist.childMethods.setStatistValue(statist);
         } else {
           this.cmsToastrService.typeErrorMessage(ret.errorMessage);
