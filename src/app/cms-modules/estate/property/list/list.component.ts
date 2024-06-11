@@ -1051,7 +1051,7 @@ export class EstatePropertyListComponent extends ListBaseComponent<EstatePropert
 
 
     const pName = this.constructor.name + "ServiceGetOneById";
-    this.loading.Start(pName, this.translate.instant('MESSAGE.get_state_information'));
+    this.translate.get('MESSAGE.get_state_information').subscribe((str: string) => { this.loading.Start(pName, str); });
     this.contentService.setAccessDataType(ManageUserAccessDataTypesEnum.Editor);
     this.contentService
       .ServiceGetOneById(this.tableRowSelected.id)

@@ -241,7 +241,7 @@ export class EstateConfigMainAdminComponent implements OnInit, OnDestroy {
     this.formInfo.formError = '';
 
     const pName = this.constructor.name + 'ServiceAdminMain';
-    this.loading.Start(pName, this.translate.instant('MESSAGE.get_module_setting'));
+    this.translate.get('MESSAGE.get_module_setting').subscribe((str: string) => { this.loading.Start(pName, str); });
     this.configService
       .ServiceAdminMain()
       .subscribe({
@@ -268,7 +268,7 @@ export class EstateConfigMainAdminComponent implements OnInit, OnDestroy {
     this.formInfo.formError = '';
 
     const pName = this.constructor.name + 'ServiceAdminMain';
-    this.loading.Start(pName, this.translate.instant('MESSAGE.Save_module_setting'));
+    this.translate.get('MESSAGE.Save_module_setting').subscribe((str: string) => { this.loading.Start(pName, str); });
     this.configService
       .ServiceAdminMainSave(this.dataConfigAdminMainModel)
       .subscribe({

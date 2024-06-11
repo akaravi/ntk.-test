@@ -486,7 +486,7 @@ export class ApiTelegramBotConfigListComponent extends ListBaseComponent<ApiTele
     this.onActionTableRowSelect(model);
 
     const pName = this.constructor.name + "ServiceGetOneById";
-    this.loading.Start(pName, this.translate.instant('MESSAGE.get_state_information'));
+    this.translate.get('MESSAGE.get_state_information').subscribe((str: string) => { this.loading.Start(pName, str); });
     this.contentService.ServiceGetOneById(this.tableRowSelected.id)
       .subscribe({
         next: (ret) => {

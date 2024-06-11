@@ -76,7 +76,7 @@ export class BlogConfigCheckUserComponent implements OnInit, OnDestroy {
       return;
     }
     const pName = this.constructor.name + '.ServiceCheckUser';
-    this.loading.Start(pName, this.translate.instant('TITLE.Check_account'));
+    this.translate.get('TITLE.Check_account').subscribe((str: string) => { this.loading.Start(pName, str); });
     this.configService
       .ServiceCheckUser(this.requestLinkUserId)
       .subscribe({

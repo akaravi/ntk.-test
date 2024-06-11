@@ -155,7 +155,7 @@ export class EstatePropertyEditComponent extends EditBaseComponent<EstatePropert
 
 
     const pName = this.constructor.name + 'ServiceGetOneById';
-    this.loading.Start(pName, this.translate.instant('MESSAGE.get_state_information'));
+    this.translate.get('MESSAGE.get_state_information').subscribe((str: string) => { this.loading.Start(pName, str); });
     this.estatePropertyService.setAccessLoad();
     this.estatePropertyService.setAccessDataType(ManageUserAccessDataTypesEnum.Editor);
     this.estatePropertyService.ServiceGetOneById(this.requestId).subscribe({

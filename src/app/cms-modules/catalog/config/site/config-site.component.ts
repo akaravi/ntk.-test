@@ -183,7 +183,7 @@ export class CatalogConfigSiteComponent implements OnInit {
     this.formInfo.formError = '';
 
     const pName = this.constructor.name + 'ServiceSiteConfig';
-    this.loading.Start(pName, this.translate.instant('MESSAGE.get_module_setting'));
+    this.translate.get('MESSAGE.get_module_setting').subscribe((str: string) => { this.loading.Start(pName, str); });
     this.configService
       .ServiceSiteConfig(SiteId)
       .subscribe({
@@ -209,7 +209,7 @@ export class CatalogConfigSiteComponent implements OnInit {
     this.formInfo.formAlert = this.translate.instant('MESSAGE.Saving_Information_On_The_Server');
     this.formInfo.formError = '';
     const pName = this.constructor.name + 'ServiceSiteConfigSave';
-    this.loading.Start(pName, this.translate.instant('MESSAGE.Save_module_setting'));
+    this.translate.get('MESSAGE.Save_module_setting').subscribe((str: string) => { this.loading.Start(pName, str); });
 
     this.configService
       .ServiceSiteConfigSave(SiteId, this.dataConfigSiteValuesModel)
@@ -237,7 +237,7 @@ export class CatalogConfigSiteComponent implements OnInit {
     this.formInfo.formError = '';
 
     const pName = this.constructor.name + 'ServiceSiteAccess';
-    this.loading.Start(pName, this.translate.instant('MESSAGE.get_module_access'));
+    this.translate.get('MESSAGE.get_module_access').subscribe((str: string) => { this.loading.Start(pName, str); });
 
     this.configService
       .ServiceSiteAccess(SiteId)
@@ -267,7 +267,7 @@ export class CatalogConfigSiteComponent implements OnInit {
 
 
     const pName = this.constructor.name + 'ServiceSiteAccessSave';
-    this.loading.Start(pName, this.translate.instant('MESSAGE.Save_module_access'));
+    this.translate.get('MESSAGE.Save_module_access').subscribe((str: string) => { this.loading.Start(pName, str); });
 
     this.configService
       .ServiceSiteAccessSave(SiteId, this.dataConfigSiteAccessValuesModel)
