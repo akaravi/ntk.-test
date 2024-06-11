@@ -3,7 +3,7 @@
 
 import { Injectable } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { firstValueFrom } from 'rxjs';
+import { Observable, firstValueFrom } from 'rxjs';
 
 export interface Locale {
   lang: string;
@@ -25,6 +25,19 @@ export class CmsTranslationService {
     translate.addLangs([langToSet]);
     translate.setDefaultLang(langToSet);
   }
+  instantDefault(key: string | Array<string>, interpolateParams?: Object): string | any {
+    return this.translate.instant(key);
+  }
+  instant(key: string | Array<string>, interpolateParams?: Object): string | any {
+    //return this.translate.instant(key);
+    return this.translate.get(key).subscribe((value) => {
+      next: return value;
+    });
+  }
+  get(key: string | Array<string>, interpolateParams?: Object): Observable<string | any> {
+    return this.translate.get(key);
+  }
+
 
   loadTranslations(...args: Locale[]): void {
     const locales = [...args];

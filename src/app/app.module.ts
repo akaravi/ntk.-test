@@ -21,7 +21,7 @@ import { environment } from 'src/environments/environment';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app.routes';
 import { ComponentsModule } from './components/components.module';
-import { ApplicationInitializerFactory } from './core/i18n/application.initializer.factory';
+import { appInitializerFactory } from './core/i18n/app.initializer.factory';
 import { CmsStoreModule } from './core/reducers/cmsStore.module';
 import { CmsAuthService } from './core/services/cmsAuth.service';
 import { SharedModule } from './shared/shared.module';
@@ -59,9 +59,9 @@ export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
     CoreConfigurationService,
     {
       provide: APP_INITIALIZER,
-      useFactory: ApplicationInitializerFactory,
-      multi: true,
+      useFactory: appInitializerFactory,
       deps: [TranslateService, Injector, CmsAuthService],
+      multi: true,
     },
     { provide: LocationStrategy, useClass: HashLocationStrategy },
     {
@@ -96,9 +96,7 @@ export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
         useFactory: (http: HttpClient) => new TranslateHttpLoader(http, '/assets/i18n/', '.json'),
         deps: [HttpClient]
       },
-      //isolate: true
     }),
-
     CmsStoreModule.forRoot(),
     AppRoutingModule,
     NgbModule,
