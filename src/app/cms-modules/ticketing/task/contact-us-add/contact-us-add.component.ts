@@ -34,7 +34,7 @@ export class TicketingTaskContactUsAddComponent extends AddBaseComponent<Ticketi
     public translate: TranslateService,
     private cdr: ChangeDetectorRef) {
     super(ticketingTaskService, new TicketingTaskModel(), publicHelper);
-    this.loading.cdr = this.cdr; this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
+    this.loading.cdr = this.cdr; this.translate.get('MESSAGE.Receiving_information').subscribe((str: string) => { this.loading.message = str; });
     this.fileManagerTree = this.publicHelper.GetfileManagerTreeConfig();
     this.tokenHelper.getCurrentToken().then((value) => {
       this.tokenInfo = value;
@@ -64,7 +64,7 @@ export class TicketingTaskContactUsAddComponent extends AddBaseComponent<Ticketi
   selectFileTypeMainImage = ['jpg', 'jpeg', 'png'];
   fileManagerOpenForm = false;
   appLanguage = 'fa';
-  templateItemCount=0;
+  templateItemCount = 0;
   fileManagerTree: TreeModel;
   mapMarker: any;
   mapOptonCenter = new PoinModel();

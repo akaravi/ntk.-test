@@ -40,7 +40,7 @@ export class CoreLogAvoidDuplicateDataEntryListComponent extends ListBaseCompone
   ) {
     super(contentService, new CoreLogAvoidDuplicateDataEntryModel(), publicHelper, tokenHelper);
     this.loading.cdr = this.cdr;
-    this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
+    this.translate.get('MESSAGE.Receiving_information').subscribe((str: string) => { this.loading.message = str; });
     this.requestLinkUserId = + Number(this.activatedRoute.snapshot.paramMap.get('LinkUserId'));
     if (this.requestLinkUserId > 0) {
       const filter = new FilterDataModel();

@@ -13,7 +13,7 @@ export function appInitializerFactory(translate: TranslateService, injector: Inj
       const langToSet = localStorage.getItem(LOCALIZATION_LOCAL_STORAGE_KEY) || this.translate?.getDefaultLang() || 'fa';
       translate.setDefaultLang(langToSet);
       translate.use(langToSet).subscribe(() => {
-        console.info(`Successfully initialized '${langToSet}' language.'`);
+        console.info(`Successfully initialized language:'${langToSet}' '`);
       }, err => {
         console.error(`Problem with '${langToSet}' language initialization.'`);
       }, () => {

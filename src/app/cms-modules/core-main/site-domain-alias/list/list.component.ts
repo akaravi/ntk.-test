@@ -43,7 +43,7 @@ export class CoreSiteDomainAliasListComponent extends ListBaseComponent<CoreSite
   ) {
     super(contentService, new CoreSiteDomainAliasModel(), publicHelper, tokenHelper);
     this.loading.cdr = this.cdr;
-    this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
+    this.translate.get('MESSAGE.Receiving_information').subscribe((str: string) => { this.loading.message = str; });
     this.requestId = + Number(this.activatedRoute.snapshot.paramMap.get('Id'));
 
     if (this.requestId > 0) {

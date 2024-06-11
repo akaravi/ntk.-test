@@ -44,7 +44,7 @@ export class CoreUserEditComponent extends EditBaseComponent<CoreUserService, Co
   ) {
     super(coreUserService, new CoreUserModel(), publicHelper);
     this.loading.cdr = this.cdr;
-    this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
+    this.translate.get('MESSAGE.Receiving_information').subscribe((str: string) => { this.loading.message = str; });
     this.requestId = + Number(this.activatedRoute.snapshot.paramMap.get('Id'));
     this.fileManagerTree = this.publicHelper.GetfileManagerTreeConfig();
     this.tokenHelper.getCurrentToken().then((value) => {
@@ -91,7 +91,7 @@ export class CoreUserEditComponent extends EditBaseComponent<CoreUserService, Co
       return;
     }
 
-    this.formInfo.formTitle = this.translate.instant('TITLE.Edit');
+    this.translate.get('TITLE.Edit').subscribe((str: string) => { this.formInfo.formTitle = str; });
     this.DataGetOneContent();
 
   }

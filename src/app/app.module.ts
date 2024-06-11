@@ -1,5 +1,5 @@
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
-import { HttpClient, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { HttpClient, HttpClientModule, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { APP_INITIALIZER, Injector, NgModule } from '@angular/core';
 import { MAT_CHIPS_DEFAULT_OPTIONS } from '@angular/material/chips';
 //import { BrowserModule } from '@angular/platform-browser';
@@ -78,6 +78,14 @@ export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
     //BrowserModule,
     BrowserAnimationsModule,
+    HttpClientModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: (http: HttpClient) => new TranslateHttpLoader(http, '/assets/i18n/', '.json'),
+        deps: [HttpClient]
+      },
+    }),
     SharedModule.forRoot(),
     ToastrModule.forRoot({
       // timeOut: 0,
@@ -90,13 +98,7 @@ export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
       // extendedTimeOut: 0,
       extendedTimeOut: 1000,
     }),
-    TranslateModule.forRoot({
-      loader: {
-        provide: TranslateLoader,
-        useFactory: (http: HttpClient) => new TranslateHttpLoader(http, '/assets/i18n/', '.json'),
-        deps: [HttpClient]
-      },
-    }),
+
     CmsStoreModule.forRoot(),
     AppRoutingModule,
     NgbModule,

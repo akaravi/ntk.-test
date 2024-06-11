@@ -37,7 +37,7 @@ export class EstatePropertyProjectAddComponent extends AddBaseComponent<EstatePr
   ) {
     super(contentService, new EstatePropertyProjectModel(), publicHelper);
     this.loading.cdr = this.cdr;
-    this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
+    this.translate.get('MESSAGE.Receiving_information').subscribe((str: string) => { this.loading.message = str; });
     this.fileManagerTree = this.publicHelper.GetfileManagerTreeConfig();
     this.tokenHelper.getCurrentToken().then((value) => {
       this.tokenInfo = value;

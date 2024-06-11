@@ -41,7 +41,7 @@ export class CoreLocationListComponent extends ListBaseComponent<CoreLocationSer
     public dialog: MatDialog) {
     super(contentService, new CoreLocationModel(), publicHelper, tokenHelper);
     this.loading.cdr = this.cdr;
-    this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
+    this.translate.get('MESSAGE.Receiving_information').subscribe((str: string) => { this.loading.message = str; });
     this.optionsSearch.parentMethods = {
       onSubmit: (model) => this.onSubmitOptionsSearch(model),
     };

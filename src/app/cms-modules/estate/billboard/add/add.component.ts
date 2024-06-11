@@ -33,7 +33,7 @@ export class EstateBillboardAddComponent extends AddBaseComponent<EstateBillboar
     public translate: TranslateService,
   ) {
     super(estateBillboardService, new EstateBillboardModel(), publicHelper);
-    this.loading.cdr = this.cdr; this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
+    this.loading.cdr = this.cdr; this.translate.get('MESSAGE.Receiving_information').subscribe((str: string) => { this.loading.message = str; });
     this.fileManagerTree = this.publicHelper.GetfileManagerTreeConfig();
     this.requestId = this.activatedRoute.snapshot.paramMap.get('id');
   }
@@ -55,7 +55,7 @@ export class EstateBillboardAddComponent extends AddBaseComponent<EstateBillboar
   fileManagerOpenForm = false;
   ngOnInit(): void {
 
-    this.formInfo.formTitle = this.translate.instant('TITLE.ADD');
+    this.translate.get('TITLE.ADD').subscribe((str: string) => { this.formInfo.formTitle = str; });
 
     this.DataGetAccess();
     if (this.requestId && this.requestId.length > 0) {

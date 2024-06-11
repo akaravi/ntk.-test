@@ -36,7 +36,7 @@ export class WebDesignerMainPageTemplateEditComponent extends EditBaseComponent<
   ) {
     super(webDesignerMainPageTemplateService, new WebDesignerMainPageTemplateModel(), publicHelper);
 
-    this.loading.cdr = this.cdr; this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
+    this.loading.cdr = this.cdr; this.translate.get('MESSAGE.Receiving_information').subscribe((str: string) => { this.loading.message = str; });
     if (data) {
       this.requestId = data.id + '';
     }
@@ -57,7 +57,7 @@ export class WebDesignerMainPageTemplateEditComponent extends EditBaseComponent<
   dataWebDesignerMainPageTemplateSiteCategoryModel: WebDesignerMainPageTemplateSiteCategoryModel[];
   ngOnInit(): void {
     if (this.requestId.length > 0) {
-      this.formInfo.formTitle = this.translate.instant('TITLE.Edit');
+      this.translate.get('TITLE.Edit').subscribe((str: string) => { this.formInfo.formTitle = str; });
       this.DataGetOneContent();
     } else {
       this.cmsToastrService.typeErrorComponentAction();

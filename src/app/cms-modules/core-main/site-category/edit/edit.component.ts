@@ -38,7 +38,7 @@ export class CoreSiteCategoryEditComponent extends EditBaseComponent<CoreSiteCat
     super(coreSiteCategoryService, new CoreSiteCategoryModel(), publicHelper);
 
     this.loading.cdr = this.cdr;
-    this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
+    this.translate.get('MESSAGE.Receiving_information').subscribe((str: string) => { this.loading.message = str; });
     if (data) {
       this.requestId = +data.id || 0;
     }
@@ -67,7 +67,7 @@ export class CoreSiteCategoryEditComponent extends EditBaseComponent<CoreSiteCat
   dataCoreSiteCategoryCmsModuleModel: CoreSiteCategoryCmsModuleModel[];
   ngOnInit(): void {
     if (this.requestId > 0) {
-      this.formInfo.formTitle = this.translate.instant('TITLE.Edit');
+      this.translate.get('TITLE.Edit').subscribe((str: string) => { this.formInfo.formTitle = str; });
 
     } else {
       this.cmsToastrService.typeErrorComponentAction();

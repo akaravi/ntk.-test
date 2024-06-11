@@ -57,7 +57,7 @@ export class EstatePropertyEditComponent extends EditBaseComponent<EstatePropert
   ) {
     super(estatePropertyService, new EstatePropertyModel(), publicHelper);
 
-    this.loading.cdr = this.cdr; this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
+    this.loading.cdr = this.cdr; this.translate.get('MESSAGE.Receiving_information').subscribe((str: string) => { this.loading.message = str; });
     this.requestId = this.activatedRoute.snapshot.paramMap.get('id');
     this.fileManagerTree = this.publicHelper.GetfileManagerTreeConfig();
     this.tokenHelper.getCurrentToken().then((value) => {
@@ -120,7 +120,7 @@ export class EstatePropertyEditComponent extends EditBaseComponent<EstatePropert
       this.router.navigate(['/estate/property']);
       return;
     }
-    this.formInfo.formTitle = this.translate.instant('TITLE.Edit');
+    this.translate.get('TITLE.Edit').subscribe((str: string) => { this.formInfo.formTitle = str; });
     this.DataGetOne();
 
     this.getEstateContractType();

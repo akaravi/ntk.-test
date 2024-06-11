@@ -35,7 +35,7 @@ export class CoreSiteCategoryCmsModuleAddComponent extends AddBaseComponent<Core
   ) {
     super(coreSiteCategoryCmsModuleService, new CoreSiteCategoryCmsModuleModel(), publicHelper);
     this.loading.cdr = this.cdr;
-    this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
+    this.translate.get('MESSAGE.Receiving_information').subscribe((str: string) => { this.loading.message = str; });
     if (data) {
       this.requestLinkCmsSiteCategoryId = +data.linkCmsSiteCategoryId || 0;
       this.requestLinkCmsModuleId = +data.linkCmsModuleId || 0;

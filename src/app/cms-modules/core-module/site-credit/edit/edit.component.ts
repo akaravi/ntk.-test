@@ -38,7 +38,7 @@ export class CoreModuleSiteCreditEditComponent extends EditBaseComponent<CoreMod
     super(coreModuleSiteCreditService, new CoreModuleSiteCreditModel(), publicHelper);
 
     this.loading.cdr = this.cdr;
-    this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
+    this.translate.get('MESSAGE.Receiving_information').subscribe((str: string) => { this.loading.message = str; });
     if (data) {
       this.requestId = +data.id || 0;
     }
@@ -73,7 +73,7 @@ export class CoreModuleSiteCreditEditComponent extends EditBaseComponent<CoreMod
   ngOnInit(): void {
     if (this.requestId > 0) {
       this.ComponentAction = ComponentActionEnum.edit;
-      this.formInfo.formTitle = this.translate.instant('TITLE.Edit');
+      this.translate.get('TITLE.Edit').subscribe((str: string) => { this.formInfo.formTitle = str; });
       this.DataGetOneContent();
     } else if (this.requestId === 0) {
       this.ComponentAction = ComponentActionEnum.add;

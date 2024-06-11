@@ -50,7 +50,7 @@ export class EstateCustomerOrderAddMobileComponent implements OnInit {
     public translate: TranslateService,
   ) {
     this.loading.cdr = this.cdr;
-    this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
+    this.translate.get('MESSAGE.Receiving_information').subscribe((str: string) => { this.loading.message = str; });
     this.requestId = this.activatedRoute.snapshot.paramMap.get('id');
     this.linkParentId = this.activatedRoute.snapshot.paramMap.get('LinkParentId');
     this.tokenHelper.getCurrentToken().then((value) => {
@@ -458,17 +458,17 @@ export class EstateCustomerOrderAddMobileComponent implements OnInit {
           if (ret.isSuccess) {
             this.dataModelEstatePropertyResult = ret;
 
-         
-            } else {
-              this.cmsToastrService.typeErrorGetAll(ret.errorMessage);
-            }
-            this.loading.Stop(pName);
-          },
-          error: (er) => {
-            this.cmsToastrService.typeError(er)
-            this.loading.Stop(pName);
+
+          } else {
+            this.cmsToastrService.typeErrorGetAll(ret.errorMessage);
           }
+          this.loading.Stop(pName);
+        },
+        error: (er) => {
+          this.cmsToastrService.typeError(er)
+          this.loading.Stop(pName);
         }
+      }
       );
     // **requestLinkCustomerOrderId*/
   }

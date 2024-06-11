@@ -40,7 +40,7 @@ export class AuthSingInBySmsComponent implements OnInit {
     public pageInfo: PageInfoService,
   ) {
     this.loading.cdr = this.cdr;
-    this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
+    this.translate.get('MESSAGE.Receiving_information').subscribe((str: string) => { this.loading.message = str; });
     this.RePasswordModel = '';
     this.publicHelper.getReducerCmsStoreOnChange().subscribe((value) => {
       this.connectionStatus = value.connectionStatus;

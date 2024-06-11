@@ -36,7 +36,7 @@ export class TicketingFaqEditComponent extends EditBaseComponent<TicketingFaqSer
   ) {
     super(ticketingFaqService, new TicketingFaqModel(), publicHelper);
 
-    this.loading.cdr = this.cdr; this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
+    this.loading.cdr = this.cdr; this.translate.get('MESSAGE.Receiving_information').subscribe((str: string) => { this.loading.message = str; });
     if (data) {
       this.requestId = +data.id || 0;
     }
@@ -66,7 +66,7 @@ export class TicketingFaqEditComponent extends EditBaseComponent<TicketingFaqSer
 
 
   ngOnInit(): void {
-    this.formInfo.formTitle = this.translate.instant('TITLE.Edit');
+    this.translate.get('TITLE.Edit').subscribe((str: string) => { this.formInfo.formTitle = str; });
     if (this.requestId <= 0) {
       this.cmsToastrService.typeErrorComponentAction();
       this.dialogRef.close({ dialogChangedDate: false });

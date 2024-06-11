@@ -39,7 +39,7 @@ export class EstateCustomerOrderResultListComponent extends ListBaseComponent<Es
     public dialog: MatDialog) {
     super(contentService, new EstateCustomerOrderResultModel(), publicHelper, tokenHelper);
     this.loading.cdr = this.cdr;
-    this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
+    this.translate.get('MESSAGE.Receiving_information').subscribe((str: string) => { this.loading.message = str; });
     this.requestLinkCustomerOrder = this.activatedRoute.snapshot.paramMap.get('LinkCustomerOrder');
     this.requestLinkProperty = this.activatedRoute.snapshot.paramMap.get('LinkProperty');
     this.optionsSearch.parentMethods = {

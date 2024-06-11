@@ -40,7 +40,7 @@ export class CoreUserSupportAccessEditComponent extends EditBaseComponent<CoreUs
     super(coreUserSupportAccessService, new CoreUserSupportAccessModel(), publicHelper);
 
     this.loading.cdr = this.cdr;
-    this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
+    this.translate.get('MESSAGE.Receiving_information').subscribe((str: string) => { this.loading.message = str; });
 
     if (data) {
       this.requestLinkSiteId = +data.linkSiteId || 0;
@@ -69,7 +69,7 @@ export class CoreUserSupportAccessEditComponent extends EditBaseComponent<CoreUs
 
   ngOnInit(): void {
     if (this.requestLinkSiteId > 0 && this.requestLinkUserId > 0 && this.requestModuleName && this.requestModuleName.length > 0 && this.requestModuleEntityName && this.requestModuleEntityName.length > 0) {
-      this.formInfo.formTitle = this.translate.instant('TITLE.Edit');
+      this.translate.get('TITLE.Edit').subscribe((str: string) => { this.formInfo.formTitle = str; });
       this.DataGetOneContent();
     } else {
       this.cmsToastrService.typeErrorComponentAction();

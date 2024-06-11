@@ -32,7 +32,7 @@ export class EstatePropertyAdsAddComponent extends AddBaseComponent<EstateProper
     public translate: TranslateService,
   ) {
     super(estatePropertyAdsService, new EstatePropertyAdsModel(), publicHelper);
-    this.loading.cdr = this.cdr; this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
+    this.loading.cdr = this.cdr; this.translate.get('MESSAGE.Receiving_information').subscribe((str: string) => { this.loading.message = str; });
     if (data && data.linkPropertyId) {
       this.requestLinkPropertyId = data.linkPropertyId;
     }
@@ -57,7 +57,7 @@ export class EstatePropertyAdsAddComponent extends AddBaseComponent<EstateProper
 
   ngOnInit(): void {
 
-    this.formInfo.formTitle = this.translate.instant('TITLE.ADD');
+    this.translate.get('TITLE.ADD').subscribe((str: string) => { this.formInfo.formTitle = str; });
 
     this.DataGetAccess();
 

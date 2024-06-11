@@ -33,7 +33,7 @@ export class SmsMainApiPathPublicConfigAddComponent extends AddBaseComponent<Sms
     public translate: TranslateService,
   ) {
     super(smsMainApiPathPublicConfigService, new SmsMainApiPathPublicConfigModel(), publicHelper);
-    this.loading.cdr = this.cdr; this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
+    this.loading.cdr = this.cdr; this.translate.get('MESSAGE.Receiving_information').subscribe((str: string) => { this.loading.message = str; });
 
     this.fileManagerTree = this.publicHelper.GetfileManagerTreeConfig();
   }
@@ -59,7 +59,7 @@ export class SmsMainApiPathPublicConfigAddComponent extends AddBaseComponent<Sms
 
   ngOnInit(): void {
 
-    this.formInfo.formTitle = this.translate.instant('TITLE.ADD');
+    this.translate.get('TITLE.ADD').subscribe((str: string) => { this.formInfo.formTitle = str; });
 
     this.DataGetAccess();
   }

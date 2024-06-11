@@ -38,7 +38,7 @@ export class BlogCategoryEditComponent extends EditBaseComponent<BlogCategorySer
     super(categoryService, new BlogCategoryModel(), publicHelper);
 
     this.loading.cdr = this.cdr;
-    this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
+    this.translate.get('MESSAGE.Receiving_information').subscribe((str: string) => { this.loading.message = str; });
     if (data) {
       this.requestId = +data.id || 0;
     }

@@ -42,7 +42,7 @@ export class CoreDeviceListComponent extends ListBaseComponent<CoreDeviceService
     public dialog: MatDialog) {
     super(contentService, new CoreDeviceModel(), publicHelper, tokenHelper);
     this.loading.cdr = this.cdr;
-    this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
+    this.translate.get('MESSAGE.Receiving_information').subscribe((str: string) => { this.loading.message = str; });
     this.optionsSearch.parentMethods = {
       onSubmit: (model) => this.onSubmitOptionsSearch(model),
     };

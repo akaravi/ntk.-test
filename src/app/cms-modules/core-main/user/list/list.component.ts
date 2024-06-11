@@ -44,7 +44,7 @@ export class CoreUserListComponent extends ListBaseComponent<CoreUserService, Co
     public dialog: MatDialog) {
     super(coreUserService, new CoreUserModel(), publicHelper, tokenHelper);
     this.loading.cdr = this.cdr;
-    this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
+    this.translate.get('MESSAGE.Receiving_information').subscribe((str: string) => { this.loading.message = str; });
     this.requestLinkSiteId = + Number(this.activatedRoute.snapshot.paramMap.get('LinkSiteId'));
 
     this.optionsSearch.parentMethods = {

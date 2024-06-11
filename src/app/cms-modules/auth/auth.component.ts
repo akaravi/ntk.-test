@@ -18,24 +18,20 @@ export class AuthComponent implements OnInit {
     public translate: CmsTranslationService,
     private cdr: ChangeDetectorRef) {
     this.loading.cdr = this.cdr;
-    this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
-    this.tesettt = this.translate.instant('ACTION.ABOUT');
-
-
+    this.translate.get('MESSAGE.Receiving_information').subscribe((str: string) => { this.loading.message = str; });
   }
   loading = new ProgressSpinnerModel();
   today: Date = new Date();
-  tesettt = 'gfjhgjh';
+  //tesettt = 'gfjhgjh';
   showSplashModel = true;
   ngOnInit(): void {
-    // this.translate.setDefaultLang('en');
-    // this.translate.use('en');
-    this.tesettt = this.translate.instant('ACTION.ABOUT');
-    console.log('Translated WELCOME_MESSAGE:', this.tesettt);
+    // this.translate.get('ACTION.ABOUT').subscribe((translation: string) => {
+    //   console.log('Translated subscribe:', translation);
+    // });
 
-    this.translate.get('ACTION.ABOUT').subscribe((translation: string) => {
-      console.log('Translated HELLO_MESSAGE:', translation);
-    });
+    // this.tesettt = this.translate.instant('ACTION.ABOUT');
+    // console.log('Translated instant:', this.tesettt);
+
 
     if (window.innerWidth < environment.cmsViewConfig.mobileWindowInnerWidth) {
       setTimeout(() => {

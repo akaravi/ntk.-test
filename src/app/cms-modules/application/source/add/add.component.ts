@@ -33,7 +33,7 @@ export class ApplicationSourceAddComponent extends AddBaseComponent<ApplicationS
     public publicHelper: PublicHelper,) {
     super(applicationSourceService, new ApplicationSourceModel(), publicHelper);
     this.loading.cdr = this.cdr;
-    this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
+    this.translate.get('MESSAGE.Receiving_information').subscribe((str: string) => { this.loading.message = str; });
     this.fileManagerTree = this.publicHelper.GetfileManagerTreeConfig();
   }
   @ViewChild('vform', { static: false }) formGroup: FormGroup;

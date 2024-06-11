@@ -38,7 +38,7 @@ export class CoreModuleSaleItemEditComponent extends EditBaseComponent<CoreModul
     super(coreModuleSaleItemService, new CoreModuleSaleItemModel(), publicHelper);
 
     this.loading.cdr = this.cdr;
-    this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
+    this.translate.get('MESSAGE.Receiving_information').subscribe((str: string) => { this.loading.message = str; });
     if (data) {
       this.requestId = +data.id || 0;
     }
@@ -66,7 +66,7 @@ export class CoreModuleSaleItemEditComponent extends EditBaseComponent<CoreModul
 
   ngOnInit(): void {
     if (this.requestId > 0) {
-      this.formInfo.formTitle = this.translate.instant('TITLE.Edit');
+      this.translate.get('TITLE.Edit').subscribe((str: string) => { this.formInfo.formTitle = str; });
       this.DataGetOneContent();
     } else {
       this.cmsToastrService.typeErrorComponentAction();

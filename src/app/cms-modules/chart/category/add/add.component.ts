@@ -34,7 +34,7 @@ export class ChartCategoryAddComponent extends AddBaseComponent<ChartCategorySer
   ) {
     super(categoryService, new ChartCategoryModel(), publicHelper);
     this.loading.cdr = this.cdr;
-    this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
+    this.translate.get('MESSAGE.Receiving_information').subscribe((str: string) => { this.loading.message = str; });
     if (data) {
       this.requestParentId = +data.parentId || 0;
     }

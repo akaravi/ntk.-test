@@ -41,7 +41,7 @@ export class EstateBillboardEditComponent extends EditBaseComponent<EstateBillbo
   ) {
     super(estateBillboardService, new EstateBillboardModel(), publicHelper);
 
-    this.loading.cdr = this.cdr; this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
+    this.loading.cdr = this.cdr; this.translate.get('MESSAGE.Receiving_information').subscribe((str: string) => { this.loading.message = str; });
     this.requestId = this.activatedRoute.snapshot.paramMap.get('id');
 
     this.fileManagerTree = this.publicHelper.GetfileManagerTreeConfig();
@@ -64,7 +64,7 @@ export class EstateBillboardEditComponent extends EditBaseComponent<EstateBillbo
   loadResult = '';
 
   ngOnInit(): void {
-    this.formInfo.formTitle = this.translate.instant('TITLE.Edit');
+    this.translate.get('TITLE.Edit').subscribe((str: string) => { this.formInfo.formTitle = str; });
     if (!this.requestId || this.requestId.length === 0) {
       this.cmsToastrService.typeErrorComponentAction();
       this.router.navigate(['/estate/billboard/']);

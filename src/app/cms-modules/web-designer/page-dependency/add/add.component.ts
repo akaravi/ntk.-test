@@ -32,7 +32,7 @@ export class WebDesignerMainPageDependencyAddComponent extends AddBaseComponent<
     public translate: TranslateService,
   ) {
     super(webDesignerMainPageDependencyService, new WebDesignerMainPageDependencyModel(), publicHelper);
-    this.loading.cdr = this.cdr; this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
+    this.loading.cdr = this.cdr; this.translate.get('MESSAGE.Receiving_information').subscribe((str: string) => { this.loading.message = str; });
     this.fileManagerTree = this.publicHelper.GetfileManagerTreeConfig();
     if (data) {
       this.requestLinkModuleId = +data.linkModuleId;
@@ -53,7 +53,7 @@ export class WebDesignerMainPageDependencyAddComponent extends AddBaseComponent<
 
   fileManagerOpenForm = false;
   ngOnInit(): void {
-    this.formInfo.formTitle = this.translate.instant('TITLE.ADD');
+    this.translate.get('TITLE.ADD').subscribe((str: string) => { this.formInfo.formTitle = str; });
 
     this.DataGetAccess();
   }

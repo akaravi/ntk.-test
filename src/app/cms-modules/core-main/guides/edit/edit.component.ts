@@ -40,7 +40,7 @@ export class CoreGuideEditComponent extends EditBaseComponent<CoreGuideService, 
     super(coreGuideService, new CoreGuideModel(), publicHelper);
 
     this.loading.cdr = this.cdr;
-    this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
+    this.translate.get('MESSAGE.Receiving_information').subscribe((str: string) => { this.loading.message = str; });
     this.fileManagerTree = this.publicHelper.GetfileManagerTreeConfig();
     if (data) {
       this.requestId = +data.id || 0;
@@ -79,7 +79,7 @@ export class CoreGuideEditComponent extends EditBaseComponent<CoreGuideService, 
 
   ngOnInit(): void {
     if (this.requestId > 0) {
-      this.formInfo.formTitle = this.translate.instant('TITLE.Edit');
+      this.translate.get('TITLE.Edit').subscribe((str: string) => { this.formInfo.formTitle = str; });
       this.DataGetOneContent();
     } else {
       this.cmsToastrService.typeErrorComponentAction();

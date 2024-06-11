@@ -17,6 +17,14 @@ const LOCALIZATION_LOCAL_STORAGE_KEY = 'language';
 // })
 @Injectable()
 export class CmsTranslationService {
+  /*
+//
+//this.translate.get('ACTION.ABOUT').subscribe((translation: string) => {
+//      console.log('Translated subscribe:', translation);
+//    });
+//
+//
+*/
   // Private properties
   private langIds: any = [];
 
@@ -24,16 +32,16 @@ export class CmsTranslationService {
     const langToSet = localStorage.getItem(LOCALIZATION_LOCAL_STORAGE_KEY) || this.translate.getDefaultLang()
     translate.addLangs([langToSet]);
     translate.setDefaultLang(langToSet);
+
   }
   instantDefault(key: string | Array<string>, interpolateParams?: Object): string | any {
     return this.translate.instant(key);
   }
+
   instant(key: string | Array<string>, interpolateParams?: Object): string | any {
-    //return this.translate.instant(key);
-    return this.translate.get(key).subscribe((value) => {
-      next: return value;
-    });
+    return this.translate.instant(key);
   }
+
   get(key: string | Array<string>, interpolateParams?: Object): Observable<string | any> {
     return this.translate.get(key);
   }
@@ -74,3 +82,7 @@ export class CmsTranslationService {
     );
   }
 }
+function resolve(text: string): void {
+  throw new Error('Function not implemented.');
+}
+

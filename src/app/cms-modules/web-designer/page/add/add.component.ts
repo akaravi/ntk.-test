@@ -34,7 +34,7 @@ export class WebDesignerMainPageAddComponent extends AddBaseComponent<WebDesigne
     public translate: TranslateService,
   ) {
     super(webDesignerMainPageService, new WebDesignerMainPageModel(), publicHelper);
-    this.loading.cdr = this.cdr; this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
+    this.loading.cdr = this.cdr; this.translate.get('MESSAGE.Receiving_information').subscribe((str: string) => { this.loading.message = str; });
     if (data) {
       this.requestLinkPageDependencyGuId = data.linkPageDependencyGuId + '';
     }
@@ -56,7 +56,7 @@ export class WebDesignerMainPageAddComponent extends AddBaseComponent<WebDesigne
   dataModelEnumPageAbilityTypeResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
   fileManagerOpenForm = false;
   ngOnInit(): void {
-    this.formInfo.formTitle = this.translate.instant('TITLE.ADD');
+    this.translate.get('TITLE.ADD').subscribe((str: string) => { this.formInfo.formTitle = str; });
 
     this.DataGetAccess();
     this.getEnumPageAbilityType();

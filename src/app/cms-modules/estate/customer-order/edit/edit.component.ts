@@ -55,7 +55,7 @@ export class EstateCustomerOrderEditComponent extends EditBaseComponent<EstateCu
   ) {
     super(estateCustomerOrderService, new EstateCustomerOrderModel(), publicHelper);
 
-    this.loading.cdr = this.cdr; this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
+    this.loading.cdr = this.cdr; this.translate.get('MESSAGE.Receiving_information').subscribe((str: string) => { this.loading.message = str; });
     this.requestId = this.activatedRoute.snapshot.paramMap.get('id');
 
     this.tokenHelper.getCurrentToken().then((value) => {
@@ -99,7 +99,7 @@ export class EstateCustomerOrderEditComponent extends EditBaseComponent<EstateCu
   hidden = true;
 
   ngOnInit(): void {
-    this.formInfo.formTitle = this.translate.instant('TITLE.Edit');
+    this.translate.get('TITLE.Edit').subscribe((str: string) => { this.formInfo.formTitle = str; });
     if (!this.requestId || this.requestId.length === 0) {
       this.cmsToastrService.typeErrorComponentAction();
       setTimeout(() => this.router.navigate(['/estate/customer-order']), 1000);

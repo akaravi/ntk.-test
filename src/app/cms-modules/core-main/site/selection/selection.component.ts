@@ -34,7 +34,7 @@ export class CoreSiteSelectionComponent implements OnInit {
     public translate: TranslateService,
   ) {
     this.loading.cdr = this.cdr;
-    this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
+    this.translate.get('MESSAGE.Receiving_information').subscribe((str: string) => { this.loading.message = str; });
     this.loading.cdr = cdr;
     if (localStorage.getItem(this.SELECT_SITE_LOCAL_STORAGE_KEY)) {
       this.lastSelectSiteId = localStorage.getItem(this.SELECT_SITE_LOCAL_STORAGE_KEY).split(',').map(function (item) {

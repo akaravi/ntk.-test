@@ -37,7 +37,7 @@ export class CoreUserClaimGroupDetailEditComponent extends EditBaseComponent<Cor
     super(coreUserClaimGroupDetailService, new CoreUserClaimGroupDetailModel(), publicHelper);
 
     this.loading.cdr = this.cdr;
-    this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
+    this.translate.get('MESSAGE.Receiving_information').subscribe((str: string) => { this.loading.message = str; });
     if (data) {
       this.requestModel = data.model;
     }
@@ -64,7 +64,7 @@ export class CoreUserClaimGroupDetailEditComponent extends EditBaseComponent<Cor
 
   ngOnInit(): void {
     if (this.requestModel && this.requestModel.linkUserClaimTypeId > 0) {
-      this.formInfo.formTitle = this.translate.instant('TITLE.Edit');
+      this.translate.get('TITLE.Edit').subscribe((str: string) => { this.formInfo.formTitle = str; });
       this.DataGetOneContent();
     } else {
       this.cmsToastrService.typeErrorComponentAction();

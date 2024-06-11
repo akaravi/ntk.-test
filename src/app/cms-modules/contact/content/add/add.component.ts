@@ -34,7 +34,7 @@ export class ContactContentAddComponent extends AddBaseComponent<ContactContentS
   ) {
     super(ContactContentService, new ContactContentModel(), publicHelper);
     this.loading.cdr = this.cdr;
-    this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
+    this.translate.get('MESSAGE.Receiving_information').subscribe((str: string) => { this.loading.message = str; });
 
     if (data && data.linkCategoryId && data.linkCategoryId.length > 0)
       this.dataModel.linkCategoryId = data.linkCategoryId;
