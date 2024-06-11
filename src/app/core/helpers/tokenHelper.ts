@@ -87,7 +87,7 @@ export class TokenHelper implements OnDestroy {
   directionTheme = '';
   setDirectionThemeBylanguage(language) {
     if (!language || language.length === 0)
-      language = localStorage.getItem(LOCALIZATION_LOCAL_STORAGE_KEY) || this.translate.getDefaultLang();// this.cmsTranslationService.getSelectedLanguage()
+      language = localStorage.getItem(LOCALIZATION_LOCAL_STORAGE_KEY) || this.translate.getDefaultLang() || 'fa';// this.cmsTranslationService.getSelectedLanguage()
     if (language === 'ar' || language === 'fa') {
       document.getElementsByTagName('html')[0].setAttribute('dir', 'rtl');
       document.getElementsByTagName('html')[0].setAttribute('direction', 'rtl');

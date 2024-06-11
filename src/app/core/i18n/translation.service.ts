@@ -3,6 +3,7 @@
 
 import { Injectable } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
+import { firstValueFrom } from 'rxjs';
 
 export interface Locale {
   lang: string;
@@ -20,11 +21,9 @@ export class CmsTranslationService {
   private langIds: any = [];
 
   constructor(public translate: TranslateService) {
-    // add new langIds to the list
-    this.translate.addLangs(['fa']);
-
-    // this language will be used as a fallback when a translation isn't found in the current language
-    this.translate.setDefaultLang('fa');
+    const langToSet = localStorage.getItem(LOCALIZATION_LOCAL_STORAGE_KEY) || this.translate.getDefaultLang()
+    translate.addLangs([langToSet]);
+    translate.setDefaultLang(langToSet);
   }
 
   loadTranslations(...args: Locale[]): void {
@@ -44,8 +43,10 @@ export class CmsTranslationService {
 
   setLanguage(lang: string): void {
     if (lang && lang.length > 0) {
-      this.translate.use(this.translate.getDefaultLang());
-      this.translate.use(lang);
+      const langToSet = localStorage.getItem(LOCALIZATION_LOCAL_STORAGE_KEY) || this.translate?.getDefaultLang() || 'fa';
+      firstValueFrom(this.translate.use(langToSet));
+      if (langToSet !== lang)
+        firstValueFrom(this.translate.use(lang));
       localStorage.setItem(LOCALIZATION_LOCAL_STORAGE_KEY, lang);
     }
   }
@@ -53,7 +54,7 @@ export class CmsTranslationService {
   /**
    * Returns selected language
    */
-  getSelectedLanguage(): any {
+  getSelectedLanguage(): string {
     return (
       localStorage.getItem(LOCALIZATION_LOCAL_STORAGE_KEY) ||
       this.translate.getDefaultLang()

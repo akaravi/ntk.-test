@@ -2,7 +2,7 @@ import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { NavigationStart, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { AuthRenewTokenModel, CoreAuthService, TokenInfoModel } from 'ntk-cms-api';
-import { Subscription, filter } from 'rxjs';
+import { Subscription, filter, firstValueFrom } from 'rxjs';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { CmsTranslationService } from 'src/app/core/i18n/translation.service';
@@ -133,7 +133,7 @@ export class MenuLanguageComponent implements OnInit {
               this.tokenInfo = ret.item;
               if (ret.item.language === lang) {
                 this.cmsToastrService.toastr.success(this.translate.instant('MESSAGE.New_language_acess_confirmed'), title);
-                this.translate.use(ret.item.language);
+                firstValueFrom(this.translate.use(ret.item.language));
               } else {
                 this.cmsToastrService.toastr.warning(this.translate.instant('ERRORMESSAGE.MESSAGE.New_language_acess_denied'), title);
               }

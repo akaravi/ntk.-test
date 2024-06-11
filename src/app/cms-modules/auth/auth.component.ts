@@ -14,18 +14,11 @@ import { environment } from 'src/environments/environment';
 })
 export class AuthComponent implements OnInit {
   constructor(
-    private configService: CoreConfigurationService,
     public publicHelper: PublicHelper,
-    private cmsToastrService: CmsToastrService,
     public translate: TranslateService,
     private cdr: ChangeDetectorRef) {
     this.loading.cdr = this.cdr;
-    translate.currentLang
-    translate.use('fa');
     this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
-
-
-
     this.tesettt = this.translate.instant('ACTION.ABOUT');
 
 
