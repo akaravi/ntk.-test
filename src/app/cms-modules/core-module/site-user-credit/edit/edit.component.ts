@@ -129,7 +129,7 @@ export class CoreModuleSiteUserCreditEditComponent extends EditBaseComponent<Cor
     this.formInfo.formAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
     this.formInfo.formError = '';
     const pName = this.constructor.name + 'main';
-    this.loading.Start(pName, this.translate.instant('MESSAGE.sending_information_to_the_server'));
+    this.translate.get('MESSAGE.sending_information_to_the_server').subscribe((str: string) => { this.loading.Start(pName, str); });
 
     this.coreModuleSiteUserCreditService.ServiceAdd(this.dataModel).subscribe({
       next: (ret) => {
@@ -159,7 +159,7 @@ export class CoreModuleSiteUserCreditEditComponent extends EditBaseComponent<Cor
     this.formInfo.formAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
     this.formInfo.formError = '';
     const pName = this.constructor.name + 'main';
-    this.loading.Start(pName, this.translate.instant('MESSAGE.sending_information_to_the_server'));
+    this.translate.get('MESSAGE.sending_information_to_the_server').subscribe((str: string) => { this.loading.Start(pName, str); });
 
     this.coreModuleSiteUserCreditService.ServiceEdit(this.dataModel).subscribe({
       next: (ret) => {

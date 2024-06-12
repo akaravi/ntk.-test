@@ -128,7 +128,7 @@ export class SmsMainCustomerCreditEditComponent extends EditBaseComponent<SmsMai
     this.formInfo.formAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
     this.formInfo.formError = '';
     const pName = this.constructor.name + 'main';
-    this.loading.Start(pName, this.translate.instant('MESSAGE.sending_information_to_the_server'));
+    this.translate.get('MESSAGE.sending_information_to_the_server').subscribe((str: string) => { this.loading.Start(pName, str); });
 
     this.SmsMainCustomerCreditService.ServiceEdit(this.dataModel).subscribe({
       next: (ret) => {

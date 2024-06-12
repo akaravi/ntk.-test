@@ -78,7 +78,7 @@ export class ApplicationIntroEditComponent extends EditBaseComponent<Application
     this.formInfo.formAlert = this.translate.instant('MESSAGE.get_information_from_the_server');
     this.formInfo.formError = '';
     const pName = this.constructor.name + 'main';
-    this.loading.Start(pName, this.translate.instant('MESSAGE.get_information_from_the_server'));
+    this.translate.get('MESSAGE.get_information_from_the_server').subscribe((str: string) => { this.loading.Start(pName, str); });
     /*َAccess Field*/
     this.applicationIntroService.setAccessLoad();
     this.applicationIntroService.setAccessDataType(ManageUserAccessDataTypesEnum.Editor);
@@ -111,7 +111,7 @@ export class ApplicationIntroEditComponent extends EditBaseComponent<Application
     this.formInfo.formAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
     this.formInfo.formError = '';
     const pName = this.constructor.name + 'main';
-    this.loading.Start(pName, this.translate.instant('MESSAGE.sending_information_to_the_server'));
+    this.translate.get('MESSAGE.sending_information_to_the_server').subscribe((str: string) => { this.loading.Start(pName, str); });
     this.applicationIntroService
       .ServiceEdit(this.dataModel)
       .subscribe({

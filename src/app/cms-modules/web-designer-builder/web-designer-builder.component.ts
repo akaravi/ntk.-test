@@ -77,7 +77,7 @@ export class WebDesignerBuilderComponent implements OnInit, OnDestroy {
   }
   // DataEditContent(): void {
   //   const pName = this.constructor.name + 'main';
-  //   this.loading.Start(pName, this.translate.instant('MESSAGE.sending_information_to_the_server'));
+  //   this.translate.get('MESSAGE.sending_information_to_the_server').subscribe((str: string) => {this.loading.Start(pName, str);});
   //   this.webDesignerMainPageService.ServiceEdit(this.dataModel).subscribe(
   //     (next) => {
 

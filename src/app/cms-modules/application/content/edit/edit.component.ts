@@ -100,7 +100,8 @@ export class ApplicationAppEditComponent extends EditBaseComponent<ApplicationAp
     this.formInfo.formAlert = this.translate.instant('MESSAGE.get_information_from_the_server');
     this.formInfo.formError = '';
     const pName = this.constructor.name + 'ServiceGetOneById';
-    this.loading.Start(pName, this.translate.instant('MESSAGE.get_information_from_the_server'));
+    
+    this.translate.get('MESSAGE.get_information_from_the_server').subscribe((str: string) => {this.loading.Start(pName, str);});
     /*َAccess Field*/
     this.applicationAppService.setAccessLoad();
     this.applicationAppService.setAccessDataType(ManageUserAccessDataTypesEnum.Editor);
@@ -141,7 +142,7 @@ export class ApplicationAppEditComponent extends EditBaseComponent<ApplicationAp
     this.formInfo.formAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
     this.formInfo.formError = '';
     const pName = this.constructor.name + 'main';
-    this.loading.Start(pName, this.translate.instant('MESSAGE.sending_information_to_the_server'));
+    this.translate.get('MESSAGE.sending_information_to_the_server').subscribe((str: string) => { this.loading.Start(pName, str); });
     this.applicationAppService
       .ServiceEdit(this.dataModel)
       .subscribe({
