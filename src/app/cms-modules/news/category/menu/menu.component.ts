@@ -76,7 +76,7 @@ export class NewsCategoryMenuComponent implements OnInit {
       this.filterModel.filters.push(filter);
     }
     const pName = this.constructor.name + '.ServiceGetAll';
-    this.loading.Start(pName, this.translate.instant('MESSAGE.get_categories'));
+    this.translate.get('MESSAGE.get_categories').subscribe((str: string) => {this.loading.Start(pName, str);});
     this.categoryService.ServiceGetAll(this.filterModel).subscribe({
       next: (ret) => {
         if (ret.isSuccess) {

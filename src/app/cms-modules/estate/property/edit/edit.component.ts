@@ -150,7 +150,7 @@ export class EstatePropertyEditComponent extends EditBaseComponent<EstatePropert
 
   lastRecordStatus: RecordStatusEnum;
   DataGetOne(): void {
-    this.formInfo.formAlert = this.translate.instant('MESSAGE.Receiving_Information_From_The_Server');
+    this.translate.get('MESSAGE.Receiving_Information_From_The_Server').subscribe((str: string) => { this.formInfo.formAlert = str; });
     this.formInfo.formError = '';
 
 
@@ -200,7 +200,7 @@ export class EstatePropertyEditComponent extends EditBaseComponent<EstatePropert
           }
 
         } else {
-          this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
+          this.translate.get('ERRORMESSAGE.MESSAGE.typeError').subscribe((str: string) => { this.formInfo.formAlert = str; });
           this.formInfo.formError = ret.errorMessage;
           this.cmsToastrService.typeErrorMessage(ret.errorMessage);
         }
@@ -256,7 +256,7 @@ export class EstatePropertyEditComponent extends EditBaseComponent<EstatePropert
       );
   }
   DataEditContent(forcePopupMessageAction = false): void {
-    this.formInfo.formAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
+    this.translate.get('MESSAGE.sending_information_to_the_server').subscribe((str: string) => { this.formInfo.formAlert = str; });
     this.formInfo.formError = '';
     if (this.dataFileModelFiles) {
       const keys = Array.from(this.dataFileModelFiles.keys());
@@ -278,7 +278,7 @@ export class EstatePropertyEditComponent extends EditBaseComponent<EstatePropert
         this.formInfo.formSubmitAllow = true;
         this.dataModelResult = ret;
         if (ret.isSuccess) {
-          this.formInfo.formAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
+          this.translate.get('MESSAGE.registration_completed_successfully').subscribe((str: string) => { this.formInfo.formAlert = str; });
           this.cmsToastrService.typeSuccessEdit();
           if ((this.tokenHelper.CheckIsAdmin() || this.tokenHelper.CheckIsSupport() || this.tokenHelper.tokenInfo.userAccessUserType == ManageUserAccessUserTypesEnum.ResellerCpSite || this.tokenHelper.tokenInfo.userAccessUserType == ManageUserAccessUserTypesEnum.ResellerEmployeeCpSite)
             && (forcePopupMessageAction || (this.dataModel.recordStatus == RecordStatusEnum.Available && this.dataModel.recordStatus != this.lastRecordStatus))) {
@@ -298,7 +298,7 @@ export class EstatePropertyEditComponent extends EditBaseComponent<EstatePropert
             });
           }
         } else {
-          this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
+          this.translate.get('ERRORMESSAGE.MESSAGE.typeError').subscribe((str: string) => { this.formInfo.formAlert = str; });
           this.formInfo.formError = ret.errorMessage;
           this.cmsToastrService.typeErrorMessage(ret.errorMessage);
         }

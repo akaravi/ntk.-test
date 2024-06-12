@@ -86,7 +86,7 @@ export class TicketingAnswerEditComponent extends EditBaseComponent<TicketingAns
 
   DataGetOne(requestId: number): void {
     this.formInfo.formSubmitAllow = false;
-    this.formInfo.formAlert = this.translate.instant('MESSAGE.get_information_from_the_server');
+    this.translate.get('MESSAGE.get_information_from_the_server').subscribe((str: string) => { this.formInfo.formAlert = str; });
     this.formInfo.formError = '';
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
@@ -124,7 +124,7 @@ export class TicketingAnswerEditComponent extends EditBaseComponent<TicketingAns
   }
   DataEditContent(): void {
     this.formInfo.formSubmitAllow = false;
-    this.formInfo.formAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
+    this.translate.get('MESSAGE.sending_information_to_the_server').subscribe((str: string) => { this.formInfo.formAlert = str; });
     this.formInfo.formError = '';
     const pName = this.constructor.name + 'main';
     this.translate.get('MESSAGE.sending_information_to_the_server').subscribe((str: string) => { this.loading.Start(pName, str); });
@@ -138,7 +138,7 @@ export class TicketingAnswerEditComponent extends EditBaseComponent<TicketingAns
           this.formInfo.formSubmitAllow = !next.isSuccess;
           this.dataModelResult = next;
           if (next.isSuccess) {
-            this.formInfo.formAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
+            this.translate.get('MESSAGE.registration_completed_successfully').subscribe((str: string) => { this.formInfo.formAlert = str; });
             this.cmsToastrService.typeSuccessEdit();
             setTimeout(() => { this.dialogRef.close({ dialogChangedDate: false }); }, 1000);
           } else {

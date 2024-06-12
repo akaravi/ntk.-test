@@ -80,7 +80,7 @@ export class NewsCategoryTreeComponent implements OnInit, OnDestroy {
     this.filterModel.rowPerPage = 200;
     this.filterModel.accessLoad = true;
     const pName = this.constructor.name + '.ServiceGetAll';
-    this.loading.Start(pName, this.translate.instant('MESSAGE.get_categories'));
+    this.translate.get('MESSAGE.get_categories').subscribe((str: string) => {this.loading.Start(pName, str);});
     this.categoryService.ServiceGetAll(this.filterModel).subscribe({
       next: (ret) => {
         if (ret.isSuccess) {

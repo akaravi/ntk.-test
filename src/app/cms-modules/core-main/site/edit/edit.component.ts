@@ -144,7 +144,7 @@ export class CoreSiteEditComponent extends EditBaseComponent<CoreSiteService, Co
     if (!id || id <= 0)
       return;
     this.formInfo.formSubmitAllow = false;
-    this.formInfo.formAlert = this.translate.instant('MESSAGE.get_information_from_the_server');
+    this.translate.get('MESSAGE.get_information_from_the_server').subscribe((str: string) => { this.formInfo.formAlert = str; });
     this.formInfo.formError = '';
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
@@ -192,7 +192,7 @@ export class CoreSiteEditComponent extends EditBaseComponent<CoreSiteService, Co
     //! for convert color to hex
     this.dataModel.pwaThemeBackgroundColor = this.dataModel.pwaThemeBackgroundColor?.toString();
     this.formInfo.formSubmitAllow = false;
-    this.formInfo.formAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
+    this.translate.get('MESSAGE.sending_information_to_the_server').subscribe((str: string) => { this.formInfo.formAlert = str; });
     this.formInfo.formError = '';
     const pName = this.constructor.name + 'main';
     this.translate.get('MESSAGE.sending_information_to_the_server').subscribe((str: string) => { this.loading.Start(pName, str); });
@@ -203,7 +203,7 @@ export class CoreSiteEditComponent extends EditBaseComponent<CoreSiteService, Co
           this.formInfo.formSubmitAllow = !ret.isSuccess;
           this.dataModelResult = ret;
           if (ret.isSuccess) {
-            this.formInfo.formAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
+            this.translate.get('MESSAGE.registration_completed_successfully').subscribe((str: string) => { this.formInfo.formAlert = str; });
             this.cmsToastrService.typeSuccessEdit();
             this.formInfo.formSubmitAllow = true;
           } else {

@@ -129,10 +129,10 @@ export class TicketingConfigSiteComponent implements OnInit {
 
   GetServiceSiteStorage(SiteId: number): void {
     this.formInfo.formSubmitAllow = false;
-    this.formInfo.formAlert = this.translate.instant('MESSAGE.get_information_from_the_server');
+    this.translate.get('MESSAGE.get_information_from_the_server').subscribe((str: string) => { this.formInfo.formAlert = str; });
     this.formInfo.formError = '';
     const pName = this.constructor.name + 'ServiceSiteStorage';
-    this.loading.Start(pName, this.translate.instant('MESSAGE.get_saved_module_values'));
+    this.translate.get('MESSAGE.get_saved_module_values').subscribe((str: string) => { this.loading.Start(pName, str); });
 
     this.configService
       .ServiceSiteStorage(SiteId)
@@ -156,11 +156,11 @@ export class TicketingConfigSiteComponent implements OnInit {
   }
   SetServiceSiteStorageSave(SiteId: number): void {
     this.formInfo.formSubmitAllow = false;
-    this.formInfo.formAlert = this.translate.instant('MESSAGE.Saving_Information_On_The_Server');
+    this.translate.get('MESSAGE.Saving_Information_On_The_Server').subscribe((str: string) => { this.formInfo.formAlert = str; });
     this.formInfo.formError = '';
 
     const pName = this.constructor.name + 'ServiceSiteStorageSave';
-    this.loading.Start(pName, this.translate.instant('MESSAGE.Save_the_stored_values_​​of_the_module'));
+    this.translate.get('MESSAGE.Save_the_stored_values_of_the_module').subscribe((str: string) => { this.loading.Start(pName, str); });
     this.configService
       .ServiceSiteStorageSave(SiteId, this.dataSiteStorageModel)
       .subscribe(
@@ -183,7 +183,7 @@ export class TicketingConfigSiteComponent implements OnInit {
   }
   GetServiceSiteConfig(SiteId: number): void {
     this.formInfo.formSubmitAllow = false;
-    this.formInfo.formAlert = this.translate.instant('MESSAGE.get_information_from_the_server');
+    this.translate.get('MESSAGE.get_information_from_the_server').subscribe((str: string) => { this.formInfo.formAlert = str; });
     this.formInfo.formError = '';
 
     const pName = this.constructor.name + 'ServiceSiteConfig';
@@ -209,7 +209,7 @@ export class TicketingConfigSiteComponent implements OnInit {
   }
   SetServiceSiteConfigSave(SiteId: number): void {
     this.formInfo.formSubmitAllow = false;
-    this.formInfo.formAlert = this.translate.instant('MESSAGE.Saving_Information_On_The_Server');
+    this.translate.get('MESSAGE.Saving_Information_On_The_Server').subscribe((str: string) => { this.formInfo.formAlert = str; });
     this.formInfo.formError = '';
     const pName = this.constructor.name + 'ServiceSiteConfigSave';
     this.translate.get('MESSAGE.Save_module_setting').subscribe((str: string) => { this.loading.Start(pName, str); });
@@ -235,7 +235,7 @@ export class TicketingConfigSiteComponent implements OnInit {
   }
   GetServiceSiteAccess(SiteId: number): void {
     this.formInfo.formSubmitAllow = false;
-    this.formInfo.formAlert = this.translate.instant('MESSAGE.get_information_from_the_server');
+    this.translate.get('MESSAGE.get_information_from_the_server').subscribe((str: string) => { this.formInfo.formAlert = str; });
     this.formInfo.formError = '';
 
     const pName = this.constructor.name + 'ServiceSiteAccess';
@@ -262,7 +262,7 @@ export class TicketingConfigSiteComponent implements OnInit {
   }
   SetServiceSiteAccessSave(SiteId: number): void {
     this.formInfo.formSubmitAllow = false;
-    this.formInfo.formAlert = this.translate.instant('MESSAGE.Saving_Information_On_The_Server');
+    this.translate.get('MESSAGE.Saving_Information_On_The_Server').subscribe((str: string) => { this.formInfo.formAlert = str; });
     this.formInfo.formError = '';
 
 
