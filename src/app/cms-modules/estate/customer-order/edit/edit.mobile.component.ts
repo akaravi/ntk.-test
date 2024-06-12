@@ -441,8 +441,7 @@ export class EstateCustomerOrderEditMobileComponent extends EditBaseComponent<Es
   }
   onActionSelectorSelectUsage(model: EstatePropertyTypeUsageModel | null): void {
     if (!model || !model.id || model.id.length <= 0) {
-      const message = this.translate.instant('MESSAGE.category_of_information_is_not_clear');
-      this.cmsToastrService.typeWarningSelected(message);
+      this.translate.get('MESSAGE.category_of_information_is_not_clear').subscribe((str: string) => { this.cmsToastrService.typeWarningSelected(str); });
       return;
     }
     this.dataModel.linkPropertyTypeUsageId = model.id;
@@ -458,8 +457,7 @@ export class EstateCustomerOrderEditMobileComponent extends EditBaseComponent<Es
     this.PropertyTypeSelected = null;
     this.dataModel.linkPropertyTypeLanduseId = null;
     if (!model || !model.id || model.id.length <= 0) {
-      const message = this.translate.instant('MESSAGE.category_of_information_is_not_clear');
-      this.cmsToastrService.typeWarningSelected(message);
+      this.translate.get('MESSAGE.category_of_information_is_not_clear').subscribe((str: string) => { this.cmsToastrService.typeWarningSelected(str); });
       return;
     }
     this.PropertyTypeSelected = model;
