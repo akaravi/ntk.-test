@@ -283,8 +283,7 @@ export class DataProviderSourceListComponent extends ListBaseComponent<DataProvi
   }
   onActionButtonSourceList(model: DataProviderSourceModel = this.tableRowSelected, event?: MouseEvent): void {
     if (!model || !model.id || model.id === 0) {
-      const emessage = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow');
-      this.cmsToastrService.typeErrorSelected(emessage); return;
+      this.translate.get('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow').subscribe((str: string) => { this.cmsToastrService.typeErrorSelected(str); }); return;
     }
     this.onActionTableRowSelect(model);
 

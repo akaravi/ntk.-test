@@ -314,8 +314,7 @@ export class CoreModuleLogContentCountListComponent extends ListBaseComponent<Co
   onActionButtonViewContent(model: CoreModuleLogContentCountModel = this.tableRowSelected): void {
 
     if (!model || !model.id || model.id.length === 0) {
-      const emessage = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow');
-      this.cmsToastrService.typeErrorSelected(emessage);
+      this.translate.get('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow').subscribe((str: string) => { this.cmsToastrService.typeErrorSelected(str); });
       return;
     }
     this.onActionTableRowSelect(model);

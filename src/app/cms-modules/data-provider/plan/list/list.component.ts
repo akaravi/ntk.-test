@@ -281,8 +281,7 @@ export class DataProviderPlanListComponent extends ListBaseComponent<DataProvide
   }
   onActionButtonPriceList(model: DataProviderPlanModel = this.tableRowSelected, event?: MouseEvent): void {
     if (!model || !model.id || model.id === 0) {
-      const emessage = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow');
-      this.cmsToastrService.typeErrorSelected(emessage); return;
+      this.translate.get('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow').subscribe((str: string) => { this.cmsToastrService.typeErrorSelected(str); }); return;
     }
     this.onActionTableRowSelect(model);
 
@@ -295,8 +294,7 @@ export class DataProviderPlanListComponent extends ListBaseComponent<DataProvide
   }
   onActionButtonSourceList(model: DataProviderPlanModel = this.tableRowSelected, event?: MouseEvent): void {
     if (!model || !model.id || model.id === 0) {
-      const emessage = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow');
-      this.cmsToastrService.typeErrorSelected(emessage); return;
+      this.translate.get('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow').subscribe((str: string) => { this.cmsToastrService.typeErrorSelected(str); }); return;
     }
     this.onActionTableRowSelect(model);
 
@@ -309,8 +307,7 @@ export class DataProviderPlanListComponent extends ListBaseComponent<DataProvide
   }
   onActionButtonClientList(model: DataProviderPlanModel = this.tableRowSelected, event?: MouseEvent): void {
     if (!model || !model.id || model.id === 0) {
-      const emessage = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow');
-      this.cmsToastrService.typeErrorSelected(emessage); return;
+      this.translate.get('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow').subscribe((str: string) => { this.cmsToastrService.typeErrorSelected(str); }); return;
     }
     this.onActionTableRowSelect(model);
 
@@ -324,8 +321,7 @@ export class DataProviderPlanListComponent extends ListBaseComponent<DataProvide
 
   onActionButtonTransactionList(model: DataProviderPlanModel = this.tableRowSelected, event?: MouseEvent): void {
     if (!model || !model.id || model.id === 0) {
-      const emessage = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow');
-      this.cmsToastrService.typeErrorSelected(emessage); return;
+      this.translate.get('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow').subscribe((str: string) => { this.cmsToastrService.typeErrorSelected(str); }); return;
     }
     this.onActionTableRowSelect(model);
 

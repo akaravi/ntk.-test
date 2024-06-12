@@ -281,8 +281,7 @@ export class ApiTelegramUploadedFileListComponent extends ListBaseComponent<ApiT
 
   onActionButtonSiteList(model: ApiTelegramUploadedFileModel = this.tableRowSelected): void {
     if (!model || !model.id || model.id === 0) {
-      const emessage = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow');
-      this.cmsToastrService.typeErrorSelected(emessage);
+      this.translate.get('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow').subscribe((str: string) => { this.cmsToastrService.typeErrorSelected(str); });
       return;
     }
     this.onActionTableRowSelect(model);
@@ -290,8 +289,7 @@ export class ApiTelegramUploadedFileListComponent extends ListBaseComponent<ApiT
   }
   onActionButtonSiteCategoryList(model: ApiTelegramUploadedFileModel = this.tableRowSelected): void {
     if (!model || !model.id || model.id === 0) {
-      const emessage = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow');
-      this.cmsToastrService.typeErrorSelected(emessage);
+      this.translate.get('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow').subscribe((str: string) => { this.cmsToastrService.typeErrorSelected(str); });
       return;
     }
     this.onActionTableRowSelect(model);
