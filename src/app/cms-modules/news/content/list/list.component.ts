@@ -301,8 +301,7 @@ export class NewsContentListComponent extends ListBaseComponent<NewsContentServi
   }
   onActionButtonDeleteRow(model: NewsContentModel = this.tableRowSelected): void {
     if (!model || !model.id || model.id === 0) {
-      const emessage = this.translate.instant('MESSAGE.no_row_selected_to_delete');
-      this.cmsToastrService.typeErrorSelected(emessage); return;
+      this.translate.get('MESSAGE.no_row_selected_to_delete').subscribe((str: string) => { this.cmsToastrService.typeErrorSelected(str); }); return;
     }
     this.onActionTableRowSelect(model);
     if (
@@ -339,7 +338,7 @@ export class NewsContentListComponent extends ListBaseComponent<NewsContentServi
     }
     const statist = new Map<string, number>();
     this.translate.get('MESSAGE.Active').subscribe((str: string) => { statist.set(str, 0); });
-    statist.set(this.translate.instant('MESSAGE.All'), 0);
+    this.translate.get('MESSAGE.All').subscribe((str: string) => { statist.set(str, 0); });
     this.contentService.ServiceGetCount(this.filteModelContent).subscribe({
       next: (ret) => {
         if (ret.isSuccess) {

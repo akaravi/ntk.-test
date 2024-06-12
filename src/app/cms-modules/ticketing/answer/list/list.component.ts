@@ -286,8 +286,7 @@ export class TicketingAnswerListComponent extends ListBaseComponent<TicketingAns
   }
   onActionButtonDeleteRow(mode: TicketingAnswerModel = this.tableRowSelected): void {
     if (mode == null || !mode.id || mode.id === 0) {
-      const emessage = this.translate.instant('MESSAGE.no_row_selected_to_delete');
-      this.cmsToastrService.typeErrorSelected(emessage);
+      this.translate.get('MESSAGE.no_row_selected_to_delete').subscribe((str: string) => { this.cmsToastrService.typeErrorSelected(str); });
       return;
     }
     this.tableRowSelected = mode;
@@ -338,7 +337,7 @@ export class TicketingAnswerListComponent extends ListBaseComponent<TicketingAns
     }
     const statist = new Map<string, number>();
     this.translate.get('MESSAGE.Active').subscribe((str: string) => { statist.set(str, 0); });
-    statist.set(this.translate.instant('MESSAGE.All'), 0);
+    this.translate.get('MESSAGE.All').subscribe((str: string) => { statist.set(str, 0); });
     const pName = this.constructor.name + '.ServiceStatist';
     this.translate.get('MESSAGE.Get_the_statist').subscribe((str: string) => { this.loading.Start(pName, str); });
     this.contentService.ServiceGetCount(this.filteModelContent).subscribe(

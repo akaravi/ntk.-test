@@ -274,8 +274,7 @@ export class CoreLocationListComponent extends ListBaseComponent<CoreLocationSer
   }
   onActionButtonDeleteRow(model: CoreLocationModel = this.tableRowSelected): void {
     if (!model || !model.id || model.id === 0) {
-      const emessage = this.translate.instant('MESSAGE.no_row_selected_to_delete');
-      this.cmsToastrService.typeErrorSelected(emessage);
+      this.translate.get('MESSAGE.no_row_selected_to_delete').subscribe((str: string) => { this.cmsToastrService.typeErrorSelected(str); });
       return;
     }
     this.onActionTableRowSelect(model);
@@ -342,7 +341,7 @@ export class CoreLocationListComponent extends ListBaseComponent<CoreLocationSer
     }
     const statist = new Map<string, number>();
     this.translate.get('MESSAGE.Active').subscribe((str: string) => { statist.set(str, 0); });
-    statist.set(this.translate.instant('MESSAGE.All'), 0);
+    this.translate.get('MESSAGE.All').subscribe((str: string) => { statist.set(str, 0); });
     const pName = this.constructor.name + '.ServiceStatist';
     this.translate.get('MESSAGE.Get_the_statist').subscribe((str: string) => { this.loading.Start(pName, str); });
     this.contentService.ServiceGetCount(this.filteModelContent).subscribe({

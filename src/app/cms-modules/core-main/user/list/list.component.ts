@@ -399,7 +399,7 @@ export class CoreUserListComponent extends ListBaseComponent<CoreUserService, Co
     }
     const statist = new Map<string, number>();
     this.translate.get('MESSAGE.Active').subscribe((str: string) => { statist.set(str, 0); });
-    statist.set(this.translate.instant('MESSAGE.All'), 0);
+    this.translate.get('MESSAGE.All').subscribe((str: string) => { statist.set(str, 0); });
     const pName = this.constructor.name + '.ServiceStatist';
     this.translate.get('MESSAGE.Get_the_statist').subscribe((str: string) => { this.loading.Start(pName, str); });
     this.coreUserService.ServiceGetCount(this.filteModelContent).subscribe({
