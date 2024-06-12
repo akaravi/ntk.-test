@@ -245,8 +245,7 @@ export class CoreSiteListComponent extends ListBaseComponent<CoreSiteService, Co
   onActionButtonModuleListRow(model: CoreSiteModel = this.tableRowSelected): void {
     if (!model || !model.id || model.id === 0) {
 
-      const message = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow');
-      this.cmsToastrService.typeErrorSelected(message);
+      this.translate.get('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow').subscribe((str: string) => { this.cmsToastrService.typeErrorSelected(str); });
       return;
     }
     this.onActionTableRowSelect(model);
@@ -255,8 +254,7 @@ export class CoreSiteListComponent extends ListBaseComponent<CoreSiteService, Co
   onActionButtonLoginToRow(model: CoreSiteModel = this.tableRowSelected): void {
     if (!model || !model.id || model.id === 0) {
 
-      const message = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow');
-      this.cmsToastrService.typeErrorSelected(message);
+      this.translate.get('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow').subscribe((str: string) => { this.cmsToastrService.typeErrorSelected(str); });
       return;
     }
     this.onActionTableRowSelect(model);
@@ -283,8 +281,7 @@ export class CoreSiteListComponent extends ListBaseComponent<CoreSiteService, Co
   }
   onActionButtonDomainAliasListRow(model: CoreSiteModel = this.tableRowSelected): void {
     if (!model || !model.id || model.id === 0) {
-      const message = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow');
-      this.cmsToastrService.typeErrorSelected(message);
+      this.translate.get('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow').subscribe((str: string) => { this.cmsToastrService.typeErrorSelected(str); });
       return;
     }
     this.onActionTableRowSelect(model);
@@ -292,8 +289,7 @@ export class CoreSiteListComponent extends ListBaseComponent<CoreSiteService, Co
   }
   onActionButtonUserListRow(model: CoreSiteModel = this.tableRowSelected): void {
     if (!model || !model.id || model.id === 0) {
-      const message = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow');
-      this.cmsToastrService.typeErrorSelected(message);
+      this.translate.get('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow').subscribe((str: string) => { this.cmsToastrService.typeErrorSelected(str); });
       return;
     }
     this.onActionTableRowSelect(model);
@@ -301,8 +297,7 @@ export class CoreSiteListComponent extends ListBaseComponent<CoreSiteService, Co
   }
   onActionButtonDeviceListRow(model: CoreSiteModel = this.tableRowSelected): void {
     if (!model || !model.id || model.id === 0) {
-      const message = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow');
-      this.cmsToastrService.typeErrorSelected(message);
+      this.translate.get('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow').subscribe((str: string) => { this.cmsToastrService.typeErrorSelected(str); });
       return;
     }
     this.onActionTableRowSelect(model);
@@ -311,8 +306,7 @@ export class CoreSiteListComponent extends ListBaseComponent<CoreSiteService, Co
   }
   onActionButtonResller(model: CoreSiteModel = this.tableRowSelected): void {
     if (!model || !model.id || model.id === 0) {
-      const message = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow');
-      this.cmsToastrService.typeErrorSelected(message);
+      this.translate.get('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow').subscribe((str: string) => { this.cmsToastrService.typeErrorSelected(str); });
       return;
     }
     this.onActionTableRowSelect(model);
@@ -322,8 +316,7 @@ export class CoreSiteListComponent extends ListBaseComponent<CoreSiteService, Co
   onActionButtonModuleSiteInfo(model: CoreSiteModel = this.tableRowSelected): void {
 
     if (!model || !model.id || model.id === 0) {
-      const message = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow');
-      this.cmsToastrService.typeErrorSelected(message);
+      this.translate.get('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow').subscribe((str: string) => { this.cmsToastrService.typeErrorSelected(str); });
       return;
     }
     this.onActionTableRowSelect(model);
@@ -359,8 +352,7 @@ export class CoreSiteListComponent extends ListBaseComponent<CoreSiteService, Co
   onActionButtonModuleSiteOptimaze(model: CoreSiteModel = this.tableRowSelected): void {
 
     if (!model || !model.id || model.id === 0) {
-      const message = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow');
-      this.cmsToastrService.typeErrorSelected(message);
+      this.translate.get('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow').subscribe((str: string) => { this.cmsToastrService.typeErrorSelected(str); });
       return;
     }
     this.onActionTableRowSelect(model);

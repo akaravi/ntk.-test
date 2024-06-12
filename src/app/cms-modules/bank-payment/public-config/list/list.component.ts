@@ -329,8 +329,7 @@ export class BankPaymentPublicConfigListComponent extends ListBaseComponent<Bank
   }
   onActionButtonPrivateList(model: BankPaymentPublicConfigModel = this.tableRowSelected): void {
     if (!model || !model.id || model.id === 0) {
-      const message = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow');
-      this.cmsToastrService.typeErrorSelected(message);
+      this.translate.get('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow').subscribe((str: string) => { this.cmsToastrService.typeErrorSelected(str); });
       return;
     }
     this.onActionTableRowSelect(model);

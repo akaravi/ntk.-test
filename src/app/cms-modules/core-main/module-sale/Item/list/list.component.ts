@@ -323,8 +323,7 @@ export class CoreModuleSaleItemListComponent extends ListBaseComponent<CoreModul
 
   onActionButtonGoToModuleSaleItemList(model: CoreModuleSaleItemModel = this.tableRowSelected): void {
     if (!model || !model.id || model.id === 0) {
-      const message = this.translate.instant('MESSAGE.no_row_selected_to_display');
-      this.cmsToastrService.typeErrorSelected(message);
+      this.translate.get('MESSAGE.no_row_selected_to_display').subscribe((str: string) => { this.cmsToastrService.typeErrorSelected(str); });
       return;
     }
     this.onActionTableRowSelect(model);

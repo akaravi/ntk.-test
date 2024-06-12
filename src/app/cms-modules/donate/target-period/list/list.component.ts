@@ -192,8 +192,7 @@ export class DonateTargetPeriodListComponent extends ListBaseComponent<DonateTar
       this.requestLinkTargeId == null ||
       this.requestLinkTargeId === 0
     ) {
-      const message = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorCategoryNotSelected');
-      this.cmsToastrService.typeErrorSelected(message);
+      this.translate.get('ERRORMESSAGE.MESSAGE.typeErrorCategoryNotSelected').subscribe((str: string) => { this.cmsToastrService.typeErrorSelected(str); });
       return;
     }
     if (
@@ -356,8 +355,7 @@ export class DonateTargetPeriodListComponent extends ListBaseComponent<DonateTar
 
   onActionButtonTransactionsRow(model: DonateTargetPeriodModel = this.tableRowSelected): void {
     if (!model || !model.id || model.id === 0) {
-      const message = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow');
-      this.cmsToastrService.typeErrorSelected(message);
+      this.translate.get('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow').subscribe((str: string) => { this.cmsToastrService.typeErrorSelected(str); });
       return;
     }
     this.router.navigate(['/donate/transaction/LinkTargetPeriodId/', model.id]);

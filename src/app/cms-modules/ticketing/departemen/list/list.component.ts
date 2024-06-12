@@ -251,8 +251,7 @@ export class TicketingDepartemenListComponent extends ListBaseComponent<Ticketin
   }
   onActionButtonFaqList(model: TicketingDepartemenModel = this.tableRowSelected): void {
     if (!model || !model.id || model.id === 0) {
-      const message = this.translate.instant('MESSAGE.no_row_selected_to_display');
-      this.cmsToastrService.typeErrorSelected(message);
+      this.translate.get('MESSAGE.no_row_selected_to_display').subscribe((str: string) => { this.cmsToastrService.typeErrorSelected(str); });
       return;
     }
     this.onActionTableRowSelect(model);
@@ -261,8 +260,7 @@ export class TicketingDepartemenListComponent extends ListBaseComponent<Ticketin
   }
   onActionButtonTemplateList(model: TicketingDepartemenModel = this.tableRowSelected): void {
     if (!model || !model.id || model.id === 0) {
-      const message = this.translate.instant('MESSAGE.no_row_selected_to_display');
-      this.cmsToastrService.typeErrorSelected(message);
+      this.translate.get('MESSAGE.no_row_selected_to_display').subscribe((str: string) => { this.cmsToastrService.typeErrorSelected(str); });
       return;
     }
     this.onActionTableRowSelect(model);
@@ -271,8 +269,7 @@ export class TicketingDepartemenListComponent extends ListBaseComponent<Ticketin
   }
   onActionButtonLogList(model: TicketingDepartemenModel = this.tableRowSelected): void {
     if (!model || !model.id || model.id === 0) {
-      const message = this.translate.instant('MESSAGE.no_row_selected_to_display');
-      this.cmsToastrService.typeErrorSelected(message);
+      this.translate.get('MESSAGE.no_row_selected_to_display').subscribe((str: string) => { this.cmsToastrService.typeErrorSelected(str); });
       return;
     }
     this.onActionTableRowSelect(model);
@@ -281,8 +278,7 @@ export class TicketingDepartemenListComponent extends ListBaseComponent<Ticketin
   }
   onActionButtonTaskList(model: TicketingDepartemenModel = this.tableRowSelected): void {
     if (!model || !model.id || model.id === 0) {
-      const message = this.translate.instant('MESSAGE.no_row_selected_to_display');
-      this.cmsToastrService.typeErrorSelected(message);
+      this.translate.get('MESSAGE.no_row_selected_to_display').subscribe((str: string) => { this.cmsToastrService.typeErrorSelected(str); });
       return;
     }
     this.onActionTableRowSelect(model);

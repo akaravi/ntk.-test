@@ -297,8 +297,7 @@ export class WebDesignerMainPageListGridComponent extends ListBaseComponent<WebD
   }
   onActionButtonGoToSiteCategoryList(model: WebDesignerMainPageModel = this.tableRowSelected): void {
     if (!model || !model.id || model.id.length === 0) {
-      const message = this.translate.instant('MESSAGE.no_row_selected_to_display');
-      this.cmsToastrService.typeErrorSelected(message);
+      this.translate.get('MESSAGE.no_row_selected_to_display').subscribe((str: string) => { this.cmsToastrService.typeErrorSelected(str); });
       return;
     }
     this.onActionTableRowSelect(model);
@@ -350,8 +349,7 @@ export class WebDesignerMainPageListGridComponent extends ListBaseComponent<WebD
   }
   onActionButtonHtmlEditor(model: WebDesignerMainPageModel = this.tableRowSelected): void {
     if (!model || !model.id || model.id.length === 0) {
-      const message = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow');
-      this.cmsToastrService.typeErrorSelected(message);
+      this.translate.get('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow').subscribe((str: string) => { this.cmsToastrService.typeErrorSelected(str); });
       return;
     }
     this.onActionTableRowSelect(model);
@@ -368,8 +366,7 @@ export class WebDesignerMainPageListGridComponent extends ListBaseComponent<WebD
   }
   onActionButtonHtmlView(model: WebDesignerMainPageModel = this.tableRowSelected): void {
     if (!model || !model.id || model.id.length === 0) {
-      const message = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow');
-      this.cmsToastrService.typeErrorSelected(message);
+      this.translate.get('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow').subscribe((str: string) => { this.cmsToastrService.typeErrorSelected(str); });
       return;
     }
     this.onActionTableRowSelect(model);
@@ -385,8 +382,7 @@ export class WebDesignerMainPageListGridComponent extends ListBaseComponent<WebD
   }
   onActionButtonSiteRouteView(model: WebDesignerMainPageModel = this.tableRowSelected): void {
     if (!model || !model.id || model.id.length === 0) {
-      const message = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow');
-      this.cmsToastrService.typeErrorSelected(message);
+      this.translate.get('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow').subscribe((str: string) => { this.cmsToastrService.typeErrorSelected(str); });
       return;
     }
     this.onActionTableRowSelect(model);
@@ -415,8 +411,7 @@ export class WebDesignerMainPageListGridComponent extends ListBaseComponent<WebD
   }
   onActionButtonHtmlViewWithOutParent(model: WebDesignerMainPageModel = this.tableRowSelected): void {
     if (!model || !model.id || model.id.length === 0) {
-      const message = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow');
-      this.cmsToastrService.typeErrorSelected(message);
+      this.translate.get('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow').subscribe((str: string) => { this.cmsToastrService.typeErrorSelected(str); });
       return;
     }
     this.onActionTableRowSelect(model);

@@ -360,8 +360,7 @@ export class ApplicationAppListComponent extends ListBaseComponent<ApplicationAp
   }
   onActionButtonUploadApp(mode: ApplicationAppModel = this.tableRowSelected): void {
     if (mode == null || !mode.id || mode.id === 0) {
-      const message = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow');
-      this.cmsToastrService.typeErrorSelected(message);
+      this.translate.get('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow').subscribe((str: string) => { this.cmsToastrService.typeErrorSelected(str); });
       return;
     }
     var panelClass = '';
@@ -385,8 +384,7 @@ export class ApplicationAppListComponent extends ListBaseComponent<ApplicationAp
   }
   onActionButtonUploadUpdate(mode: ApplicationAppModel = this.tableRowSelected): void {
     if (mode == null || !mode.id || mode.id === 0) {
-      const message = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow');
-      this.cmsToastrService.typeErrorSelected(message);
+      this.translate.get('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow').subscribe((str: string) => { this.cmsToastrService.typeErrorSelected(str); });
       return;
     }
     var panelClass = '';
@@ -410,8 +408,7 @@ export class ApplicationAppListComponent extends ListBaseComponent<ApplicationAp
   }
   onActionButtonBuildApp(mode: ApplicationAppModel = this.tableRowSelected): void {
     if (mode == null || !mode.id || mode.id === 0) {
-      const message = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow');
-      this.cmsToastrService.typeErrorSelected(message);
+      this.translate.get('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow').subscribe((str: string) => { this.cmsToastrService.typeErrorSelected(str); });
       return;
     }
     this.onActionTableRowSelect(mode);
@@ -436,8 +433,7 @@ export class ApplicationAppListComponent extends ListBaseComponent<ApplicationAp
   }
   onActionButtonDownloadApp(mode: ApplicationAppModel = this.tableRowSelected): void {
     if (mode == null || !mode.id || mode.id === 0) {
-      const message = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow');
-      this.cmsToastrService.typeErrorSelected(message);
+      this.translate.get('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow').subscribe((str: string) => { this.cmsToastrService.typeErrorSelected(str); });
       return;
     }
     var panelClass = '';
@@ -493,8 +489,7 @@ export class ApplicationAppListComponent extends ListBaseComponent<ApplicationAp
   }
   onActionButtonMemberList(mode: ApplicationAppModel = this.tableRowSelected): void {
     if (mode == null || !mode.id || mode.id === 0) {
-      const message = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow');
-      this.cmsToastrService.typeErrorSelected(message);
+      this.translate.get('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow').subscribe((str: string) => { this.cmsToastrService.typeErrorSelected(str); });
       return;
     }
     this.onActionTableRowSelect(mode);
@@ -502,8 +497,7 @@ export class ApplicationAppListComponent extends ListBaseComponent<ApplicationAp
   }
   onActionButtonIntroList(mode: ApplicationAppModel = this.tableRowSelected): void {
     if (mode == null || !mode.id || mode.id === 0) {
-      const message = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow');
-      this.cmsToastrService.typeErrorSelected(message);
+      this.translate.get('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow').subscribe((str: string) => { this.cmsToastrService.typeErrorSelected(str); });
       return;
     }
     this.onActionTableRowSelect(mode);

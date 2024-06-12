@@ -337,8 +337,7 @@ export class CoreUserClaimContentListComponent extends ListBaseComponent<CoreUse
 
   onActionButtonGoToUserClaimList(model: CoreUserClaimContentModel = this.tableRowSelected): void {
     if (!model || !model.id || model.id === 0) {
-      const message = this.translate.instant('MESSAGE.no_row_selected_to_display');
-      this.cmsToastrService.typeErrorSelected(message);
+      this.translate.get('MESSAGE.no_row_selected_to_display').subscribe((str: string) => { this.cmsToastrService.typeErrorSelected(str); });
       return;
     }
     this.onActionTableRowSelect(model);
@@ -398,8 +397,7 @@ export class CoreUserClaimContentListComponent extends ListBaseComponent<CoreUse
   onActionButtonModuleList(model: CoreUserClaimContentModel = this.tableRowSelected): void {
     if (!model || !model.id || model.id === 0) {
 
-      const message = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow');
-      this.cmsToastrService.typeErrorSelected(message);
+      this.translate.get('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow').subscribe((str: string) => { this.cmsToastrService.typeErrorSelected(str); });
       return;
     }
     this.onActionTableRowSelect(model);
@@ -419,8 +417,7 @@ export class CoreUserClaimContentListComponent extends ListBaseComponent<CoreUse
   onActionButtonSiteList(model: CoreUserClaimContentModel = this.tableRowSelected): void {
     if (!model || !model.id || model.id === 0) {
 
-      const message = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow');
-      this.cmsToastrService.typeErrorSelected(message);
+      this.translate.get('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow').subscribe((str: string) => { this.cmsToastrService.typeErrorSelected(str); });
       return;
     }
     this.onActionTableRowSelect(model);

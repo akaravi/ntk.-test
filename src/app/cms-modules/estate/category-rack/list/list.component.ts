@@ -267,8 +267,7 @@ export class EstateCategoryRackListComponent extends ListBaseComponent<EstateCat
   }
   onActionButtonContentDetailList(model: EstateCategoryRackModel = this.tableRowSelected, event?: MouseEvent): void {
     if (!model || !model.id || model.id.length === 0) {
-      const message = this.translate.instant('MESSAGE.no_row_selected_to_display');
-      this.cmsToastrService.typeErrorSelected(message);
+      this.translate.get('MESSAGE.no_row_selected_to_display').subscribe((str: string) => { this.cmsToastrService.typeErrorSelected(str); });
       return;
     }
     this.onActionTableRowSelect(model);
@@ -282,8 +281,7 @@ export class EstateCategoryRackListComponent extends ListBaseComponent<EstateCat
   }
   onActionButtonContentList(model: EstateCategoryRackModel = this.tableRowSelected, event?: MouseEvent): void {
     if (!model || !model.id || model.id.length === 0) {
-      const message = this.translate.instant('MESSAGE.no_row_selected_to_display');
-      this.cmsToastrService.typeErrorSelected(message);
+      this.translate.get('MESSAGE.no_row_selected_to_display').subscribe((str: string) => { this.cmsToastrService.typeErrorSelected(str); });
       return;
     }
     this.onActionTableRowSelect(model);

@@ -80,7 +80,7 @@ export class NewsCategoryTreeComponent implements OnInit, OnDestroy {
     this.filterModel.rowPerPage = 200;
     this.filterModel.accessLoad = true;
     const pName = this.constructor.name + '.ServiceGetAll';
-    this.translate.get('MESSAGE.get_categories').subscribe((str: string) => {this.loading.Start(pName, str);});
+    this.translate.get('MESSAGE.get_categories').subscribe((str: string) => { this.loading.Start(pName, str); });
     this.categoryService.ServiceGetAll(this.filterModel).subscribe({
       next: (ret) => {
         if (ret.isSuccess) {
@@ -133,8 +133,7 @@ export class NewsCategoryTreeComponent implements OnInit, OnDestroy {
       id = this.dataModelSelect.id;
     }
     if (id === 0) {
-      const message = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorCategoryNotSelected');
-      this.cmsToastrService.typeErrorSelected(message);
+      this.translate.get('ERRORMESSAGE.MESSAGE.typeErrorCategoryNotSelected').subscribe((str: string) => { this.cmsToastrService.typeErrorSelected(str); });
       return;
     }
     var panelClass = '';
@@ -161,8 +160,7 @@ export class NewsCategoryTreeComponent implements OnInit, OnDestroy {
       id = this.dataModelSelect.id;
     }
     if (id === 0) {
-      const message = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorCategoryNotSelected');
-      this.cmsToastrService.typeErrorSelected(message);
+      this.translate.get('ERRORMESSAGE.MESSAGE.typeErrorCategoryNotSelected').subscribe((str: string) => { this.cmsToastrService.typeErrorSelected(str); });
       return;
     }
     var panelClass = '';

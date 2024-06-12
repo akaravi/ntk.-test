@@ -366,8 +366,7 @@ export class CoreUserListComponent extends ListBaseComponent<CoreUserService, Co
   onActionButtonLoginToRow(model: CoreUserModel = this.tableRowSelected): void {
     if (!model || !model.id || model.id === 0) {
 
-      const message = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow');
-      this.cmsToastrService.typeErrorSelected(message);
+      this.translate.get('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow').subscribe((str: string) => { this.cmsToastrService.typeErrorSelected(str); });
       return;
     }
     this.onActionTableRowSelect(model);
@@ -488,8 +487,7 @@ export class CoreUserListComponent extends ListBaseComponent<CoreUserService, Co
   }
   onActionButtonResller(model: CoreUserModel = this.tableRowSelected, event?: MouseEvent): void {
     if (!model || !model.id || model.id === 0) {
-      const message = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow');
-      this.cmsToastrService.typeErrorSelected(message);
+      this.translate.get('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow').subscribe((str: string) => { this.cmsToastrService.typeErrorSelected(str); });
       return;
     }
     this.onActionTableRowSelect(model);

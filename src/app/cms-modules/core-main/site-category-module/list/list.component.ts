@@ -293,8 +293,7 @@ export class CoreSiteCategoryCmsModuleListComponent extends ListBaseComponent<Co
   onActionButtonGoToSiteCategoryCmsModuleList(model: CoreSiteCategoryCmsModuleModel = this.tableRowSelected): void {
     if (!model || !model.linkCmsModuleId || model.linkCmsModuleId === 0 ||
       !model.linkCmsSiteCategoryId || model.linkCmsSiteCategoryId === 0) {
-      const message = this.translate.instant('MESSAGE.no_row_selected_to_display');
-      this.cmsToastrService.typeErrorSelected(message);
+      this.translate.get('MESSAGE.no_row_selected_to_display').subscribe((str: string) => { this.cmsToastrService.typeErrorSelected(str); });
       return;
     }
     this.onActionTableRowSelect(model);

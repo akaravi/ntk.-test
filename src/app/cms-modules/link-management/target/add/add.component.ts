@@ -269,8 +269,7 @@ export class LinkManagementTargetAddComponent extends AddBaseComponent<LinkManag
   onActionCategorySelectChecked(model: number): void {
 
     if (!model || model <= 0) {
-      const message = this.translate.instant('MESSAGE.category_of_information_is_not_clear');
-      this.cmsToastrService.typeErrorSelected(message);
+      this.translate.get('MESSAGE.category_of_information_is_not_clear').subscribe((str: string) => { this.cmsToastrService.typeErrorSelected(str); });
       return;
     }
     const entity = new LinkManagementTargetCategoryModel();
@@ -299,8 +298,7 @@ export class LinkManagementTargetAddComponent extends AddBaseComponent<LinkManag
   onActionCategorySelectDisChecked(model: number): void {
 
     if (!model || model <= 0) {
-      const message = this.translate.instant('MESSAGE.category_of_information_is_not_clear');
-      this.cmsToastrService.typeErrorSelected(message);
+      this.translate.get('MESSAGE.category_of_information_is_not_clear').subscribe((str: string) => { this.cmsToastrService.typeErrorSelected(str); });
       return;
     }
     const entity = new LinkManagementTargetCategoryModel();

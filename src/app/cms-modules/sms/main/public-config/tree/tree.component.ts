@@ -140,8 +140,7 @@ export class SmsMainApiPathPublicConfigTreeComponent implements OnInit, OnDestro
       id = this.dataModelSelect.id;
     }
     if (id.length === 0) {
-      const message = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorCategoryNotSelected');
-      this.cmsToastrService.typeErrorSelected(message);
+      this.translate.get('ERRORMESSAGE.MESSAGE.typeErrorCategoryNotSelected').subscribe((str: string) => { this.cmsToastrService.typeErrorSelected(str); });
       return;
     }
     var panelClass = '';

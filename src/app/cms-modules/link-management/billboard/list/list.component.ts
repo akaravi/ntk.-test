@@ -196,8 +196,7 @@ export class LinkManagementBillboardListComponent extends ListBaseComponent<Link
       this.categoryPatternModelSelected == null ||
       this.categoryPatternModelSelected.id === 0
     ) {
-      const message = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorCategoryNotSelected');
-      this.cmsToastrService.typeErrorSelected(message);
+      this.translate.get('ERRORMESSAGE.MESSAGE.typeErrorCategoryNotSelected').subscribe((str: string) => { this.cmsToastrService.typeErrorSelected(str); });
       return;
     }
     if (
@@ -326,8 +325,7 @@ export class LinkManagementBillboardListComponent extends ListBaseComponent<Link
 
   onActionButtonLog(model: LinkManagementBillboardModel = this.tableRowSelected): void {
     if (!model || !model.id || model.id === 0) {
-      const message = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow');
-      this.cmsToastrService.typeErrorSelected(message);
+      this.translate.get('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow').subscribe((str: string) => { this.cmsToastrService.typeErrorSelected(str); });
       return;
     }
     this.router.navigate(['/linkmanagement/target-billboard-log/LinkManagementBillboardId', model.id]);

@@ -104,8 +104,7 @@ export class DataProviderPlanSourceAddComponent extends AddBaseComponent<DataPro
   }
   onActionSelectorSelect(model: DataProviderPlanCategoryModel | null): void {
     if (!model || model.id <= 0) {
-      const message = this.translate.instant('MESSAGE.category_of_information_is_not_clear');
-      this.cmsToastrService.typeErrorSelected(message);
+      this.translate.get('MESSAGE.category_of_information_is_not_clear').subscribe((str: string) => { this.cmsToastrService.typeErrorSelected(str); });
       return;
     }
     this.dataModel.linkPlanId = model.id;

@@ -324,8 +324,7 @@ export class EstatePropertyAddMobileComponent implements OnInit {
   }
   onActionSelectorSelectUsage(model: EstatePropertyTypeUsageModel | null): void {
     if (!model || !model.id || model.id.length <= 0) {
-      const message = this.translate.instant('MESSAGE.category_of_information_is_not_clear');
-      this.cmsToastrService.typeErrorSelected(message);
+      this.translate.get('MESSAGE.category_of_information_is_not_clear').subscribe((str: string) => { this.cmsToastrService.typeErrorSelected(str); });
       return;
     }
     this.dataModel.linkPropertyTypeUsageId = model.id;
@@ -345,8 +344,7 @@ export class EstatePropertyAddMobileComponent implements OnInit {
   }
   onActionSelectorSelectLanduse(model: EstatePropertyTypeLanduseModel | null): void {
     if (!model || !model.id || model.id.length <= 0) {
-      const message = this.translate.instant('MESSAGE.category_of_information_is_not_clear');
-      this.cmsToastrService.typeErrorSelected(message);
+      this.translate.get('MESSAGE.category_of_information_is_not_clear').subscribe((str: string) => { this.cmsToastrService.typeErrorSelected(str); });
       return;
     }
     this.PropertyTypeSelected = model;

@@ -394,8 +394,7 @@ export class SmsLogInBoxListComponent extends ListBaseComponent<SmsLogInBoxServi
   onActionButtonSuperSedersList(model: SmsLogInBoxModel = this.tableRowSelected): void {
     if (!model || !model.id || model.id.length === 0) {
 
-      const message = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow');
-      this.cmsToastrService.typeErrorSelected(message);
+      this.translate.get('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow').subscribe((str: string) => { this.cmsToastrService.typeErrorSelected(str); });
       return;
     }
     this.onActionTableRowSelect(model);
@@ -413,8 +412,7 @@ export class SmsLogInBoxListComponent extends ListBaseComponent<SmsLogInBoxServi
   onActionButtonMustSuperSedersList(model: SmsLogInBoxModel = this.tableRowSelected): void {
     if (!model || !model.id || model.id.length === 0) {
 
-      const message = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow');
-      this.cmsToastrService.typeErrorSelected(message);
+      this.translate.get('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow').subscribe((str: string) => { this.cmsToastrService.typeErrorSelected(str); });
       return;
     }
     this.onActionTableRowSelect(model);
@@ -432,8 +430,7 @@ export class SmsLogInBoxListComponent extends ListBaseComponent<SmsLogInBoxServi
   onActionButtonNumbersList(model: SmsLogInBoxModel = this.tableRowSelected): void {
     if (!model || !model.id || model.id.length === 0) {
 
-      const message = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow');
-      this.cmsToastrService.typeErrorSelected(message);
+      this.translate.get('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow').subscribe((str: string) => { this.cmsToastrService.typeErrorSelected(str); });
       return;
     }
     this.onActionTableRowSelect(model);
@@ -451,8 +448,7 @@ export class SmsLogInBoxListComponent extends ListBaseComponent<SmsLogInBoxServi
   onActionButtonPermitionList(model: SmsLogInBoxModel = this.tableRowSelected): void {
     if (!model || !model.id || model.id.length === 0) {
 
-      const message = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow');
-      this.cmsToastrService.typeErrorSelected(message);
+      this.translate.get('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow').subscribe((str: string) => { this.cmsToastrService.typeErrorSelected(str); });
       return;
     }
     this.onActionTableRowSelect(model);
@@ -470,8 +466,7 @@ export class SmsLogInBoxListComponent extends ListBaseComponent<SmsLogInBoxServi
   onActionButtonPriceServicesList(model: SmsLogInBoxModel = this.tableRowSelected): void {
     if (!model || !model.id || model.id.length === 0) {
 
-      const message = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow');
-      this.cmsToastrService.typeErrorSelected(message);
+      this.translate.get('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow').subscribe((str: string) => { this.cmsToastrService.typeErrorSelected(str); });
       return;
     }
     this.onActionTableRowSelect(model);
@@ -493,8 +488,7 @@ export class SmsLogInBoxListComponent extends ListBaseComponent<SmsLogInBoxServi
   onActionButtonSendMessage(model: SmsLogInBoxModel = this.tableRowSelected): void {
     if (!model || !model.id || model.id.length === 0) {
 
-      const message = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow');
-      this.cmsToastrService.typeErrorSelected(message);
+      this.translate.get('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow').subscribe((str: string) => { this.cmsToastrService.typeErrorSelected(str); });
       return;
     }
     this.onActionTableRowSelect(model);

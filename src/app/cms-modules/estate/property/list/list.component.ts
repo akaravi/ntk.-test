@@ -573,8 +573,7 @@ export class EstatePropertyListComponent extends ListBaseComponent<EstatePropert
       (this.requestLinkPropertyTypeLanduseId == null ||
         this.requestLinkPropertyTypeLanduseId.length === 0)
     ) {
-      const message = this.translate.instant('MESSAGE.Content_not_selected');
-      this.cmsToastrService.typeErrorSelected(message);
+      this.translate.get('MESSAGE.Content_not_selected').subscribe((str: string) => { this.cmsToastrService.typeErrorSelected(str); });
 
       return;
     }

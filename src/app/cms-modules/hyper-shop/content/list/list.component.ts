@@ -180,8 +180,7 @@ export class HyperShopContentListComponent extends ListBaseComponent<HyperShopCo
         this.requestPareintId == null ||
         this.requestPareintId.length === 0)
     ) {
-      const message = this.translate.instant('MESSAGE.Content_not_selected');
-      this.cmsToastrService.typeErrorSelected(message);
+      this.translate.get('MESSAGE.Content_not_selected').subscribe((str: string) => { this.cmsToastrService.typeErrorSelected(str); });
 
       return;
     }

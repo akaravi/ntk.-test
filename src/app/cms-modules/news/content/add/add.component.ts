@@ -264,8 +264,7 @@ export class NewsContentAddComponent extends AddBaseComponent<NewsContentService
   }
   onActionSelectorSelect(model: NewsCategoryModel | null): void {
     if (!model || model.id <= 0) {
-      const message = this.translate.instant('MESSAGE.category_of_information_is_not_clear');
-      this.cmsToastrService.typeErrorSelected(message);
+      this.translate.get('MESSAGE.category_of_information_is_not_clear').subscribe((str: string) => { this.cmsToastrService.typeErrorSelected(str); });
       return;
     }
     this.dataModel.linkCategoryId = model.id;
@@ -354,8 +353,7 @@ export class NewsContentAddComponent extends AddBaseComponent<NewsContentService
 
   onActionSelectorLocation(model: CoreLocationModel | null): void {
     if (!model || !model.id || model.id <= 0) {
-      const message = this.translate.instant('MESSAGE.Information_area_deleted');
-      this.cmsToastrService.typeWarningSelected(message);
+      this.translate.get('MESSAGE.Information_area_deleted').subscribe((str: string) => { this.cmsToastrService.typeWarningSelected(str); });
       this.dataModel.linkLocationId = null;
       return;
     }

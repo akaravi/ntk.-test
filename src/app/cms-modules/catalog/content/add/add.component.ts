@@ -258,8 +258,7 @@ export class CatalogContentAddComponent extends AddBaseComponent<CatalogContentS
 
   onActionSelectorLocation(model: CoreLocationModel | null): void {
     if (!model || !model.id || model.id <= 0) {
-      const message = this.translate.instant('MESSAGE.Information_area_deleted');
-      this.cmsToastrService.typeWarningSelected(message);
+      this.translate.get('MESSAGE.Information_area_deleted').subscribe((str: string) => { this.cmsToastrService.typeWarningSelected(str); });
       this.dataModel.linkLocationId = null;
       return;
     }

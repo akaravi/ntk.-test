@@ -398,8 +398,7 @@ export class SmsMainApiPathListComponent extends ListBaseComponent<SmsMainApiPat
   onActionButtonGetBalance(model: SmsMainApiPathModel = this.tableRowSelected): any {
     if (!model || !model.id || model.id.length === 0) {
 
-      const message = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow');
-      this.cmsToastrService.typeErrorSelected(message);
+      this.translate.get('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow').subscribe((str: string) => { this.cmsToastrService.typeErrorSelected(str); });
       return;
     }
     const pName = this.constructor.name + 'GetBalance';
@@ -427,8 +426,7 @@ export class SmsMainApiPathListComponent extends ListBaseComponent<SmsMainApiPat
   onActionButtonSuperSedersList(model: SmsMainApiPathModel = this.tableRowSelected): void {
     if (!model || !model.id || model.id.length === 0) {
 
-      const message = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow');
-      this.cmsToastrService.typeErrorSelected(message);
+      this.translate.get('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow').subscribe((str: string) => { this.cmsToastrService.typeErrorSelected(str); });
       return;
     }
     this.onActionTableRowSelect(model);
@@ -446,8 +444,7 @@ export class SmsMainApiPathListComponent extends ListBaseComponent<SmsMainApiPat
   onActionButtonMustSuperSedersList(model: SmsMainApiPathModel = this.tableRowSelected): void {
     if (!model || !model.id || model.id.length === 0) {
 
-      const message = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow');
-      this.cmsToastrService.typeErrorSelected(message);
+      this.translate.get('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow').subscribe((str: string) => { this.cmsToastrService.typeErrorSelected(str); });
       return;
     }
     this.onActionTableRowSelect(model);
@@ -465,8 +462,7 @@ export class SmsMainApiPathListComponent extends ListBaseComponent<SmsMainApiPat
   onActionButtonNumbersList(model: SmsMainApiPathModel = this.tableRowSelected): void {
     if (!model || !model.id || model.id.length === 0) {
 
-      const message = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow');
-      this.cmsToastrService.typeErrorSelected(message);
+      this.translate.get('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow').subscribe((str: string) => { this.cmsToastrService.typeErrorSelected(str); });
       return;
     }
     this.onActionTableRowSelect(model);
@@ -484,8 +480,7 @@ export class SmsMainApiPathListComponent extends ListBaseComponent<SmsMainApiPat
   onActionButtonPermitionList(model: SmsMainApiPathModel = this.tableRowSelected): void {
     if (!model || !model.id || model.id.length === 0) {
 
-      const message = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow');
-      this.cmsToastrService.typeErrorSelected(message);
+      this.translate.get('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow').subscribe((str: string) => { this.cmsToastrService.typeErrorSelected(str); });
       return;
     }
     this.onActionTableRowSelect(model);
@@ -503,8 +498,7 @@ export class SmsMainApiPathListComponent extends ListBaseComponent<SmsMainApiPat
   onActionButtonOutBoxQueue(model: SmsMainApiPathModel = this.tableRowSelected): void {
     if (!model || !model.id || model.id.length === 0) {
 
-      const message = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow');
-      this.cmsToastrService.typeErrorSelected(message);
+      this.translate.get('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow').subscribe((str: string) => { this.cmsToastrService.typeErrorSelected(str); });
       return;
     }
     this.onActionTableRowSelect(model);
@@ -554,8 +548,7 @@ export class SmsMainApiPathListComponent extends ListBaseComponent<SmsMainApiPat
   onActionButtonPriceServicesList(model: SmsMainApiPathModel = this.tableRowSelected): void {
     if (!model || !model.id || model.id.length === 0) {
 
-      const message = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow');
-      this.cmsToastrService.typeErrorSelected(message);
+      this.translate.get('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow').subscribe((str: string) => { this.cmsToastrService.typeErrorSelected(str); });
       return;
     }
     this.onActionTableRowSelect(model);
@@ -577,8 +570,7 @@ export class SmsMainApiPathListComponent extends ListBaseComponent<SmsMainApiPat
   onActionButtonSendTest(model: SmsMainApiPathModel = this.tableRowSelected): void {
     if (!model || !model.id || model.id.length === 0) {
 
-      const message = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow');
-      this.cmsToastrService.typeErrorSelected(message);
+      this.translate.get('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow').subscribe((str: string) => { this.cmsToastrService.typeErrorSelected(str); });
       return;
     }
     this.onActionTableRowSelect(model);
