@@ -34,7 +34,7 @@
       <!-- LinkApiPathCompanyId Field -->
       <app-sms-apipathcompany-selector (optionChange)="onActionSelectorSelectLinkApiPathCompanyId($event)"
         [(optionLoading)]="loading" [optionSelectForce]="dataModel.linkApiPathCompanyId"
-        [optionPlaceholder]="this.translate.instant('TITLE.Service_Company')">
+        [optionPlaceholder]="'TITLE.Service_Company' | translate">
       </app-sms-apipathcompany-selector>
       <!-- LinkPublicConfigId Field -->
       <app-sms-publicconfig-selector (optionChange)="onActionSelectSource($event)" [(optionLoading)]="loading"

@@ -42,7 +42,7 @@
       <!-- LinkApiNumberId Field -->
       <app-sms-api-number-selector (optionChange)="onActionSelectorSelectLinkApiNumberId($event)"
         [(optionLoading)]="loading" [optionSelectForce]="dataModel.linkApiNumberId"
-        [optionPlaceholder]="this.translate.instant('TITLE.No')">
+        [optionPlaceholder]="'TITLE.No' | translate">
       </app-sms-api-number-selector>
       <!-- HasInherits Field -->
       <div *ngIf="fieldsInfo['hasInherits']?.accessWatchField" class="d-flex mb-3">

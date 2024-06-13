@@ -36,7 +36,7 @@
                                 <app-sms-api-number-selector *ngIf="dataModel.linkApiPathId?.length>0"
                                     [(optionLoading)]="loading" (optionChange)="onActionSelectApiNumber($event)"
                                     [optionSelectForce]="" [optionLinkApiPathId]="dataModel.linkApiPathId"
-                                    [optionPlaceholder]="this.translate.instant('TITLE.sender_number')"
+                                    [optionPlaceholder]="'TITLE.sender_number' | translate "
                                     [optionSelectFirstItem]="true" [optionSelectFirstItemOnChangeApi]="true">
                                 </app-sms-api-number-selector>
                                 <mat-action-row>

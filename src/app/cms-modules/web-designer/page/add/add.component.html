@@ -37,19 +37,19 @@
             <app-webdesigner-pagedependency-selector (optionChange)="onActionSelectDependency($event)"
                 [(optionLoading)]="loading" [optionDisabled]="!fieldsInfo['linkPageDependencyGuId']?.accessAddField"
                 [optionSelectForce]="dataModel.linkPageDependencyGuId"
-                [optionPlaceholder]="this.translate.instant('TITLE.Show_place')">
+                [optionPlaceholder]="'TITLE.Show_place' | translate">
             </app-webdesigner-pagedependency-selector>
             <app-webdesigner-pagetemplate-selector (optionChange)="onActionSelectTemplate($event)"
                 [(optionLoading)]="loading" [optionDisabled]="!fieldsInfo['linkPageTemplateGuId']?.accessAddField"
                 [optionSelectForce]="dataModel.linkPageTemplateGuId"
-                [optionPlaceholder]="this.translate.instant('TITLE.Page_template')" [optionSelectFirstItem]="true">
+                [optionPlaceholder]="'TITLE.Page_template' | translate" [optionSelectFirstItem]="true">
             </app-webdesigner-pagetemplate-selector>
             <app-webdesigner-page-selector (optionChange)="onActionSelectParent($event)" [(optionLoading)]="loading"
                 *ngIf="dataModel.linkPageTemplateGuId && dataModel.linkPageTemplateGuId.length>0"
                 [optionDisabled]="!fieldsInfo['linkPageParentGuId']?.accessAddField"
                 [optionSelectForce]="dataModel.linkPageParentGuId" [optionMasterPage]="true"
                 [optionMasterTemplateId]="dataModel.linkPageTemplateGuId"
-                [optionPlaceholder]="this.translate.instant('TITLE.parent_page')">
+                [optionPlaceholder]="'TITLE.parent_page' | translate">
             </app-webdesigner-page-selector>
             <!-- PageDependencyIsDefaultPage Field -->
             <div *ngIf="fieldsInfo['pageDependencyIsDefaultPage']?.accessWatchField" class="d-flex mb-3">

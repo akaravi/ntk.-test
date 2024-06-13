@@ -68,9 +68,8 @@
                         <mat-datepicker touchUi #ExpireDate></mat-datepicker>
                     </div>
                     <hr class="pb-5" />
-                    <angular-editor [placeholder]="this.translate.instant('TITLE.Enter_Text')"
-                        [config]="publicHelper.editorConfig" id="main" [(ngModel)]="dataModel.body"
-                        name="dataModel.body">
+                    <angular-editor [placeholder]="'TITLE.Enter_Text' | translate" [config]="publicHelper.editorConfig"
+                        id="main" [(ngModel)]="dataModel.body" name="dataModel.body">
                     </angular-editor>
                     <div *ngIf="formInfo.formSubmitAllow  && !loading?.display" class="form-actions">
                         <button type="button"

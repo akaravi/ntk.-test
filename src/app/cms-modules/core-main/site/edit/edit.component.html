@@ -894,7 +894,7 @@
             </div>
           </div>
           <div class="mb-12">
-            <angular-editor [placeholder]="this.translate.instant('TITLE.Enter_the_user_privacy_text')"
+            <angular-editor [placeholder]="'TITLE.Enter_the_user_privacy_text' | translate"
               [config]="publicHelper.editorConfigFull" id="main"
               *ngIf="fieldsInfo['aboutUsPrivacyPolicyHtmlBody']?.accessWatchField"
               [disabled]="!fieldsInfo['aboutUsPrivacyPolicyHtmlBody']?.accessEditField"
@@ -959,13 +959,13 @@
           <app-cms-user-selector [optionDisabled]="!fieldsInfo['linkResellerUserId']?.accessEditField"
             [optionSelectForce]="dataModel.linkResellerUserId" [(optionLoading)]="loading"
             (optionChange)="onActionSelectorLinkResellerUserIdSelect($event)"
-            [optionPlaceholder]="this.translate.instant('TITLE.Representative_User')">
+            [optionPlaceholder]="'TITLE.Representative_User' | translate ">
           </app-cms-user-selector>
           <!-- LinkResellerSiteId Field -->
           <app-cms-site-selector [optionDisabled]="!fieldsInfo['linkResellerSiteId']?.accessEditField"
             [optionSelectForce]="dataModel.linkResellerSiteId" [(optionLoading)]="loading"
             (optionChange)="onActionSelectorLinkResellerSiteIdSelect($event)"
-            [optionPlaceholder]="this.translate.instant('TITLE.Representative_Site')">
+            [optionPlaceholder]="'TITLE.Representative_Site' | translate ">
           </app-cms-site-selector>
           <!-- HasAccountingForm Field -->
           <div class="d-flex mb-3">
@@ -1016,7 +1016,7 @@
             <mat-datepicker touchUi #AccountingFormUpdatedDate></mat-datepicker>
           </div>
           <div class="mb-12">
-            <angular-editor [placeholder]="this.translate.instant('TITLE.Memory_Accounting')"
+            <angular-editor [placeholder]="'TITLE.Memory_Accounting'| translate "
               [config]="publicHelper.editorConfigFull" id="main" *ngIf="fieldsInfo['accountingMemo']?.accessWatchField"
               [disabled]="!fieldsInfo['accountingMemo']?.accessEditField" [(ngModel)]="dataModel.accountingMemo"
               name="dataModel.accountingMemo">

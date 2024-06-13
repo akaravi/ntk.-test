@@ -167,8 +167,7 @@
         <!-- LinkCmsUserId Field -->
         <app-cms-user-selector *ngIf="this.tokenHelper.isAdminSite" (optionChange)="onActionSelectorCmsUser($event)"
           [(optionLoading)]="loading" [optionDisabled]="!fieldsInfo['linkCmsUserId']?.accessAddField"
-          [optionSelectForce]="dataModel.linkCmsUserId"
-          [optionPlaceholder]="this.translate.instant('TITLE.Order_Owner')">
+          [optionSelectForce]="dataModel.linkCmsUserId" [optionPlaceholder]="'TITLE.Order_Owner'  | translate">
         </app-cms-user-selector>
 
         <!-- linkEstateAgencyId Field -->
@@ -176,14 +175,14 @@
           (optionChange)="onActionSelectorEstateAgency($event)" [(optionLoading)]="loading"
           [optionDisabled]="!fieldsInfo['linkEstateAgencyId']?.accessAddField"
           [optionSelectForce]="dataModel.linkEstateAgencyId" [optionSelectUserId]="this.tokenInfo.userId"
-          [optionPlaceholder]="this.translate.instant('TITLE.Property_agency')">
+          [optionPlaceholder]="'TITLE.Property_agency'  | translate">
         </app-estate-account-agency-selector>
 
         <!-- LinkEstateUserId Field -->
         <app-estate-account-user-selector (optionChange)="onActionSelectorEstateUser($event)"
           [optionDisabled]="!fieldsInfo['linkEstateUserId']?.accessAddField"
           [optionSelectForce]="dataModel.linkEstateUserId" [(optionLoading)]="loading"
-          [optionPlaceholder]="this.translate.instant('TITLE.Real_estate_customer_personnel')">
+          [optionPlaceholder]="'TITLE.Real_estate_customer_personnel'  | translate">
         </app-estate-account-user-selector>
 
         <!-- ContactMobiles Field -->
@@ -247,8 +246,7 @@
         <!-- LinkPropertyIds Field -->
         <app-estate-property-autocomplete (optionChange)="onActionSelectorProperty($event)"
           [optionDisabled]="!fieldsInfo['linkPropertyIds']?.accessAddField"
-          [optionPlaceholder]="this.translate.instant('TITLE.Property')"
-          [optionSelectForce]="this.dataModel.linkPropertyIds">
+          [optionPlaceholder]="'TITLE.Property'  | translate" [optionSelectForce]="this.dataModel.linkPropertyIds">
         </app-estate-property-autocomplete>
         <br />
         <div *ngIf="!LinkPropertyIdsInUse">
@@ -283,7 +281,7 @@
             !fieldsInfo['linkPropertyTypeLanduseId']?.accessEditField
           " [optionTypeView]="2" [optionSelectForce]="dataModel.linkPropertyTypeLanduseId" [(optionLoading)]="loading"
           [optionTypeUsageId]="dataModel.linkPropertyTypeUsageId"
-          [optionPlaceholder]="this.translate.instant('TITLE.Property_Type')">
+          [optionPlaceholder]="'TITLE.Property_Type'  | translate">
           <mat-icon matSuffix *ngIf="
               dataModel.linkPropertyTypeLanduseId &&
               dataModel.linkPropertyTypeLanduseId?.length > 0
@@ -299,7 +297,7 @@
         <app-estate-contract-type-selector (optionChange)="onActionSelectorContarctType($event)" [optionTypeView]="2"
           [optionDisabled]="!fieldsInfo['linkContractTypeId']?.accessAddField"
           [optionSelectForce]="dataModel.linkContractTypeId" [(optionLoading)]="loading"
-          [optionPlaceholder]="this.translate.instant('TITLE.Transaction_type')">
+          [optionPlaceholder]="'TITLE.Transaction_type'  | translate">
           <mat-icon matSuffix *ngIf="
               dataModel.linkContractTypeId &&
               dataModel.linkContractTypeId?.length > 0
@@ -574,7 +572,7 @@
         <!-- linkPropertyIdsIgnored Field -->
         <app-estate-property-autocomplete (optionChange)="onActionSelectorPropertyIgnored($event)" [optionDisabled]="
             !fieldsInfo['linkPropertyIdsIgnored']?.accessAddField
-          " [optionPlaceholder]="this.translate.instant('TITLE.Property')"
+          " [optionPlaceholder]="'TITLE.Property'  | translate"
           [optionSelectForce]="this.dataModel.linkPropertyIdsIgnored">
         </app-estate-property-autocomplete>
 
