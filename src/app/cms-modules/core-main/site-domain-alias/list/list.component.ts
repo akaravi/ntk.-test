@@ -249,9 +249,14 @@ export class CoreSiteDomainAliasListComponent extends ListBaseComponent<CoreSite
     }
 
 
-    const title = this.translate.instant('MESSAGE.Please_Confirm');
-    const message = this.translate.instant('MESSAGE.Do_you_want_to_delete_this_content') + '?' +
-      '<br> ( ' + this.tableRowSelected.subDomain + '.' + this.tableRowSelected.domain + ' ) ';
+
+    var title = "";
+    var message = "";
+    this.translate.get(['MESSAGE.Please_Confirm', 'MESSAGE.Do_you_want_to_delete_this_content']).subscribe((str: string) => {
+      title = str[0];
+      message = str[1] + '?' +
+        '<br> ( ' + this.tableRowSelected.subDomain + '.' + this.tableRowSelected.domain + ' ) ';
+    });
     this.cmsConfirmationDialogService.confirm(title, message)
       .then((confirmed) => {
         if (confirmed) {

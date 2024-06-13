@@ -173,8 +173,13 @@ export class EstatePropertyProjectTreeComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorSelected(message1);
       return;
     }
-    const title = this.translate.instant('MESSAGE.Please_Confirm');
-    const message = this.translate.instant('MESSAGE.Do_you_want_to_delete_this_content') + '?' + '<br> ( ' + this.dataModelSelect.title + ' ) ';
+    var title = "";
+    var message = "";
+    this.translate.get(['MESSAGE.Please_Confirm', 'MESSAGE.Do_you_want_to_delete_this_content']).subscribe((str: string) => {
+      title = str[0];
+      message = str[1] + '?' + '<br> ( ' + this.dataModelSelect.title + ' ) ';
+    });
+
     this.cmsConfirmationDialogService.confirm(title, message)
       .then((confirmed) => {
         if (confirmed) {
