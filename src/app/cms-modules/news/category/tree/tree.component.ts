@@ -155,7 +155,6 @@ export class NewsCategoryTreeComponent implements OnInit, OnDestroy {
     });
   }
   onActionDelete(): void {
-    debugger
     let id = 0;
     if (this.dataModelSelect && this.dataModelSelect.id > 0) {
       id = this.dataModelSelect.id;
