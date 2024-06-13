@@ -70,7 +70,7 @@
       <!-- LinkCmsUserId Field -->
       <app-cms-user-selector *ngIf="this.tokenHelper.isAdminSite" (optionChange)="onActionSelectorUser($event)"
         [(optionLoading)]="loading" [optionDisabled]="!fieldsInfo['linkCmsUserId']?.accessAddField"
-        [optionSelectForce]="dataModel.linkCmsUserId" [optionPlaceholder]="this.translate.instant('TITLE.USER')">
+        [optionSelectForce]="dataModel.linkCmsUserId" [optionPlaceholder]="'TITLE.USER' | translate">
       </app-cms-user-selector>
       <!-- JoinId Field -->
       <div class="input-style has-borders no-icon input-style-always-active validate-field mb-4">
@@ -150,7 +150,7 @@
       <!-- linkLocationWorkAreaIds Field -->
       <app-cms-location-autocomplete (optionChange)="onActionSelectorLocationWorkArea($event)"
         [(optionLoading)]="loading" [optionSelectForce]="dataModel.linkLocationWorkAreaIds"
-        [optionPlaceholder]="this.translate.instant('TITLE.Region')">
+        [optionPlaceholder]="'TITLE.Region' | translate">
       </app-cms-location-autocomplete>
       <hr>
       <!-- AccessWatchRowSite Field -->

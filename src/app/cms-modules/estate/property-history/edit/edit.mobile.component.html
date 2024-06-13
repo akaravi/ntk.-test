@@ -193,7 +193,7 @@
         <div class="cms-m-container-body">
           <app-estate-account-user-selector (optionChange)="onActionSelectorEstateUser($event)"
             [(optionLoading)]="loading" *ngIf="fieldsInfo['linkEstateUserId']?.accessWatchField"
-            [optionSelectForce]="dataModel.linkEstateUserId" [optionPlaceholder]="this.translate.instant('TITLE.USER')"
+            [optionSelectForce]="dataModel.linkEstateUserId" [optionPlaceholder]="'TITLE.USER' | translate"
             [style.direction]="this.tokenHelper.directionTheme">
           </app-estate-account-user-selector>
           <br />

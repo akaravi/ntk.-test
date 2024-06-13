@@ -20,7 +20,7 @@
           <app-estate-property-type-usage-selector (optionChange)="onActionSelectorSelectUsage($event)"
             [optionDisabled]="!fieldsInfo['linkPropertyTypeUsageId']?.accessAddField" [optionTypeView]="2"
             [(optionLoading)]="loading" [optionSelectForce]="dataModel.linkPropertyTypeUsageId"
-            [optionPlaceholder]="this.translate.instant('TITLE.Type_Usage')">
+            [optionPlaceholder]="'TITLE.Type_Usage' | translate">
           </app-estate-property-type-usage-selector>
 
           <p
@@ -152,8 +152,7 @@
             <!-- LinkLocationId Field -->
             <app-cms-location-selector (optionChange)="onActionSelectorLocation($event)"
               [optionDisabled]="!fieldsInfo['linkLocationId']?.accessAddField" [(optionLoading)]="loading"
-              [optionSelectForce]="dataModel.linkLocationId"
-              [optionPlaceholder]="this.translate.instant('TITLE.Region')">
+              [optionSelectForce]="dataModel.linkLocationId" [optionPlaceholder]="'TITLE.Region' | translate">
             </app-cms-location-selector>
             <!-- Address Field -->
             <div *ngIf="fieldsInfo['address']?.accessWatchField"

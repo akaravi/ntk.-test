@@ -58,13 +58,12 @@
 
       <!-- linkActivityTypeId Field -->
       <app-estate-activity-type-selector (optionChange)="onActionSelectorSelect($event)" [(optionLoading)]="loading"
-        [optionSelectForce]="dataModel.linkActivityTypeId"
-        [optionPlaceholder]="this.translate.instant('TITLE.Category')">
+        [optionSelectForce]="dataModel.linkActivityTypeId" [optionPlaceholder]="'TITLE.Category' | translate">
       </app-estate-activity-type-selector>
       <!-- linkEstateUserId Field -->
       <app-estate-account-user-selector (optionChange)="onActionSelectorEstateUser($event)" [(optionLoading)]="loading"
         *ngIf="fieldsInfo['linkEstateUserId']?.accessAddField" [optionSelectForce]="dataModel.linkEstateUserId"
-        [optionPlaceholder]="this.translate.instant('TITLE.USER')">
+        [optionPlaceholder]="'TITLE.USER' | translate">
       </app-estate-account-user-selector>
 
       <!-- linkEstateAgencyId Field -->

@@ -7,8 +7,8 @@
 
 
         <p>
-      {{'TITLE.Be_Careful_When_Entering_Information' | translate}}
-    </p>
+            {{'TITLE.Be_Careful_When_Entering_Information' | translate}}
+        </p>
         <!--Content-->
         <form (ngSubmit)="onFormSubmit()" #vform="ngForm">
 
@@ -48,7 +48,7 @@
             <app-estate-property-type-usage-selector (optionChange)="onActionSelectorSelectUsage($event)"
                 *ngIf="dataModel.linkCoreCurrencyId && dataModel.linkCoreCurrencyId>0" [optionDisabled]="false"
                 [optionTypeView]="1" [optionSelectForce]="dataModel.linkPropertyTypeUsageId" [(optionLoading)]="loading"
-                [optionPlaceholder]="this.translate.instant('TITLE.Type_Usage')">
+                [optionPlaceholder]="'TITLE.Type_Usage' | translate">
                 <mat-icon class="margin-top" matSuffix
                     *ngIf="dataModel.linkPropertyTypeUsageId && dataModel.linkPropertyTypeUsageId?.length>0" matSuffix
                     mat-icon-button aria-label="Clear" (click)="dataModel.linkPropertyTypeUsageId = null;">close

@@ -76,7 +76,7 @@
       <!-- LinkLocationIds Field -->
       <app-cms-location-autocomplete (optionChange)="onActionSelectorLocation($event)"
         [optionDisabled]="!fieldsInfo['linkLocationIds']?.accessAddField" [(optionLoading)]="loading"
-        [optionSelectForce]="dataModel.linkLocationIds" [optionPlaceholder]="this.translate.instant('TITLE.Region')"
+        [optionSelectForce]="dataModel.linkLocationIds" [optionPlaceholder]="'TITLE.Region' | translate"
         [optionLabel]="this.translate.instant('TITLE.Geographical_Areas')">
       </app-cms-location-autocomplete>
 

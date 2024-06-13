@@ -116,8 +116,7 @@
       <!-- LinkPropertyTypeUsageIds Field -->
       <app-estate-property-type-usage-autocomplete (optionChange)="onActionSelectorSelectUsage($event)"
         *ngIf="!LinkPropertyIdsInUse" [optionDisabled]="!fieldsInfo['linkPropertyTypeUsageIds']?.accessAddField"
-        [optionSelectForce]="dataModel.linkPropertyTypeUsageIds"
-        [optionPlaceholder]="this.translate.instant('TITLE.Type_Usage')">
+        [optionSelectForce]="dataModel.linkPropertyTypeUsageIds" [optionPlaceholder]="'TITLE.Type_Usage' | translate">
       </app-estate-property-type-usage-autocomplete>
       <!-- LinkPropertyTypeLanduseIds Field -->
       <app-estate-property-type-landuse-autocomplete (optionChange)="onActionSelectorSelectLanduse($event)"
@@ -140,7 +139,7 @@
       <!-- LinkLocationIds Field -->
       <app-cms-location-autocomplete (optionChange)="onActionSelectorLocation($event)" [(optionLoading)]="loading"
         *ngIf="!LinkPropertyIdsInUse" [optionDisabled]="!fieldsInfo['linkLocationIds']?.accessAddField"
-        [optionSelectForce]="dataModel.linkLocationIds" [optionPlaceholder]="this.translate.instant('TITLE.Region')">
+        [optionSelectForce]="dataModel.linkLocationIds" [optionPlaceholder]="'TITLE.Region' | translate">
       </app-cms-location-autocomplete>
 
       <div class="row mb-0">

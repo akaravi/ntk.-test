@@ -40,7 +40,7 @@
         <!-- LinkCategoryId Field -->
         <app-estate-customer-category-selector (optionChange)="onActionSelectorSelect($event)"
           [optionSelectForce]="dataModel.linkEstateCustomerCategoryId" [(optionLoading)]="loading"
-          [optionPlaceholder]="this.translate.instant('TITLE.Category')">
+          [optionPlaceholder]="'TITLE.Category' | translate">
         </app-estate-customer-category-selector>
 
         <!-- CaseCode Field -->
@@ -275,7 +275,7 @@
             [optionAllowUnSelect]="true" [optionDisabled]="
             !fieldsInfo['linkPropertyTypeUsageId']?.accessEditField
           " [optionTypeView]="2" [optionSelectForce]="dataModel.linkPropertyTypeUsageId" [(optionLoading)]="loading"
-            [optionPlaceholder]="this.translate.instant('TITLE.Type_Usage')">
+            [optionPlaceholder]="'TITLE.Type_Usage' | translate">
 
           </app-estate-property-type-usage-selector>
           <br />
@@ -471,7 +471,7 @@
           <!-- LinkLocationIds Field -->
           <app-cms-location-autocomplete (optionChange)="onActionSelectorLocation($event)"
             [optionDisabled]="!fieldsInfo['linkLocationIds']?.accessEditField" [(optionLoading)]="loading"
-            [optionSelectForce]="dataModel.linkLocationIds" [optionPlaceholder]="this.translate.instant('TITLE.Region')"
+            [optionSelectForce]="dataModel.linkLocationIds" [optionPlaceholder]="'TITLE.Region' | translate"
             [optionLabel]="this.translate.instant('TITLE.Geographical_Areas')">
           </app-cms-location-autocomplete>
           <!-- propertyDetailGroups Field -->

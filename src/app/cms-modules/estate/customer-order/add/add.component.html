@@ -23,7 +23,7 @@
         <!-- LinkCategoryId Field -->
         <app-estate-customer-category-selector (optionChange)="onActionSelectorSelect($event)"
           [(optionLoading)]="loading" [optionSelectForce]="dataModel.linkEstateCustomerCategoryId"
-          [optionPlaceholder]="this.translate.instant('TITLE.Category')">
+          [optionPlaceholder]="'TITLE.Category' | translate">
         </app-estate-customer-category-selector>
 
         <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
@@ -31,7 +31,7 @@
         <!-- LinkCategoryId Field -->
         <app-estate-customer-category-selector (optionChange)="onActionSelectorSelect($event)"
           [(optionLoading)]="loading" [optionSelectForce]="dataModel.linkEstateCustomerCategoryId"
-          [optionPlaceholder]="this.translate.instant('TITLE.Category')">
+          [optionPlaceholder]="'TITLE.Category' | translate">
         </app-estate-customer-category-selector>
 
         <!-- Title Field -->
@@ -266,7 +266,7 @@
         <app-estate-property-type-usage-selector (optionChange)="onActionSelectorSelectUsage($event)"
           [optionDisabled]=" !fieldsInfo['linkPropertyTypeUsageId']?.accessEditField" [optionTypeView]="2"
           [optionSelectForce]="dataModel.linkPropertyTypeUsageId" [(optionLoading)]="loading"
-          [optionPlaceholder]="this.translate.instant('TITLE.Type_Usage')">
+          [optionPlaceholder]="'TITLE.Type_Usage' | translate">
           <mat-icon matSuffix *ngIf="dataModel.linkPropertyTypeUsageId && dataModel.linkPropertyTypeUsageId?.length > 0"
             matSuffix mat-icon-button aria-label="Clear"
             (click)="dataModel.linkPropertyTypeUsageId = null">close</mat-icon>
@@ -465,7 +465,7 @@
         <!-- LinkLocationIds Field -->
         <app-cms-location-autocomplete (optionChange)="onActionSelectorLocation($event)"
           [optionDisabled]="!fieldsInfo['linkLocationIds']?.accessAddField" [(optionLoading)]="loading"
-          [optionSelectForce]="dataModel.linkLocationIds" [optionPlaceholder]="this.translate.instant('TITLE.Region')">
+          [optionSelectForce]="dataModel.linkLocationIds" [optionPlaceholder]="'TITLE.Region' | translate">
         </app-cms-location-autocomplete>
         <!-- propertyDetailGroups Field -->
         <mat-accordion class="example-headers-align">

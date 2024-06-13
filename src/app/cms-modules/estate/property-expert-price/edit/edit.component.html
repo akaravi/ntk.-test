@@ -59,7 +59,7 @@
       <app-estate-property-type-usage-selector (optionChange)="onActionSelectorSelectUsage($event)"
         [optionDisabled]="!fieldsInfo['linkPropertyTypeUsageId']?.accessEditField" [optionTypeView]="2"
         [optionSelectForce]="dataModel.linkPropertyTypeUsageId" [(optionLoading)]="loading"
-        [optionPlaceholder]="this.translate.instant('TITLE.Type_Usage')">
+        [optionPlaceholder]="'TITLE.Type_Usage' | translate">
         <mat-icon matSuffix *ngIf="dataModel.linkPropertyTypeUsageId && dataModel.linkPropertyTypeUsageId?.length>0"
           matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.linkPropertyTypeUsageId = null;">close
         </mat-icon>

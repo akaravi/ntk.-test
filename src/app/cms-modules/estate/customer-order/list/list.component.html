@@ -142,13 +142,12 @@
         </P>
         <!-- LinkLocationIds Field -->
         <app-cms-location-autocomplete (optionChange)="onActionSelectorLocation($event)" [(optionLoading)]="loading"
-          [optionPlaceholder]="this.translate.instant('TITLE.Region')">
+          [optionPlaceholder]="'TITLE.Region' | translate">
         </app-cms-location-autocomplete>
         <hr>
         <!-- LinkPropertyTypeUsageId Field -->
         <app-estate-property-type-usage-selector (optionChange)="onActionSelectorSelectUsage($event)"
-          [optionTypeView]="2" [(optionLoading)]="loading"
-          [optionPlaceholder]="this.translate.instant('TITLE.Type_Usage')">
+          [optionTypeView]="2" [(optionLoading)]="loading" [optionPlaceholder]="'TITLE.Type_Usage' | translate">
           <mat-icon matSuffix
             *ngIf="filteModelContent.linkPropertyTypeUsageId && filteModelContent.linkPropertyTypeUsageId?.length>0"
             matSuffix mat-icon-button aria-label="Clear" (click)="filteModelContent.linkPropertyTypeUsageId = null;">

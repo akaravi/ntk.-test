@@ -37,7 +37,7 @@
           <!-- LinkSourceId Field -->
           <app-application-source-selector (optionChange)="onActionSelectSource($event)"
             [optionSelectForce]="this.dataModel.linkSourceId" [(optionLoading)]="loading"
-            [optionPlaceholder]="this.translate.instant('TITLE.Application_Source')"
+            [optionPlaceholder]="'TITLE.Application_Source' | translate"
             [optionDisabled]="!fieldsInfo['linkSourceId']?.accessEditField"></app-application-source-selector>
           <!-- LinkThemeConfigId Field -->
           <app-application-themeconfig-selector (optionChange)="onActionSelectTheme($event)"
