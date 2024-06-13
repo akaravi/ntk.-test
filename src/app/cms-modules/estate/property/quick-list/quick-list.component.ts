@@ -595,9 +595,12 @@ export class EstatePropertyQuickListComponent extends ListBaseComponent<EstatePr
       return;
     }
 
-    const title = this.translate.instant('MESSAGE.Please_Confirm');
-    var message = this.translate.instant('MESSAGE.Do_you_want_to_delete_this_content');
-    message += "?" + "<br> ( " + this.tableRowSelected.title + " ) ";
+    var title = "";
+    var message = "";
+    this.translate.get(['MESSAGE.Please_Confirm', 'MESSAGE.Do_you_want_to_delete_this_content']).subscribe((str: string) => {
+      title = str[0];
+      message = str[1] + '?' + '<br> ( ' + this.tableRowSelected.title + ' ) ';
+    });
     this.cmsConfirmationDialogService
       .confirm(title, message)
       .then((confirmed) => {

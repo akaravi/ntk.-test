@@ -155,6 +155,7 @@ export class NewsCategoryTreeComponent implements OnInit, OnDestroy {
     });
   }
   onActionDelete(): void {
+    debugger
     let id = 0;
     if (this.dataModelSelect && this.dataModelSelect.id > 0) {
       id = this.dataModelSelect.id;
@@ -173,7 +174,7 @@ export class NewsCategoryTreeComponent implements OnInit, OnDestroy {
       panelClass: panelClass,
       enterAnimationDuration: environment.cmsViewConfig.enterAnimationDuration,
       exitAnimationDuration: environment.cmsViewConfig.exitAnimationDuration,
-      data: { Id: id }
+      data: { id: id }
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result && result.dialogChangedDate) {
