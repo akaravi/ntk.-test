@@ -1,6 +1,6 @@
 <div class="row">
   <div *ngIf="optionTreeDisplay"
-    [ngClass]="this.tokenHelper.isMobile? viewTree? 'menu-active menu-custom menu-box-right rounded-0':'menu menu-box-right rounded-0':'col-xl-3'">
+    [ngClass]="this.tokenHelper.isMobile? viewTree? 'menu-active menu-custom menu-box-right-custom rounded-0':'menu menu-box-right-custom rounded-0':'col-xl-3'">
     <!--begin::tree-->
     <ng-content select="[cms-tree]"></ng-content>
     <!--end::tree-->

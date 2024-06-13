@@ -1919,6 +1919,16 @@ body {
   width: 250px;
 }
 
+.menu-box-right-custom {
+  display: none;
+  right: 0px;
+  transform: translateX(100%);
+  top: 100px !important;
+  height: 100%;
+  bottom: 0px;
+  width: 250px;
+}
+
 .menu-box-top {
   transform: translate3d(0, -115%, 0);
   top: 0px;
@@ -1962,6 +1972,9 @@ body {
   transform: translate3d(0%, 0, 0) !important;
 }
 
+.menu-box-right-custom.menu-active {
+  transform: translate3d(0%, 0, 0) !important;
+}
 .menu-box-top.menu-active {
   transform: translate3d(0%, 0, 0) !important;
 }
@@ -2003,6 +2016,14 @@ body {
 }
 
 .menu-box-right[data-menu-effect=menu-reveal] {
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(0px) !important;
+  z-index: 96;
+}
+
+
+.menu-box-right-custom[data-menu-effect=menu-reveal] {
   opacity: 0;
   pointer-events: none;
   transform: translate(0px) !important;
