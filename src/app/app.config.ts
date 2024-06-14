@@ -7,7 +7,7 @@ import { provideRouter } from '@angular/router';
 import { provideServiceWorker } from '@angular/service-worker';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { routes } from './app.routes';
+import { routes } from './app.routing';
 
 
 export const appConfig: ApplicationConfig = {

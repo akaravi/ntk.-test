@@ -19,7 +19,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { CoreAuthService, CoreConfigurationService, CoreEnumService, CoreModuleService } from 'ntk-cms-api';
 import { environment } from 'src/environments/environment';
 import { AppComponent } from './app.component';
-import { AppRoutingModule } from './app.routes';
+import { AppRoutingModule } from './app.routing';
 import { ComponentsModule } from './components/components.module';
 import { appInitializerFactory } from './core/i18n/app.initializer.factory';
 import { CmsStoreModule } from './core/reducers/cmsStore.module';
